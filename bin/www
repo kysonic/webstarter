@@ -1,0 +1,12 @@
+/**
+ * PLEX EXECUTABLE FILE
+ */
+
+var debug = require('debug')('webcolabs');
+var app = require('../app');
+
+
+var server = app.listen(app.get('port'), function() {
+    console.log('Plex run...');
+    debug('Express server listening on port ' + server.address().port);
+});
