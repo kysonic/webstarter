@@ -6,14 +6,10 @@ var app = express();
  * App global configuration
  */
 require('./app/bootstrap')(app);
-
-    
-    /**
+/**
 * Bem middleware
 */
 app.use(require('plex-bem-middleware')(app));
-    
-
 /**
  * Static middleware
  */

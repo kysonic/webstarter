@@ -8,5 +8,6 @@ module.exports = function(app){
     app.set('view engine', 'jade');
     app.set('menu',[{name:'Home',href:'/'},{name:'Rest',href:'/rest'}]);
     app.set('tpl','default');
-    app.set('useGulp','true')
+    app.set('useGulp','true');
+    app.set('entityFolders',false);
 }

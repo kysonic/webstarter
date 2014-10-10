@@ -1,3 +1,1 @@
-
-require("./components/controllers/FirstController.js");
-require("./components/directives/test.js");
+require("./blocks/header/header.js");
