@@ -1,0 +1,13 @@
+html,body {
+    height:100%;
+    margin:0;
+    background-color: #f9f9f9;
+    font-family: 'Open Sans';
+}
+#content {
+    padding: 20px;
+}
+h1 {
+    color: #2b3131;
+}
+
