@@ -6,6 +6,6 @@ module.exports = function(app){
         secret: app.get('config').get('session:secret'),
         key:app.get('config').get('session:key'),
         cookie:app.get('config').get('session:cookie'),
-        store: require('../../libs/sessionStore')
+        store: require('../../libs/sessionStore/index')
     }));
 }

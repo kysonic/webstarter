@@ -2,7 +2,7 @@
  * PLEX EXECUTABLE FILE
  */
 
-var debug = require('debug')('webcolabs');
+var debug = require('debug')('riot');
 var app = require('../app');
 
 

@@ -13,7 +13,7 @@ module.exports = function(app){
     if (app.get('env') === 'dev') {
         app.use(function(err, req, res, next) {
             res.status(err.status || 500);
-            res.render('pages/'+app.get('tpl')+'/error', {
+            res.render('pages/error', {
                 message: err.message,
                 error: err,
                 tpl:app.get('tpl')
@@ -25,7 +25,7 @@ module.exports = function(app){
      */
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
-        res.render('pages/'+app.get('tpl')+'/error', {
+        res.render('pages/error', {
             message: err.message,
             error: {},
             tpl:app.get('tpl')

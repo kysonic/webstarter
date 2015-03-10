@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 module.exports = function(app) {
     router.get('/', function(req, res) {
-        res.render('pages/'+app.get('tpl')+'/index', { title: 'index', menu:app.get('menu'),tpl:app.get('tpl')});
+        res.render('pages/index', { title: 'Welcome to PLEX'});
     });
     return router;
 }

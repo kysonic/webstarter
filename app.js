@@ -7,15 +7,15 @@ var app = express();
  */
 require('./app/bootstrap')(app);
 /**
-* Bem middleware
-*/
-app.use(require('plex-bem-middleware')(app));
+ * Parser. U need uncomment it if u want use plex-parser features. Don't forget reload your server
+ */
+app.use(require('plex-riot-parser')(app));
 /**
  * Static middleware
  */
 app.use(express.static(path.join(__dirname, 'public')));
 /**
- * Station
+ * Station (Is a grouped middleware)
  */
 require('./app/station/log-encoding')(app);
 require('./app/station/cookie-session')(app);
