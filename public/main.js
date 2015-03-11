@@ -39,8 +39,15 @@
             require(['matchMedia']);
         }
         domReady(function(){
-            var tags = riot.mount('*');
-
+            window.tags = riot.mount('*');
+            // Find tag by name
+            window.tags.findTagByName = function(name){
+                var searchTag = null;
+                this.forEach(function(tag){
+                    if(tag.root.tagName.toLowerCase()==name.toLowerCase()) searchTag = tag;
+                });
+                return searchTag;
+            }
         });
     });
 })();
