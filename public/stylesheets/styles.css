@@ -10,36 +10,3 @@ html,body {
 h1 {
     color: #2b3131;
 }
-.col-md-4  {
-    border: 1px solid black;
-    background: #ccc;
-}
-.col-md-6  {
-    border: 1px solid black;
-    background: #ccccb2;
-}
-.col-sm-6 {
-    border: 1px solid black;
-    background: #b5c7cc;
-}
-.col-sm-4 {
-    border: 1px solid black;
-    background: #ccabbf;
-}
-.col-lg-4 {
-    border: 1px solid black;
-    background: #acccb4;
-}
-.col-md-8 {
-    border: 1px solid black;
-    background: #cc8ba9;
-}
-.col-md-3 {
-    border: 1px solid black;
-    background: #7dcc99;
-}
-.col-xs-6 {
-    border: 1px solid black;
-    background: #6f4acc;
-}
-

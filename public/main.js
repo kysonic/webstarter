@@ -17,18 +17,30 @@
         paths: {
             components: 'app-components/',
             tags: 'build/tags/',
-            riot: 'vendor/riotjs/riot.min',
+            riot: 'vendor/riotjs/riot',
             jquery: 'vendor/jquery/dist/jquery.min',
-            domReady: 'vendor/domReady/domReady'
+            domReady: 'vendor/domReady/domReady',
+            matchMedia: 'vendor/matchMedia/matchMedia'
         }
     });
     /**
      * App startup!
      */
-    require(['domReady','riot','jquery'].concat(['tags/todo/todo','tags/header/header']),function(domReady,riot,$){
+    require(['domReady','riot','jquery'].concat([
+        'tags/core-media-query/core-media-query',
+        'tags/x-media-queries/x-media-queries',
+        'tags/header/header'
+        ]),
+        function(domReady,riot,$){
+        //Riot basic settings
+        riot.settings.brackets = '{{ }}'
+        // Require polyfills if we have a IE9
+        if(/MSIE (8|9)/i.test(window.navigator.userAgent)) {
+            require(['matchMedia']);
+        }
         domReady(function(){
-            riot.mount('header',{logoText: 'Plex'});
-            riot.mount('todo',{title:'Todo',items:[{title:'First',done:true}]});
+            var tags = riot.mount('*');
+
         });
     });
 })();
