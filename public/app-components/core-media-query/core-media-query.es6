@@ -8,10 +8,6 @@ function cb(opts) {
         this.mq.addListener(this.mqHandler.bind(this));
         this.mqHandler();
     });
-    // On change matches
-    this.on('matchesChanged', ()=>{
-        console.log(this.root.id,this.matches);
-    });
     // Change matches handler
     this.mqHandler = ()=>{
         this.matches = this.mq.matches;
