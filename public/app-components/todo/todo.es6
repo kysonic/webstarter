@@ -32,7 +32,7 @@ function cb(opts) {
         return true
     }
     this.remove = (e)=>{
-        this.items.splice($.inArray( e.item, this.list ),1);
+        this.items.splice(this.items.indexOf(e.item),1);
         this.lc.trigger('localStorageChanged');
     }
     /*TodoStore.listen(function(data){
