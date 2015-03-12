@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="114facd6-b245-43d9-be7d-5799541c40d2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app-components/header/header.es6" afterPath="$PROJECT_DIR$/public/app-components/header/header.es6" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/index.jade" afterPath="$PROJECT_DIR$/app/views/layouts/index.jade" />
+      <change type="MOVED" beforePath="C:\nodejs\projects\webstarter\public\flux\actions.js" afterPath="$PROJECT_DIR$/public/flux/todo/actions.js" />
+      <change type="MOVED" beforePath="C:\nodejs\projects\webstarter\public\flux\stores.js" afterPath="$PROJECT_DIR$/public/flux/todo/stores.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/index.jade" afterPath="$PROJECT_DIR$/app/views/pages/index.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/main.js" afterPath="$PROJECT_DIR$/public/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app-components/todo/todo.es6" afterPath="$PROJECT_DIR$/public/app-components/todo/todo.es6" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app-components/todo/todo.jade" afterPath="$PROJECT_DIR$/public/app-components/todo/todo.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app-components/todo/todo.styl" afterPath="$PROJECT_DIR$/public/app-components/todo/todo.styl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="5a139700-3ad9-407d-92ad-2302ff11d20d" name="Failed commit: Default" comment="Webstarter first." />
@@ -41,31 +42,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jade" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/index.jade">
+      <file leaf-file-name="todo.jade" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/app-components/todo/todo.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.2" vertical-offset="0" max-vertical-offset="594">
-              <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+            <state vertical-scroll-proportion="-6.16" vertical-offset="0" max-vertical-offset="352">
+              <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="todo.es6" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="todo.es6" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/app-components/todo/todo.es6">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19031142" vertical-offset="0" max-vertical-offset="726">
-              <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="902">
+              <caret line="2" column="47" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jade" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/pages/index.jade">
+      <file leaf-file-name="actions.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/flux/todo/actions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.76" vertical-offset="0" max-vertical-offset="220">
-              <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="286">
+              <caret line="2" column="17" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="stores.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/flux/todo/stores.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.30449826" vertical-offset="0" max-vertical-offset="836">
+              <caret line="8" column="60" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -94,9 +105,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/public/javascripts/layouts/default/components/directives/test.js" />
-        <option value="$PROJECT_DIR$/app/views/pages/default/index.jade" />
-        <option value="$PROJECT_DIR$/public/javascripts/pages/default/components/controllers/IndexController.js" />
         <option value="$PROJECT_DIR$/public/javascripts/main.js" />
         <option value="$PROJECT_DIR$/app/bootstrap.js" />
         <option value="$PROJECT_DIR$/app/views/pages/default/error.jade" />
@@ -123,7 +131,6 @@
         <option value="$PROJECT_DIR$/public/app-components/x-media-queris/x-media-queris.jade" />
         <option value="$PROJECT_DIR$/includes.json" />
         <option value="$PROJECT_DIR$/public/app-components/core-media-query/core-media-query.es6" />
-        <option value="$PROJECT_DIR$/public/app-components/todo/todo.jade" />
         <option value="$PROJECT_DIR$/public/app-components/x-media-queries/x-media-queries.styl" />
         <option value="$PROJECT_DIR$/public/stylesheets/bootstrap.min.css" />
         <option value="$PROJECT_DIR$/public/app-components/x-media-queries/x-media-queries.es6" />
@@ -142,9 +149,13 @@
         <option value="$PROJECT_DIR$/public/flux/stores.js" />
         <option value="$PROJECT_DIR$/public/main.js" />
         <option value="$PROJECT_DIR$/app/views/layouts/index.jade" />
-        <option value="$PROJECT_DIR$/app/views/pages/index.jade" />
         <option value="$PROJECT_DIR$/node_modules/gulp-fight-riot/tags-compiler.js" />
+        <option value="$PROJECT_DIR$/app/views/pages/index.jade" />
+        <option value="$PROJECT_DIR$/public/app-components/todo/todo.jade" />
+        <option value="$PROJECT_DIR$/public/app-components/todo/todo.styl" />
+        <option value="$PROJECT_DIR$/public/flux/todo/actions.js" />
         <option value="$PROJECT_DIR$/public/app-components/todo/todo.es6" />
+        <option value="$PROJECT_DIR$/public/flux/todo/stores.js" />
       </list>
     </option>
   </component>
@@ -212,6 +223,68 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webstarter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webstarter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flux" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="todo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webstarter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webstarter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app-components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webstarter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webstarter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app-components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="todo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -236,6 +309,7 @@
       <recent name="C:\nodejs\projects\webstarter\public\stylesheets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\nodejs\projects\webstarter\public\flux\todo" />
       <recent name="C:\nodejs\projects\webstarter\public" />
       <recent name="C:\nodejs\projects\webstarter\public\l18n" />
       <recent name="C:\nodejs\projects\webstarter\public\stylesheets" />
@@ -338,7 +412,11 @@
       <created>1426151912961</created>
       <updated>1426151912961</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Define in tags.">
+      <created>1426158415316</created>
+      <updated>1426158415316</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -386,7 +464,8 @@
     <MESSAGE value="core-media-query" />
     <MESSAGE value="x-media-queries" />
     <MESSAGE value="x-l18n" />
-    <option name="LAST_COMMIT_MESSAGE" value="x-l18n" />
+    <MESSAGE value="Define in tags." />
+    <option name="LAST_COMMIT_MESSAGE" value="Define in tags." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -400,7 +479,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/flux/stores.js">
+    <entry file="file://$PROJECT_DIR$/public/flux/todo/stores.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="418">
           <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
@@ -432,7 +511,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/flux/stores.js">
+    <entry file="file://$PROJECT_DIR$/public/flux/todo/stores.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="110" max-vertical-offset="418">
           <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="6" selection-end-column="30" />
@@ -495,13 +574,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24412297" vertical-offset="107" max-vertical-offset="660">
           <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/app-components/todo/todo.styl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -568,13 +640,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/app-components/todo/todo.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.043824703" vertical-offset="0" max-vertical-offset="502">
-          <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/app-components/x-media-queries/x-media-queries.styl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="552">
@@ -632,14 +697,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/flux/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07599309" vertical-offset="0" max-vertical-offset="579">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/app-components/x-l18n/x-l18n.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="553">
@@ -668,14 +725,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45207956" vertical-offset="18252" max-vertical-offset="19800">
           <caret line="841" column="83" selection-start-line="841" selection-start-column="83" selection-end-line="841" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/app-components/header/header.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.28" vertical-offset="0" max-vertical-offset="286">
-          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -712,10 +761,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/flux/stores.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/gulp-fight-riot/tags-compiler.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15224913" vertical-offset="0" max-vertical-offset="578">
-          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.4159292" vertical-offset="1701" max-vertical-offset="3256">
+          <caret line="88" column="32" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!block;n#riotCompiler#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/index.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6111111" vertical-offset="0" max-vertical-offset="594">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/app-components/header/header.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.28" vertical-offset="0" max-vertical-offset="286">
+          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pages/index.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.079566" vertical-offset="0" max-vertical-offset="553">
+          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -728,36 +803,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/index.jade">
+    <entry file="file://$PROJECT_DIR$/public/app-components/todo/todo.styl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.76" vertical-offset="0" max-vertical-offset="220">
-          <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.278481" vertical-offset="0" max-vertical-offset="726">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/index.jade">
+    <entry file="file://$PROJECT_DIR$/public/app-components/todo/todo.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.2" vertical-offset="0" max-vertical-offset="594">
-          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+        <state vertical-scroll-proportion="-6.16" vertical-offset="0" max-vertical-offset="352">
+          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="19" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/gulp-fight-riot/tags-compiler.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4159292" vertical-offset="1701" max-vertical-offset="3256">
-          <caret line="88" column="32" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
-          <folding>
-            <element signature="n#!!block;n#riotCompiler#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/app-components/todo/todo.es6">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19031142" vertical-offset="0" max-vertical-offset="726">
-          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="902">
+          <caret line="2" column="47" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/flux/todo/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="286">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/flux/todo/stores.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30449826" vertical-offset="0" max-vertical-offset="836">
+          <caret line="8" column="60" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
           <folding />
         </state>
       </provider>

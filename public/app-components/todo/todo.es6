@@ -1,24 +1,32 @@
-define(['flux/stores','flux/actions'],store,actions);
+define(['flux/todo/stores','flux/todo/actions'],TodoStore,TodoActions);
 function cb(opts) {
-    this.items = opts.items || [];
+    TodoActions.InitTodo(JSON.parse(opts.items));
     this.edit = (e)=>{
         this.text = e.target.value
     }
     this.add = (e)=>{
-        e.preventDefault();
         if (this.text) {
-            this.items.push({ title: this.text })
+            TodoActions.ItemAdd({
+                title: this.text.trim()
+            });
             this.text = this.input.value = ''
         }
+        return false;
     }
     this.filter = (item) => {
         return !item.hidden
     }
     this.toggle = (e) => {
-        var item = e.item
-        item.done = !item.done
+        e.item.done = ! e.item.done;
+        TodoActions.ItemToggle(e.item);
         return true
     }
+    this.remove = (e)=>{
+        TodoActions.ItemRemove(e.item);
+    }
+    TodoStore.listen(function(data){
+        this.update({items:data});
+    }.bind(this));
 }
 
 
