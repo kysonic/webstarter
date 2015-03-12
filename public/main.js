@@ -34,7 +34,6 @@
      */
     require(['domReady','riot','jquery'].concat([
             'tags/x-l18n/x-l18n',
-            'tags/x-local-storage/x-local-storage',
             'tags/core-media-query/core-media-query',
             'tags/x-media-queries/x-media-queries',
             'tags/header/header',
