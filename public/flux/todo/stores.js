@@ -21,7 +21,7 @@ define(['reflux','flux/todo/actions','jquery'],function(Reflux,actions,$){
             this.updateList();
         },
         onItemRemove: function(item) {
-            this.list.splice($.inArray( item, this.list ),1);
+            this.list.splice(this.list.indexOf(item),1);
             this.updateList();
         },
         updateList: function(){
