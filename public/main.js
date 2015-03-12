@@ -1,5 +1,10 @@
 (function(){
     /**
+     * Globals
+     * @type {{}|*}
+     */
+    window.Webstarter = window.Webstarter || {};
+    /**
      * Pure Load Css
      * @param url
      */
@@ -27,30 +32,25 @@
     /**
      * App startup!
      */
-    require(['domReady','reflux','riot','jquery'].concat([
+    require(['domReady','riot','jquery'].concat([
             'tags/x-l18n/x-l18n',
             'tags/core-media-query/core-media-query',
             'tags/x-media-queries/x-media-queries',
-            'tags/header/header'
+            'tags/header/header',
+            'tags/todo/todo'
         ]),
-        function(domReady,Reflux,riot,$){
-            window.Webstarter = window.Webstarter || {};
+        function(domReady,riot,$){
             //Riot basic settings
             riot.settings.brackets = '{{ }}'
             // Require polyfills if we have a IE9
             if(/MSIE (8|9)/i.test(window.navigator.userAgent)) {
                 require(['matchMedia']);
             }
+            /**
+             * When dom is ready - grab all tags and place their in globals
+             */
             domReady(function(){
                 window.Webstarter.tags = riot.mount('*');
-                // Find tag by name
-                window.Webstarter.tags.findTagByName = function(name){
-                    var searchTag = null;
-                    this.forEach(function(tag){
-                        if(tag.root.tagName.toLowerCase()==name.toLowerCase()) searchTag = tag;
-                    });
-                    return searchTag;
-                }
             });
     });
 })();

@@ -1,6 +1,6 @@
+define(['flux/stores','flux/actions'],store,actions);
 function cb(opts) {
-    this.items = opts.items
-
+    this.items = opts.items || [];
     this.edit = (e)=>{
         this.text = e.target.value
     }

@@ -8,7 +8,7 @@ function cb(opts) {
         setTimeout(function(){
             // Get additional global tags
             this.media = window.Webstarter.tags.findTagByName('x-media-queries');
-            this.l18n  =  window.Webstarter.tags.findTagByName('x-l18n');
+            this.l18n  = window.Webstarter.tags.findTagByName('x-l18n');
             if(!this.media || !this.l18n) console.error('Sorry man... But you do not have needed components...');
             // Async startup
             setTimeout(function(){
@@ -21,10 +21,6 @@ function cb(opts) {
             }.bind(this));
         }.bind(this),0);
     });
-    this.translator = (value)=>{
-        console.log(value);
-        return value;
-    }
 }
 
 
