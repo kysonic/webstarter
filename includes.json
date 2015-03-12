@@ -1,1 +1,1 @@
-["./app/views/layouts/index.jade","./app/views/pages/index.jade","./app/views/pages/error.jade","./public/app-components/core-media-query/core-media-query.jade","./public/app-components/x-media-queries/x-media-queries.jade"]
+["./app/views/layouts/index.jade","./app/views/pages/index.jade","./app/views/pages/error.jade","./public/app-components/core-media-query/core-media-query.jade","./public/app-components/x-media-queries/x-media-queries.jade","./public/app-components/x-l18n/x-l18n.jade"]

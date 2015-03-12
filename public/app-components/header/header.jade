@@ -3,6 +3,6 @@ header
         .col-md-2.col-sm-10.col-xs-10
             #logo {{logoText}}
         .col-md-6(if='{{(currentMedia=="md" || currentMedia=="lg")}}')
-            | CURREMT MEDIA = {{currentMedia}}
+            | {{l18n.translator("mediaText")}} = {{currentMedia}}
         .col-md-4.col-sm-2.col-xs-2
             | MENU

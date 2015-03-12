@@ -6,9 +6,10 @@ function cb(opts) {
     this.on('mount',function(){
         // Async
         setTimeout(function(){
-            // Get x-media-queries
-            this.media = window.tags.findTagByName('x-media-queries');
-            if(!this.media) console.error('Sorry man... But you do not have a x-media-queries comp');
+            // Get additional global tags
+            this.media = window.Webstarter.tags.findTagByName('x-media-queries');
+            this.l18n  =  window.Webstarter.tags.findTagByName('x-l18n');
+            if(!this.media || !this.l18n) console.error('Sorry man... But you do not have needed components...');
             // Async startup
             setTimeout(function(){
                 this.media.startup();
@@ -20,7 +21,10 @@ function cb(opts) {
             }.bind(this));
         }.bind(this),0);
     });
-
+    this.translator = (value)=>{
+        console.log(value);
+        return value;
+    }
 }
 
 
