@@ -1,12 +1,14 @@
 define(['jquery','flux/todo/stores','flux/todo/actions','tags/x-local-storage/x-local-storage'],$,TodoStore,TodoActions);
 function cb(opts) {
+    var a = ['a','b'];
+
     //TodoActions.InitTodo(JSON.parse(opts.items));
     this.lc = this.tags['x-local-storage'];
-    this.on('mount',function(){
+    this.on('mount',()=>{
         this.lc.localStorage = this.lc.localStorage || JSON.parse(opts.items);
         this.items = this.lc.localStorage;
         this.update();
-    }.bind(this));
+    });
     this.edit = (e)=>{
         this.text = e.target.value
     }
