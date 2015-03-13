@@ -1,6 +1,5 @@
 define(['jquery','flux/todo/stores','flux/todo/actions','tags/x-local-storage/x-local-storage'],$,TodoStore,TodoActions);
 function cb(opts) {
-    var a = ['a','b'];
 
     //TodoActions.InitTodo(JSON.parse(opts.items));
     this.lc = this.tags['x-local-storage'];
