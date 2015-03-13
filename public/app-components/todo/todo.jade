@@ -9,4 +9,5 @@ todo
             .remove(onclick="{{parent.remove}}") X
     form(onsubmit='{{ add }}')
         input(name='input', onkeyup='{{ edit }}')
-        button.todo(disabled='{{ !text }}') Add
+        button.todo(disabled='{{ !text }}')
+            | Add {{items.length + 1}}

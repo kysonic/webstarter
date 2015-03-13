@@ -1,11 +1,13 @@
 var gulp = require('gulp');
 var riotTagsCompiler = require('gulp-fight-riot/tags-compiler');
+var changed = require('gulp-changed');
 
 gulp.task('dev', ['riot'], function() { });
 
 // Build Riot Tags
 gulp.task('riot', function () {
     gulp.src('./public/app-components/**/*.jade')
+        .pipe(changed('./public/app-components/**/'))
         .pipe(riotTagsCompiler({dist: './public/build/tags/',loadCss:true,amd:true,next:'es6,styl'}))
         .on('error', console.log)
 });

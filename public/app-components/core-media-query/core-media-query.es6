@@ -5,7 +5,7 @@ function cb(opts) {
     // Ready
     this.on('mount', ()=>{
         this.mq = window.matchMedia(this.query);
-        this.mq.addListener(this.mqHandler.bind(this));
+        if(this.mq.addListener) this.mq.addListener(this.mqHandler.bind(this));
         this.mqHandler();
     });
     // Change matches handler

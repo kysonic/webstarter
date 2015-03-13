@@ -4,7 +4,7 @@ function cb(opts) {
     this.lc = this.tags['x-local-storage'];
     this.on('mount',function(){
         this.lc.localStorage = this.lc.localStorage || JSON.parse(opts.items);
-        this.items = this.lc.localStorage
+        this.items = this.lc.localStorage;
         this.update();
     }.bind(this));
     this.edit = (e)=>{

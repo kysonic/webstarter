@@ -4,6 +4,7 @@
      * @type {{}|*}
      */
     window.Webstarter = window.Webstarter || {};
+    Webstarter.browsers = {isOIE:/MSIE (8|9)/i.test(window.navigator.userAgent)};
     /**
      * Pure Load Css
      * @param url
@@ -32,7 +33,10 @@
     /**
      * App startup!
      */
-    require(['domReady','riot','jquery'].concat([
+    var basics = ['domReady','riot','jquery'];
+    // Require polyffils for ie
+    if(Webstarter.browsers.isOIE) basics.push('matchMedia');
+    require(basics.concat([
             'tags/x-l18n/x-l18n',
             'tags/core-media-query/core-media-query',
             'tags/x-media-queries/x-media-queries',
@@ -42,10 +46,6 @@
         function(domReady,riot,$){
             //Riot basic settings
             riot.settings.brackets = '{{ }}'
-            // Require polyfills if we have a IE9
-            if(/MSIE (8|9)/i.test(window.navigator.userAgent)) {
-                require(['matchMedia']);
-            }
             /**
              * When dom is ready - grab all tags and place their in globals
              */
