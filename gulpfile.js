@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var riotTagsCompiler = require('gulp-fight-riot/tags-compiler');
-var changed = require('gulp-changed');
 watch = require('gulp-watch');
 
 gulp.task('dev', ['riot'], function() { });

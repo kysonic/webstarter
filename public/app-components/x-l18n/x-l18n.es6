@@ -1,7 +1,7 @@
 function cb(opts) {
     this.l18n = null;
     this.lang = 'ru';
-    //Zalupa
+    //Super electro
     this.on('mount',function(){
         // Get l18n data
         $.get('l18n.json',function(data){
