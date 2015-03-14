@@ -7,7 +7,6 @@ module.exports = function(app){
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'jade');
     app.set('stylesheets','.styl');
-    app.set('ignore','.js|.css|.png|.jpg|.gif');
     app.set('riotCompiler','{jade,es6,styl}');
     app.set('componentPath','./public/app-components');
     app.set('tech','riot');

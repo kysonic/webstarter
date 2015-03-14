@@ -7,10 +7,6 @@ var app = express();
  */
 require('./app/bootstrap')(app);
 /**
- * Parser. U need uncomment it if u want use plex-parser features. Don't forget reload your server
- */
-app.use(require('plex-riot-parser')(app));
-/**
  * Static middleware
  */
 app.use(express.static(path.join(__dirname, 'public')));
