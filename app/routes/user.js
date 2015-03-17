@@ -54,5 +54,28 @@ module.exports = function(app) {
             return res.json({success:true,message:'User deleting succesfull...'});
         });
     });
+    /**
+     * User authentication
+     */
+    router.post('/auth',function(req,res){
+        var data = req.body;
+        User.find({email:data.email},function(err,user){
+            if(err) return res.json({success:false,message:err.message});
+            var user = user[0];
+            if(user.password ==data.password) {
+                req.session.user = {email:user.email,password:user.password};
+                return res.json({success:true,message:'User is find!'});
+            }else {
+                return res.json({success:false,message:'Login\Password is not correctly'});
+            }
+        });
+    });
+    /**
+     * Logout route
+     */
+    router.get('/log/out',function(req,res){
+        req.session.user = null;
+        return res.json({success:true,message:'Logout is successful!'});
+    });
     return router;
 }

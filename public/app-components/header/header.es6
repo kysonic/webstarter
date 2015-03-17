@@ -1,15 +1,20 @@
-define(['tags/user/user'],user)
+define(['webstarter','tags/user/user','tags/over-ground/over-ground'],Webstarter,user);
 function cb(opts) {
     this.logoText = opts.logotext;
     this.media = null;
     this.currentMedia = null;
+    /**
+     * Ready
+     */
     this.on('mount',function(){
         // Async
         setTimeout(function(){
             // Get additional global tags
-            this.media = window.Webstarter.tags.findTagByName('x-media-queries');
-            this.l18n  = window.Webstarter.tags.findTagByName('x-l18n');
-            this.User = this.tags['user'];
+            this.media = Webstarter.tags.findTagByName('x-media-queries');
+            this.l18n  = Webstarter.tags.findTagByName('x-l18n');
+            this.User = this.tags.user;
+            this.overGround = this.tags['over-ground'];
+            this.content = Webstarter.tags.findTagByName('content');
             if(!this.media || !this.l18n) console.error('Sorry man... But you do not have needed components...');
             // Async startup
             setTimeout(function(){
@@ -22,9 +27,27 @@ function cb(opts) {
             }.bind(this));
         }.bind(this),0);
     });
-    this.testRest = (e)=>{
-        this.User.xRest.query({name:'Anton'}).then((data)=>console.log(data),(err)=>console.log(err));
+    // Open over ground popup
+    this.toggleOverGround = (e)=>{
+        this.overGround.opened = !this.overGround.opened;
+        this.overGround.trigger('openedChanged');
     }
+    /*this.userAuth = (e)=>{
+        this.User.xRest.custom('POST',{email:'soooyc@gmail.com',password:'mypass'},'auth').then((data)=>{
+            if(data.success) {
+                this.content.isAuth = true;
+                this.content.trigger('isAuthChanged');
+            }
+        },(err)=>console.log(err));
+    }
+    this.logOut = (e)=>{
+        this.User.xRest.custom('GET',{},'log/out').then((data)=>{
+            if(data.success) {
+                this.content.isAuth = false ;
+                this.content.trigger('isAuthChanged');
+            }
+        },(err)=>console.log(err));
+    }*/
 }
 
 

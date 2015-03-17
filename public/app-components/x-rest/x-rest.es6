@@ -49,6 +49,17 @@ function cb(opts) {
             .done((data)=>resolve(data))
             .fail((err)=>reject(err))
     });
+
+    /**
+     * Custom query for api url.
+     * @param params - send data
+     * @param method - xhr method
+     */
+    this.custom = (method,params,uri)=> new Promise((resolve,reject)=>{
+        $.ajax({url: this.api+'/'+uri,data:params.length!=0 ? JSON.stringify(params) : '',contentType: "application/json",type:method,dataType:'json'})
+            .done((data)=>resolve(data))
+            .fail((err)=>reject(err))
+    });
 }
 
 
