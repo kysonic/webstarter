@@ -41,7 +41,7 @@
         ]),
         function(domReady,riot,$,Webstarter){
             //Riot basic settings
-            riot.settings.brackets = '{{ }}'
+            riot.settings.brackets = '{{ }}';
             /**
              * When dom is ready - grab all tags and place their in globals
              */

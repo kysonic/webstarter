@@ -1,0 +1,6 @@
+auth-form
+    form(onsubmit="{{sign}}")
+        input(type="email",placeholder="Enter Email",name="email")
+        input(type="password",placeholder="Enter Password",name="password")
+        input(type="checkbox",name="signup",onchange="{{check}}")
+        input(type="submit",value='{{checker ? "Sign up" : "Sign in"}}')

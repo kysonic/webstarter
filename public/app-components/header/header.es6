@@ -1,4 +1,4 @@
-define(['webstarter','tags/user/user','tags/over-ground/over-ground'],Webstarter,user);
+define(['webstarter','tags/user/user','tags/over-ground/over-ground','tags/auth-form/auth-form'],Webstarter,user);
 function cb(opts) {
     this.logoText = opts.logotext;
     this.media = null;
@@ -32,14 +32,10 @@ function cb(opts) {
         this.overGround.opened = !this.overGround.opened;
         this.overGround.trigger('openedChanged');
     }
-    /*this.userAuth = (e)=>{
-        this.User.xRest.custom('POST',{email:'soooyc@gmail.com',password:'mypass'},'auth').then((data)=>{
-            if(data.success) {
-                this.content.isAuth = true;
-                this.content.trigger('isAuthChanged');
-            }
-        },(err)=>console.log(err));
-    }
+    /**
+     * Log out event.
+     * @param e
+     */
     this.logOut = (e)=>{
         this.User.xRest.custom('GET',{},'log/out').then((data)=>{
             if(data.success) {
@@ -47,7 +43,7 @@ function cb(opts) {
                 this.content.trigger('isAuthChanged');
             }
         },(err)=>console.log(err));
-    }*/
+    }
 }
 
 

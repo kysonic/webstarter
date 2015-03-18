@@ -6,6 +6,7 @@ header
         .col-md-6(if='{{(currentMedia=="md" || currentMedia=="lg")}}')
             | {{l18n.translator("mediaText")}} = {{currentMedia}}
         .col-md-4.col-sm-2.col-xs-2
+            #menu-button(onclick="{{logOut}}") OUT
             #menu-button(onclick="{{toggleOverGround}}") LOG IN
-            over-ground
-                #content Content
+            over-ground(center,layred,autoClose)
+                auth-form

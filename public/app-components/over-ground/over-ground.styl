@@ -1,5 +1,46 @@
+@import 'nib';
 over-ground
-  display block;
-  position absolute;
+  #wrapper
+    display block;
+    position absolute;
+    z-index 12;
+    min-width 400px;
+    min-height 220px;
+    background #fff;
+    border-radius: 5px;
+    box-shadow 0px 0px 20px rgba( 0, 0, 0, 0.6 );
+    transform: scale(1,1);
+    transition: transform .3s;
+    &.go
+      transform: scale(1.2,1.2);
+      transition: transform .3s;
+  &[center]
+    #wrapper
+      top: 50%;
+      left:50%;
+  #backdrop
+    width 100%;
+    height 100%;
+    position absolute;
+    top 0;
+    bottom 0;
+    z-index 11;
+    background rgba(0,0,0,.2);
+
+html
+  background url(http://subtlepatterns.com/patterns/dark_dotted.png) repeat #222;
+body
+  transform: scale(1,1);
+  transition: transform .3s;
+  &.over-ground
+    transform: scale(.9,.9);
+    transition: transform .3s;
+    -webkit-filter: blur(1px);
+    -moz-filter: blur(1px);
+    -ms-filter: blur(1px);
+    -o-filter: blur(1px);
+    filter: blur(1px);
+
+
 
 

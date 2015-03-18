@@ -1,3 +1,4 @@
 over-ground
-    #wrapper(show="{{opened}}")
+    #wrapper(show="{{opened}}",class="{{go:go}}")
         inner-html
+    #backdrop(show="{{opened}}",onclick="{{autoClose ? close : not}}")
