@@ -11,12 +11,18 @@ module.exports = function(app){
     /**
      * Catch not unauthorized requests. And draw home page for not auth
      */
-    var acceptedPages = ['/user/auth','/user/register'];
+    var acceptedPages = {
+        'GET' : ['/','/user/log/out'],
+        'POST': ['/user/auth','/user/register'],
+        'PUT':[],
+        'DELETE': []
+    };
     app.use(function(req, res, next) {
         // User not found.
-        if(!(acceptedPages.indexOf(req.url)!=-1 || req.session.user)) {
-            res.status(200);
-            res.render('pages/index', {notAuth: true});
+        res.locals.notAuth = req.session.user==undefined;
+        console.log(res.locals.notAuth)
+        if(!(acceptedPages[req.method].indexOf(req.url.replace(/\?.*/,''))!=-1 || req.session.user)) {
+            res.redirect('/');
         }else {
             next();
         }

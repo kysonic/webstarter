@@ -60,7 +60,7 @@ module.exports = function(app) {
     router.post('/auth',function(req,res){
         var data = req.body;
         // If user is not auth
-        if(!req.session.user.email){
+        if(!req.session.user){
             // Find him
             User.find({email:data.email},function(err,user){
                 if(err) return res.json({success:false,message:err.message});
