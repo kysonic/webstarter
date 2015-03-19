@@ -1,4 +1,4 @@
-var mongoose = require('../../libs/mongoose/index');
+var mongoose = require('../../libs/mongoose');
 var passwordHash = require('password-hash');
 
 var schema = new mongoose.Schema({

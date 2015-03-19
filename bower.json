@@ -18,6 +18,8 @@
     "domReady": "requirejs/domReady#~2.0.1",
     "matchMedia": "paulirish/matchMedia.js#~0.2.0",
     "text": "requirejs/text#~2.0.14",
-    "reflux": "~0.2.6"
+    "reflux": "~0.2.6",
+    "mocha": "~2.2.1",
+    "chai": "~2.1.2"
   }
 }

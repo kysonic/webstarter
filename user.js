@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/user').User;
+var User = require('app/models/user').User;
 module.exports = function(app) {
     /**
      * Read by id

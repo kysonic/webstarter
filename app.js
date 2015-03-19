@@ -7,14 +7,15 @@ var app = express();
  */
 require('./app/bootstrap')(app);
 /**
- * Static middleware
+ * Stations (Is a grouped middleware)
  */
-app.use(express.static(path.join(__dirname, 'public')));
-/**
- * Station (Is a grouped middleware)
- */
-require('./app/station/log-encoding')(app);
+require('./app/station/statics')(app);
+require('./app/station/domainErrorHandler')(app);
+require('./app/station/log')(app);
+require('./app/station/parser')(app);
 require('./app/station/cookie-session')(app);
+require('./app/station/flash')(app);
+require('./app/station/qa')(app);
 require('./app/station/routes')(app);
 require('./app/station/error')(app);
 

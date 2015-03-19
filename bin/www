@@ -4,9 +4,24 @@
 
 var debug = require('debug')('riot');
 var app = require('../app');
+var http = require('http');
 
 
-var server = app.listen(app.get('port'), function() {
-    console.log('Plex run...');
-    debug('Express server listening on port ' + server.address().port);
-});
+/**
+ * Start up!
+ */
+function startServer() {
+    global.server = http.createServer(app).listen(app.get('port'), function(){
+      console.log( 'Plex started in ' + app.get('env') +
+        ' mode on ' + app.get('port') );
+    });
+}
+
+if(require.main === module){
+    // application run directly; start app server
+    startServer();
+} else {
+    // application imported as a module via "require": export function to create server
+    module.exports = startServer;
+}
+

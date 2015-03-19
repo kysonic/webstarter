@@ -12,7 +12,7 @@ function cb(opts) {
                 this.parent.content.trigger('isAuthChanged');
                 this.parent.toggleOverGround();
             }else {
-                throw Error('new');
+                throw Error(data.message);
             }
         },(err)=>console.error(err));
     },

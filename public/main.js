@@ -22,6 +22,8 @@
             jquery: 'vendor/jquery/dist/jquery.min',
             domReady: 'vendor/domReady/domReady',
             matchMedia: 'vendor/matchMedia/matchMedia',
+            mocha: 'vendor/mocha/mocha',
+            chai: 'vendor/chai/chai',
             text: 'vendor/text/text'
         }
     });
@@ -29,6 +31,9 @@
      * App startup!
      */
     var basics = ['domReady','riot','jquery','webstarter'];
+    // Show tests
+    var showTests = document.querySelector('#mocha');
+    if(showTests) basics = basics.concat(['chai','mocha']);
     // Require polyffils for ie
     if(/MSIE (8|9)/i.test(window.navigator.userAgent)) basics.push('matchMedia');
     require(basics.concat([
@@ -42,6 +47,16 @@
         function(domReady,riot,$,Webstarter){
             //Riot basic settings
             riot.settings.brackets = '{{ }}';
+            // Setup test parameters;
+            if(showTests) {
+                mocha.ui('tdd');
+                var tests = [];
+                if($(showTests).data().globalTests) tests.push($(showTests).data().globalTests);
+                if($(showTests).data().pageTests)  tests.push($(showTests).data().pageTests);
+                require(tests,function(){
+                    mocha.run();
+                });
+            }
             /**
              * When dom is ready - grab all tags and place their in globals
              */

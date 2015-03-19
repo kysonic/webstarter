@@ -1,3 +1,7 @@
+/**
+ * If non of routes is not load - handle error
+ * @param app
+ */
 module.exports = function(app){
     /**
      * Catch 404
@@ -15,8 +19,7 @@ module.exports = function(app){
             res.status(err.status || 500);
             res.render('pages/error', {
                 message: err.message,
-                error: err,
-                tpl:app.get('tpl')
+                error: err
             });
         });
     }
@@ -27,8 +30,7 @@ module.exports = function(app){
         res.status(err.status || 500);
         res.render('pages/error', {
             message: err.message,
-            error: {},
-            tpl:app.get('tpl')
+            error: {}
         });
     });
 }
