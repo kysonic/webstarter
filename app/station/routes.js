@@ -1,5 +1,5 @@
-var indexController = require('../controllers/');
-module.exports = function(app){
+module.exports = function(app){               
     // Register routes
-    indexController.routes(app);
-}
+    app.use('/',require('../controllers/index').routes(app));
+ 	app.use('/user',require('../controllers/user').routes(app));
+ }

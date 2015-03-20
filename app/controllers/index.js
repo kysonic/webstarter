@@ -1,8 +1,10 @@
+var router = require('express').Router();
 module.exports = {
     routes: function(app) {
-        app.get('/',this.home);
+        router.get('/',this.index);
+        return router;
     },
-    home: function(req,res,next){
+    index: function(req,res,next){
         res.render('pages/index',{title: 'Welcome to plex!'});
     }
 };

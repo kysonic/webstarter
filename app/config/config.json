@@ -25,8 +25,9 @@
             "maxAge":null
         }
     },
+    "viewEngine": ".jade",
     "stylesheet": ".styl",
     "riotCompiler": "{jade,es6,styl}",
     "componentPath": "./public/app-components",
-    "tech": "riot"
+    "frontend": "riot"
 }
