@@ -1,16 +1,38 @@
 var mongoose = require('../libs/mongoose');
 var passwordHash = require('password-hash');
-
+var rbacPlugin = require('mongoose-hrbac');
+//var autoIncPlugin = require("mongodb-autoincrement");
 var schema = new mongoose.Schema({
     created:{type: Date,default: Date.now},
+    id: Number,
     email: String,
     password: String
 });
 /**
+ * Connect rbac plugin
+ */
+schema.plugin(rbacPlugin);
+/**
+ * Connect auto-incriment plugin
+ */
+//schema.plugin(autoIncPlugin.mongoosePlugin);
+/**
  * Allowed properties which can return on front-end
  * @type {string[]}
  */
-schema.statics.allowedProperties = ['email'];
+schema.statics.allowedProperties = ['email','role'];
+/**
+ * Map user method
+ * @param user
+ * @returns {{}} - user with allowed fields
+ */
+schema.statics.map = function(user) {
+    var allowedUser = {};
+    User.allowedProperties.forEach(function(property){
+        allowedUser[property] = user[property];
+    }.bind(this));
+    return allowedUser;
+}
 /**
  * Static encrypt method
  * @param str

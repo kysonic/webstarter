@@ -1,14 +1,18 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user').User;
+var check = require('../libs/rbac');
 module.exports = {
-    routes: function(app) {
-        router.get('/:id',this.getUser);
-        router.get('/',this.queryUser);
-        router.post('/',this.postUser);
-        router.put('/:id',this.putUser);
-        router.delete('/:id',this.deleteUser);
-        router.post('/auth',this.authUser);
+    routes: function() {
+        // Rest routes
+        router.get('/',check.can('read','user'),this.queryUser);
+        router.get('/:id',check.can('read','user'),this.getUser);
+        router.post('/',check.can('create','user'),this.postUser);
+        router.put('/:id',check.can('update','user'),this.putUser);
+        router.delete('/:id',check.can('delete','user'),this.deleteUser);
+        // Direction routes
+        router.post('/register',check.can('create','user'),this.registerUser);
+        router.post('/auth',check.can('auth','user'),this.authUser);
         router.get('/log/out',this.logOutUser);
         return router;
     },
@@ -19,7 +23,7 @@ module.exports = {
         var id = req.id;
         User.findOne({_id:id},function(err,user){
             if(err) return res.json({success:false,message:err.message});
-            return res.json({success:true,message:'User getting successful.',user:user});
+            else return res.json({success:true,message:'User getting successful.',user:user ? user.getAllowedProperties() : {}});
         });
     },
     /**
@@ -29,7 +33,7 @@ module.exports = {
         var query = req.query;
         User.find(query,function(err,user){
             if(err) return res.json({success:false,message:err.message});
-            return res.json({success:true,message:'User getting successful.',user:user});
+            return res.json({success:true,message:'User getting successful.',user:user.map(User.map)});
         });
     },
     /**
@@ -40,7 +44,7 @@ module.exports = {
         var user = new User(data);
         user.save(function(err,user){
             if(err) return res.json({success:false,message:err.message});
-            return res.json({success:true,message:'User adding successful.',user:user});
+            return res.json({success:true,message:'User adding successful.',user:user.getAllowedProperties()});
         });
     },
     /**
@@ -51,7 +55,7 @@ module.exports = {
         var data = req.body;
         User.findByIdAndUpdate(id,{$set:data},function(err,user){
             if(err) return res.json({success:false,message:err.message});
-            return res.json({success:true,message:'User updating successful.',user:user});
+            return res.json({success:true,message:'User updating successful.',user:user.getAllowedProperties()});
         });
     },
     /**
@@ -72,27 +76,56 @@ module.exports = {
         // If user is not auth
         if (!req.session.user) {
             // Find him
-            User.find({email: data.email}, function (err, user) {
+            User.findOne({email: data.email}, function (err, user) {
                 if (err) return res.json({success: false, message: err.message});
-                if (user[0]) {
-                    var user = user[0];
+                if (user) {
                     // Verify password
                     if (user.verify(data.password)) {
-                        req.session.user = {email: user.email, password: data.password};
-                        return res.json({success: true, message: 'User is find.', user: user.getAllowedProperties()});
+                        req.session.user = user.getAllowedProperties();
+                        return res.json({success: true, message: 'Authorization success.', user: user.getAllowedProperties()});
                     } else {
-                        return res.json({success: false, message: 'Login/Password is not correctly.'});
+                        return res.json({success: false, message: 'Login and Password is not match.'});
                     }
                 } else {
-                    return res.json({success: false, message: 'User not found.'});
+                    return res.json({success: false, message: 'Authorization failure. User not defined.'});
                 }
             });
         } else {
             return res.json({success: false, message: 'You are already auth.'});
         }
     },
-    logOutUser: function(req,res){
+    /**
+     * Log Out - Delete a Session.
+     */
+    logOutUser: function(req,res,next){
         req.session.user = null;
-        return res.json({success:true,message:'Logout is successful!'});
+        if(req.xhr) return res.json({success:true,message:'Logout is successful!'});
+        next();
+    },
+    /**
+     * Register User
+     */
+    registerUser: function(req,res){
+        var data = req.body;
+        // Check user email);
+        User.find({email:data.email},function(err,user){
+            if(err) return res.json({success:false,message:err.message});
+            if(user[0]) {
+                return res.json({success:false,message:'You already register.'});
+            }else {
+                //Create new user
+                var password = data.password;
+                data.password = User.encrypt(password);
+                var user = new User(data);
+                // Setup basic roles
+                user.setRole(rbac,'user',function(err,isSet){if(err) throw(err);});
+                // Save other basic user fields
+                user.save(function(err,user){
+                    if(err) return res.json({success:false,message:err.message});
+                    req.session.user = user.getAllowedProperties();
+                    return res.json({success:true,message:'Registration successful.',user:user.getAllowedProperties()});
+                });
+            }
+        });
     }
 }

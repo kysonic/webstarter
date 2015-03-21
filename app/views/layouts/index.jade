@@ -15,7 +15,7 @@ html
        x-media-queries
        .container-fluid
            header(logoText='Plex')
-           content(isAuth="#{!notAuth}")
+           content(isAuth="#{isAuth}")
                block content
        if showTests
            #mocha(data-page-tests="#{pageTests}")

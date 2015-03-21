@@ -56,7 +56,9 @@ function cb(opts) {
      * @param method - xhr method
      */
     this.custom = (method,params,uri)=> new Promise((resolve,reject)=>{
-        $.ajax({url: this.api+'/'+uri,data:params.length!=0 ? JSON.stringify(params) : '',contentType: "application/json",type:method,dataType:'json'})
+        var prms = {url: this.api+'/'+uri,contentType: "application/json",type:method,dataType:'json'};
+        if(Object.keys(params).length!==0) prms['data'] = JSON.stringify(params);
+        $.ajax(prms)
             .done((data)=>resolve(data))
             .fail((err)=>reject(err))
     });

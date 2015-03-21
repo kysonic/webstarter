@@ -29,5 +29,6 @@
     "stylesheet": ".styl",
     "riotCompiler": "{jade,es6,styl}",
     "componentPath": "./public/app-components",
-    "frontend": "riot"
+    "frontend": "riot",
+    "currentRbacSchema":"webstarter"
 }
