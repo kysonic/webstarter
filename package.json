@@ -25,6 +25,7 @@
     "nconf": "~0.6.9",
     "plex-riot-parser": "~0.0.1",
     "rbac": "^3.0.4",
+    "selenium-webdriver": "^2.45.1",
     "simplecrypt": "^0.1.0",
     "static-favicon": "~1.0.0",
     "web-error": "^3.0.2"

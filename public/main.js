@@ -22,6 +22,8 @@
             jquery: 'vendor/jquery/dist/jquery.min',
             domReady: 'vendor/domReady/domReady',
             matchMedia: 'vendor/matchMedia/matchMedia',
+            es5: 'vendor/es5-shim/es5-sham.min',
+            html5: 'vendor/html5shiv/dist/html5shiv.min',
             mocha: 'vendor/mocha/mocha',
             chai: 'vendor/chai/chai',
             text: 'vendor/text/text'
@@ -61,7 +63,7 @@
              * When dom is ready - grab all tags and place their in globals
              */
             domReady(function(){
-                Webstarter.tags = riot.mount('*');
+               Webstarter.tags = riot.mount('*');
             });
     });
 })();

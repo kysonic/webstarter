@@ -8,6 +8,7 @@ function cb(opts) {
         this.items = this.lc.localStorage;
         this.update();
     });
+    this.items = [];
     this.edit = (e)=>{
         this.text = e.target.value
     }
