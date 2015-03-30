@@ -12,7 +12,7 @@
     "tests"
   ],
   "dependencies": {
-    "riotjs": "muut/riotjs",
+    "riotjs": "kysonic/riotjs",
     "requirejs": "jrburke/requirejs#~2.1.16",
     "jquery": "~2.1.3",
     "domReady": "requirejs/domReady#~2.0.1",

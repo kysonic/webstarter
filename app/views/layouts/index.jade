@@ -13,9 +13,17 @@ html
        x-l18n
        x-media-queries
        .container-fluid
-           header(logoText='Plex')
-           content(isAuth="#{isAuth}")
-               block content
+           #wrapper.row
+               table
+                    tr
+                        td#menu
+                            menu-header
+                            if isAuth
+                                block menu
+                        td#content
+                            header(isAuth="#{isAuth}",menu)
+                            content(isAuth="#{isAuth}")
+                                block content
        if showTests
            #mocha(data-page-tests="#{pageTests}")
 

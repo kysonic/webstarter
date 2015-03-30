@@ -1,0 +1,31 @@
+@import "vars";
+
+/** Basics **/
+html,
+body
+  height 100%;
+  margin  0;
+  background-color #ECEFE4;
+  font-family 'Open Sans';
+
+
+
+/** Basics **/
+/** Markup **/
+.padding0
+  padding 0 !important;
+.container-fluid
+  & > #wrapper.row
+    table
+      width 100%;
+      td#menu
+        background basicMenuColor;
+        width basicMenuWidth;
+        vertical-align top;
+      td#content
+        width auto;
+        vertical-align top;
+        min-height 180px;
+        background basicBodyColor;
+
+/** Markup **/

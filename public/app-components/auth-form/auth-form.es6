@@ -1,3 +1,4 @@
+define(['webstarter'],Webstarter);
 function cb(opts) {
     /**
      * On Form submit
@@ -11,6 +12,7 @@ function cb(opts) {
                 this.parent.content.isAuth = true;
                 this.parent.content.trigger('isAuthChanged');
                 this.parent.toggleOverGround();
+                Webstarter.tags.findTagByName('header').update();
             }else {
                 throw Error(data.message);
             }

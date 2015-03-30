@@ -1,28 +1,86 @@
+@import "./public/stylesheets/vars";
+/** Mixins **/
+menu(fontSize,color,hoverColor,height)
+  font-family lightFamily;
+  width 22%;
+  vertical-align top;
+  height height;
+  line-height height;
+  font-stretch ultra-condensed;
+  float left;
+  font-size fontSize;
+  font-weight 100;
+  cursor pointer;
+  text-align center;
+  transition background .2s ease-in;
+  & a
+    color: color;
+    text-decoration none;
+  &:hover
+    background hoverColor;
+    transition background .2s ease-out;
+    & a
+      color whiteTextColor;
+/** Mixins **/
 header
   display block;
-  height 70px;
+  height auto;
   width 100%;
-  background #1fadc5;
-  #logo
-    color: #fff;
-    text-transform uppercase;
-    font-size 30px;
-    line-height 65px;
-    margin-left 20px;
-  #menu-button
-    margin-top 10px;
-    float right;
-    display block;
-    width 50px;
+  .col
+    padding 23px 0;
+  /*>>>Basic Header<<<*/
+  .row#basic
+    height headerHeight;
+    background basicBackgroundColor;
+    /*>>>Logo Section<<<*/
+    #logo-section
+      #logo
+          display block;
+          float right;
+          width 60%;
+          cursor pointer;
+          margin-right 10%;
+          svg
+            display block;
+            margin 0 auto;
+            width 80%;
+    /*>>>Auth Section<<<*/
+    #auth-section
+      line-height 31px;
+    /*>>>Menu Section<<<*/
+    #menu-section
+      padding 0;
+      & > ul#menu
+        list-style none;
+        display inline;
+        vertical-align top;
+        height 100%;
+        li
+          &.active
+            position relative;
+            height 95px;
+            background basicBackgroundColor;
+          menu(menuItemFontSize,whiteTextColor,darken(basicBackgroundColor, 10),75px);
+  /**>>>>Additional header<<<<**/
+  .row#sub-menu
+    margin-top 30px;
+    width 100%;
     height 50px;
-    line-height 52px;
-    border-radius 50%;
-    background #2390a5;
-    cursor pointer;
-    color: #fff;
-    font-size 12px;
-    text-align center;
-    &:hover
-      background #247c92;
+    & > #menu-section
+      padding 0;
+      background basicBodyColor;
+      & > ul#menu
+        list-style none;
+        display inline;
+        vertical-align top;
+        height 100%;
+        li
+          &.active
+            background basicBackgroundColor;
+            a
+              color whiteTextColor;
+          menu(menuItemFontSize,grayTextColor,basicBackgroundColor,50px);
+
+
 
 

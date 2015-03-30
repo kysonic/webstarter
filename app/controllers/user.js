@@ -4,69 +4,13 @@ var User = require('../models/user').User;
 var check = require('../libs/rbac');
 module.exports = {
     routes: function() {
-        // Rest routes
-        router.get('/',check.can('read','user'),this.queryUser);
-        router.get('/:id',check.can('read','user'),this.getUser);
-        router.post('/',check.can('create','user'),this.postUser);
-        router.put('/:id',check.can('update','user'),this.putUser);
-        router.delete('/:id',check.can('delete','user'),this.deleteUser);
         // Direction routes
+        router.get('/',check.can('read','user'),this.profileUser)
         router.post('/register',check.can('create','user'),this.registerUser);
         router.post('/auth',check.can('auth','user'),this.authUser);
-        router.get('/log/out',this.logOutUser);
+        router.get('/logout',this.logOutUser);
+        router.get('/profile',check.can('read','user'),this.profileUser)
         return router;
-    },
-    /**
-     * Read by id
-     */
-    getUser: function(req,res){
-        var id = req.id;
-        User.findOne({_id:id},function(err,user){
-            if(err) return res.json({success:false,message:err.message});
-            else return res.json({success:true,message:'User getting successful.',user:user ? user.getAllowedProperties() : {}});
-        });
-    },
-    /**
-     * Query
-     */
-    queryUser: function(req,res){
-        var query = req.query;
-        User.find(query,function(err,user){
-            if(err) return res.json({success:false,message:err.message});
-            return res.json({success:true,message:'User getting successful.',user:user.map(User.map)});
-        });
-    },
-    /**
-     * Create
-     */
-    postUser: function(req,res){
-        var data = req.body;
-        var user = new User(data);
-        user.save(function(err,user){
-            if(err) return res.json({success:false,message:err.message});
-            return res.json({success:true,message:'User adding successful.',user:user.getAllowedProperties()});
-        });
-    },
-    /**
-     * Update
-     */
-    putUser: function(req,res){
-        var id = req.params.id;
-        var data = req.body;
-        User.findByIdAndUpdate(id,{$set:data},function(err,user){
-            if(err) return res.json({success:false,message:err.message});
-            return res.json({success:true,message:'User updating successful.',user:user.getAllowedProperties()});
-        });
-    },
-    /**
-     * Delete
-     */
-    deleteUser: function(req,res){
-        var id = req.params.id;
-        User.remove({ _id: id }, function (err) {
-            if (err)  return res.json({success:false,message:err.message});
-            return res.json({success:true,message:'User deleting successful.'});
-        });
     },
     /**
      * User authentication
@@ -108,9 +52,9 @@ module.exports = {
     registerUser: function(req,res){
         var data = req.body;
         // Check user email);
-        User.find({email:data.email},function(err,user){
+        User.findOne({email:data.email},function(err,user){
             if(err) return res.json({success:false,message:err.message});
-            if(user[0]) {
+            if(user) {
                 return res.json({success:false,message:'You already register.'});
             }else {
                 //Create new user
@@ -127,5 +71,17 @@ module.exports = {
                 });
             }
         });
+    },
+    profileUser: function(req,res,next) {
+        var data = req.body;
+        // If user is not auth
+        console.log(req.session.user,!req.session.user)
+        if (req.session.user) {
+            User.findOne({email: req.session.user.email},function(err,user){
+                res.render('pages/user',user.getAllowedProperties());
+            });
+        } else {
+            return res.redirect(303,'/');
+        }
     }
 }

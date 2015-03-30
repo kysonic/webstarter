@@ -36,11 +36,12 @@
     // Show tests
     var showTests = document.querySelector('#mocha');
     if(showTests) basics = basics.concat(['chai','mocha']);
-    // Require polyffils for ie
+    // Require polyfils for ie
     if(/MSIE (8|9)/i.test(window.navigator.userAgent)) basics.push('matchMedia');
     require(basics.concat([
             'tags/content/content',
             'tags/header/header',
+            'tags/menu-header/menu-header',
             'tags/x-l18n/x-l18n',
             'tags/core-media-query/core-media-query',
             'tags/x-media-queries/x-media-queries',

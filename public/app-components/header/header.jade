@@ -1,12 +1,21 @@
+include svg
 header
     user
-    .row
-        .col-md-2.col-sm-10.col-xs-10
-            #logo(onclick="{{userAuth}}") {{logoText}}
-        .col-md-6(if='{{(currentMedia=="md" || currentMedia=="lg")}}')
-            | {{l18n.translator("mediaText")}} = {{currentMedia}}
-        .col-md-4.col-sm-2.col-xs-2
-            #menu-button(onclick="{{logOut}}") OUT
-            #menu-button(onclick="{{toggleOverGround}}") LOG IN
-            over-ground(center,layred,autoClose)
-                auth-form
+    over-ground(center,layred,autoClose)
+        auth-form
+    .row#basic
+        .col-lg-8.col-md-8.col-sm-6.col-xs-6#menu-section
+            ul#menu
+                li(each="{{basicMenu}}",class="{{active:active}}")
+                    a(href="{{link}}")  {{title}}
+        .col-lg-2.col-md-2.visible-lg.visible-md.col#auth-section
+        .col-lg-2.col-md-2.col-sm-6.col-xs-6.col#logo-section(itemscope,itemtype="http://schema.org/Organization")
+            a#logo(onclick="{{!content.isAuth ? toggleOverGround : logOut}}")
+                +logo
+    .row#sub-menu(if="{{subMenu.length!==0}}")
+        .col-lg-8.col-md-8.col-sm-6.col-xs-6#menu-section
+            ul#menu
+                li(each="{{subMenu}}",class="{{active:active}}")
+                    a(href="{{link}}")  {{title}}
+        .col-lg-4.col-md-4.col-sm-6.col-xs-6#empty
+

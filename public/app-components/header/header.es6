@@ -1,8 +1,16 @@
 define(['webstarter','tags/user/user','tags/over-ground/over-ground','tags/auth-form/auth-form'],Webstarter,user);
 function cb(opts) {
-    this.logoText = opts.logotext;
     this.media = null;
     this.currentMedia = null;
+    // Basic menu is static now. XXX: Maybe make json config with menu items?
+    this.basicMenu = [
+        {link:'#',title:'My profile'},
+        {link:'#',title:'Notice'},
+        {link:'#',title:'Projects'},
+        {link:'#',title:'Teams'}
+    ];
+    // Set sub menu
+    if(opts.subMenu) this.subMenu = typeof opts.subMenu.toLowerCase() === 'string' ? JSON.parse(opts.subMenu) : opts.subMenu;
     /**
      * Ready
      */
@@ -37,10 +45,11 @@ function cb(opts) {
      * @param e
      */
     this.logOut = (e)=>{
-        this.User.xRest.custom('GET',{},'log/out').then((data)=>{
+        this.User.xRest.custom('GET',{},'logout').then((data)=>{
             if(data.success) {
                 this.content.isAuth = false ;
                 this.content.trigger('isAuthChanged');
+                this.update();
             }
         },(err)=>console.log(err));
     }
