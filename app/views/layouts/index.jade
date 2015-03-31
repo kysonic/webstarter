@@ -4,11 +4,11 @@ html
         title= title
         meta(http-equiv='X-UA-Compatible', content='IE=edge')
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
-        link(type="text/css" rel="stylesheet" href="./stylesheets/styles.css")
-        link(type="text/css" rel="stylesheet" href="./stylesheets/bootstrap.min.css")
+        link(type="text/css" rel="stylesheet" href="/stylesheets/styles.css")
+        link(type="text/css" rel="stylesheet" href="/stylesheets/bootstrap.min.css")
         if showTests
-            link(type="text/css" rel="stylesheet" href="./vendor/mocha/mocha.css")
-        script(data-main="main" data-show-test="#{showTests}" src="./vendor/requirejs/require.js")
+            link(type="text/css" rel="stylesheet" href="/vendor/mocha/mocha.css")
+        script(data-main="/main" data-show-test="#{showTests}" src="/vendor/requirejs/require.js")
     body
        x-l18n
        x-media-queries
@@ -17,15 +17,16 @@ html
                table
                     tr
                         td#menu
-                            menu-header
+                            menu-header(title="#{firstName + lastName}")
                             if isAuth
                                 block menu
                         td#content
-                            header(isAuth="#{isAuth}",menu)
+                            header(isAuth="#{isAuth}",subMenu="#{headerSubMenu}",active="#{activeHeaderMenuItem}")
                             content(isAuth="#{isAuth}")
                                 block content
        if showTests
            #mocha(data-page-tests="#{pageTests}")
+       block requires
 
 
 

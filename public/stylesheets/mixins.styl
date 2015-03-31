@@ -1,0 +1,32 @@
+@import "vars";
+/**Header **/
+menu(fontSize,color,hoverColor,height)
+  font-family lightFamily;
+  width 22%;
+  vertical-align top;
+  height height;
+  line-height height;
+  font-stretch ultra-condensed;
+  float left;
+  font-size fontSize;
+  font-weight 100;
+  cursor pointer;
+  text-align center;
+  transition background .2s ease-in;
+  & a
+    color: color;
+    text-decoration none;
+  &:hover
+    background hoverColor;
+    transition background .2s ease-out;
+    & a
+      color whiteTextColor;
+/**Header **/
+/**Global**/
+basicLightFontStyle(size)
+  font-family lightFamily;
+  color whiteTextColor;
+  text-align center;
+  font-stretch ultra-condensed;
+  font-size size;
+/**Global**/

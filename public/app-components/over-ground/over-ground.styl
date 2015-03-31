@@ -1,20 +1,23 @@
 @import 'nib';
 over-ground
-  #wrapper
+ &>#wrapper
     display block;
     position absolute;
     z-index 12;
     min-width 400px;
     min-height 220px;
+    max-width 960px;
+    max-height 720px;
     background #fff;
     border-radius: 5px;
     box-shadow 0px 0px 20px rgba( 0, 0, 0, 0.6 );
     transform: scale(1,1);
     transition: transform .3s;
+    padding 10px;
     &.go
       transform: scale(1.2,1.2);
       transition: transform .3s;
-  &[center]
+  &[center] >
     #wrapper
       top: 50%;
       left:50%;

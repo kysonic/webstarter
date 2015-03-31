@@ -1,9 +1,15 @@
 @import "./public/stylesheets/vars";
+@import "./public/stylesheets/mixins";
 menu-header
-  height headerHeight;
-  background menuHeaderBackgroundColor;
-  width 100%;
-  display block;
+  .row#header
+    height headerHeight;
+    background menuHeaderBackgroundColor;
+    width 100%;
+    display block;
+    padding 19px 0;
+    max-width 320px;
+    overflow hidden;
+    basicLightFontStyle(25px);
 
 
 

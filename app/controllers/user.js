@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user').User;
 var check = require('../libs/rbac');
+var img = require('../libs/img');
 module.exports = {
     routes: function() {
         // Direction routes
@@ -9,7 +10,9 @@ module.exports = {
         router.post('/register',check.can('create','user'),this.registerUser);
         router.post('/auth',check.can('auth','user'),this.authUser);
         router.get('/logout',this.logOutUser);
-        router.get('/profile',check.can('read','user'),this.profileUser)
+        router.get('/profile',check.can('read','user'),this.profileUser);
+        router.post('/avatar-upload',check.can('read','user'),this.avatarUpload);
+        router.post('/crop-avatar',check.can('read','user'),this.avatarCrop);
         return router;
     },
     /**
@@ -73,15 +76,37 @@ module.exports = {
         });
     },
     profileUser: function(req,res,next) {
+        //Header
+        res.locals.activeHeaderMenuItem = 0;
+        res.locals.headerSubMenu = JSON.stringify([{link:'#',title:'Profile info',active:true}]);
+        // All of data
         var data = req.body;
         // If user is not auth
-        console.log(req.session.user,!req.session.user)
         if (req.session.user) {
             User.findOne({email: req.session.user.email},function(err,user){
+                res.locals.menuTitle = (user.firstName + user.lastName) ? (user.firstName + user.lastName) : '';
                 res.render('pages/user',user.getAllowedProperties());
             });
         } else {
             return res.redirect(303,'/');
         }
+    },
+    avatarUpload: function(req,res,next) {
+        if(!req.xhr) next();
+        // Set up a multiparty Form exemplar.
+        img.upload(req).then(function(data){
+            res.json({success:true,file:data.file});
+        },function(err){
+            res.json({success:false,error:err});
+        });
+    },
+    avatarCrop: function(req,res,next){
+        var data = req.body;
+        if(!req.xhr) next();
+        img.crop(data.pth,data.crop).then(function(){
+
+        },function(){
+
+        });
     }
 }

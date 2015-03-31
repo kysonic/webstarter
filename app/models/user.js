@@ -13,6 +13,7 @@ var schema = new mongoose.Schema({
     country: String,
     location: String,
     gender : { type: String, match: /(male|female)/ },
+    avatar: String,
     about: String
 });
 /**
@@ -27,7 +28,7 @@ schema.plugin(rbacPlugin);
  * Allowed properties which can return on front-end
  * @type {string[]}
  */
-schema.statics.allowedProperties = ['email','role'];
+schema.statics.allowedProperties = ['email','role','firstName','lastName','birthDate','motto','country','location','gender','about','avatar'];
 /**
  * Map user method
  * @param user
@@ -74,6 +75,10 @@ var User = mongoose.model('User',schema);
 User.schema.path('email').validate(function (value) {
     return /[a-zA-Z0-9]+(?:(\.|_)[A-Za-z0-9!#$%&'*+/=?^`{|}~-]+)*@(?!([a-zA-Z0-9]*\.[a-zA-Z0-9]*\.[a-zA-Z0-9]*\.))(?:[A-Za-z0-9](?:[a-zA-Z0-9-]*[A-Za-z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?/i.test(value);
 }, 'Email Error');
+
+User.schema.path('avatar').validate(function(value){
+    return /(.*)\.(jpg|gif|png|svg|ttf)/i.test(value);
+},'Avatar Error');
 
 exports.User = User;
 

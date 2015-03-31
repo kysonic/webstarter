@@ -22,6 +22,8 @@
     "mocha": "~2.2.1",
     "chai": "~2.1.2",
     "es5-shim": "es-shims/es5-shim#~4.1.0",
-    "html5shiv": "aFarkas/html5shiv#~3.7.2"
+    "html5shiv": "aFarkas/html5shiv#~3.7.2",
+    "jquery-form": "malsup/form#~3.46.0",
+    "cropper": "~0.9.1"
   }
 }

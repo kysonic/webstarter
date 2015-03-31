@@ -3,7 +3,7 @@ function cb(opts) {
     this.lang = 'ru';
     this.on('mount',function(){
         // Get l18n data
-        $.get('l18n.json',function(data){
+        $.get('/l18n.json',function(data){
             this.l18n = data;
         }.bind(this));
     }.bind(this));

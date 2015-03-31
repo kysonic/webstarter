@@ -4,13 +4,15 @@ function cb(opts) {
     this.currentMedia = null;
     // Basic menu is static now. XXX: Maybe make json config with menu items?
     this.basicMenu = [
-        {link:'#',title:'My profile'},
+        {link:'/user',title:'My profile'},
         {link:'#',title:'Notice'},
         {link:'#',title:'Projects'},
         {link:'#',title:'Teams'}
     ];
+    // Set active item
+    if(opts && opts.submenu!='undefined') this.basicMenu[opts.active].active = true;
     // Set sub menu
-    if(opts.subMenu) this.subMenu = typeof opts.subMenu.toLowerCase() === 'string' ? JSON.parse(opts.subMenu) : opts.subMenu;
+    if(opts && opts.submenu!='undefined') this.subMenu = typeof opts.submenu.toLowerCase() === 'string' ? JSON.parse(opts.submenu) : opts.submenu;
     /**
      * Ready
      */

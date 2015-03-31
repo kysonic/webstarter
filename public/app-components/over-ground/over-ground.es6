@@ -4,6 +4,7 @@ function cb(opts) {
     this.autoClose = opts.autoclose;
     this.go = true;
     this.content = 'CONT';
+    this.bodyScale = opts.bodyscale || true;
     /**
      * Ready
      */
@@ -23,7 +24,7 @@ function cb(opts) {
     this.on('openedChanged',(e)=>{
         this.update({opened:this.opened});
         this.setPosition();
-        this.scaleBody();
+        if(this.bodyScale!='false') this.scaleBody();
         setTimeout(()=>{
             this.go = !this.opened;
             this.update({go:this.go});
