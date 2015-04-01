@@ -1,4 +1,5 @@
 @import "vars";
+
 /**Header **/
 menu(fontSize,color,hoverColor,height)
   font-family lightFamily;
@@ -30,3 +31,21 @@ basicLightFontStyle(size)
   font-stretch ultra-condensed;
   font-size size;
 /**Global**/
+/**Buttons**/
+basicRoundButton(color,width)
+  display block;
+  margin 0 auto;
+  font-family lightFamily;
+  font-size 16px;
+  width width;
+  height 30px;
+  line-height 30px;
+  cursor pointer;
+  padding 0px 20px;
+  background color;
+  border-radius 20px;
+  color: #fff;
+  text-align center;
+  &:hover
+    background darken(color,10);
+/**Buttons**/

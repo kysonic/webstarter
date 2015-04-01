@@ -1,9 +1,73 @@
+@import 'nib';
+@import "./public/stylesheets/vars";
+@import "./public/stylesheets/mixins";
 avatar
+  display block;
   & > #wrapper
+    display inline-block;
+    position relative;
     width 320px;
     height 320px;
+    #imageSubstitue
+      display block;
+      margin 35px auto;
+      width 260px;
+      height 260px;
+      border-radius 50%;
+      border 3px solid secondaryColor;
+      background url(./images/photo-head-man.svg);
     img
-      width 320px;
-      height 320px;
+      display block;
+      margin 35px auto;
+      width 260px;
+      height 260px;
+      border-radius 50%;
+      border 3px solid secondaryColor;
+    #errors
+      color: red;
+    &:hover
+      #backdrop
+        display block;
+    #backdrop
+      display none;
+      width 100%;
+      height 100%;
+      position absolute;
+      top 0;
+      left 0;
+      /** Form **/
+      form
+        display block;
+        width 260px;
+        height 260px;
+        margin 35px auto;
+        /**File name **/
+        #fileName
+           color: #fff;
+           font-size 16px;
+           font-family lightFamily;
+           text-align center;
+           margin-top 155px;
+        /**Fake File Button**/
+        #fakeFile
+          position relative;
+          overflow hidden;
+          margin-top 5px;
+          basicRoundButton(secondaryColor,100px);
+          input[type="file"]#file
+            cursor pointer;
+            display block;
+            position absolute;
+            top: 0;
+            left: 0;
+            opacity 0;
+            width 100%;
+            & /deep/ input
+              cursor pointer;
+          /**Submit**/
+        #ok, #reset, #crop
+          border none;
+          basicRoundButton(secondaryColor,100px);
+          margin 5px auto;
 
 

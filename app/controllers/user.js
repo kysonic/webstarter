@@ -75,6 +75,10 @@ module.exports = {
             }
         });
     },
+    /**
+     * User profile page
+     * @returns {*|Server}
+     */
     profileUser: function(req,res,next) {
         //Header
         res.locals.activeHeaderMenuItem = 0;
@@ -85,28 +89,41 @@ module.exports = {
         if (req.session.user) {
             User.findOne({email: req.session.user.email},function(err,user){
                 res.locals.menuTitle = (user.firstName + user.lastName) ? (user.firstName + user.lastName) : '';
+                console.log(user.getAllowedProperties())
                 res.render('pages/user',user.getAllowedProperties());
             });
         } else {
             return res.redirect(303,'/');
         }
     },
+    /**
+     * Upload avatar
+     */
     avatarUpload: function(req,res,next) {
         if(!req.xhr) next();
-        // Set up a multiparty Form exemplar.
+        //Img lib help us
         img.upload(req).then(function(data){
-            res.json({success:true,file:data.file});
+            User.update({email:req.session.user.email}, { $set: { fullAvatar: data.file.path }}, function(err,user){
+                if(err) res.json({success:false,errors:err});
+                else res.json({success:true,file:data.file});
+            });
         },function(err){
-            res.json({success:false,error:err});
+            res.json({success:false,errors:err});
         });
     },
+    /**
+     * Crop
+     */
     avatarCrop: function(req,res,next){
         var data = req.body;
         if(!req.xhr) next();
-        img.crop(data.pth,data.crop).then(function(){
-
-        },function(){
-
+        img.crop(data.pth,data.crop,{w:320,h:320}).then(function(src){
+            User.update({email:req.session.user.email}, { $set: { croppedAvatar: src}}, function(err,user){
+                if(err) res.json({success:false,errors:err});
+                else res.json({success:true,src:src});
+            });
+        },function(err){
+            res.json({success:false,errors:err});
         });
     }
 }

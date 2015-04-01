@@ -13,7 +13,8 @@ var schema = new mongoose.Schema({
     country: String,
     location: String,
     gender : { type: String, match: /(male|female)/ },
-    avatar: String,
+    fullAvatar: String,
+    croppedAvatar: String,
     about: String
 });
 /**
@@ -28,7 +29,7 @@ schema.plugin(rbacPlugin);
  * Allowed properties which can return on front-end
  * @type {string[]}
  */
-schema.statics.allowedProperties = ['email','role','firstName','lastName','birthDate','motto','country','location','gender','about','avatar'];
+schema.statics.allowedProperties = ['email','role','firstName','lastName','birthDate','motto','country','location','gender','about','fullAvatar','croppedAvatar'];
 /**
  * Map user method
  * @param user
@@ -72,11 +73,17 @@ schema.methods.getAllowedProperties = function(){
 var User = mongoose.model('User',schema);
 
 /* Validation */
+
+//Email
 User.schema.path('email').validate(function (value) {
     return /[a-zA-Z0-9]+(?:(\.|_)[A-Za-z0-9!#$%&'*+/=?^`{|}~-]+)*@(?!([a-zA-Z0-9]*\.[a-zA-Z0-9]*\.[a-zA-Z0-9]*\.))(?:[A-Za-z0-9](?:[a-zA-Z0-9-]*[A-Za-z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?/i.test(value);
 }, 'Email Error');
+//Avatars
+User.schema.path('fullAvatar').validate(function(value){
+    return /(.*)\.(jpg|gif|png|svg|ttf)/i.test(value);
+},'Avatar Error');
 
-User.schema.path('avatar').validate(function(value){
+User.schema.path('croppedAvatar').validate(function(value){
     return /(.*)\.(jpg|gif|png|svg|ttf)/i.test(value);
 },'Avatar Error');
 

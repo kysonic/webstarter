@@ -2,8 +2,18 @@ avatar
     over-ground(center,layred,autoClose,bodyScale="false")
         cropper
     #wrapper
-        img(if="{{avatar}}",src="{{avatar}}")
-        form(if="{{!avatar}}",enctype="multipart/form-data",action="/user/avatar-upload",method="POST",onsubmit="{{uploadFile}}")
-            input(if="{{!avatar}}",type="file",name="uploadAvatar")
-            input(type="submit",value="ok")
-        #button(onclick="{{openCropDialog}}") OPEN CROPS
+        img(if="{{src}}",src="{{src}}")
+        #imageSubstitue(if="{{!src}}")
+        #errors
+            #msg(each="{{err,i in errors}}")
+                {{err}}
+        #backdrop
+            form(enctype="multipart/form-data",action="/user/avatar-upload",method="POST",onsubmit="{{uploadFile}}")
+                #fileName {{basename(file.value)}}
+                #fakeFile(show="{{!file.value}}")
+                    | Add
+                    input(onchange="{{changeFile}}",type="file",name="file")#file
+                input(show="{{file.value}}",type="submit",value="Ok")#ok
+                #reset(show="{{file.value}}",onclick="{{resetFile}}") Reset
+                #crop(show="{{cropper.pth}}",onclick="{{openCropDialog}}") Crop
+
