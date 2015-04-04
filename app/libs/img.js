@@ -26,16 +26,16 @@ exports.upload = function Upload(req) {
             uploadFile.size = part.byteCount;
             uploadFile.type = part.headers['content-type'];
             uploadFile.path = './public/uploads/users/'+req.session.user.email+'/avatars/'+config.name+getCurrentDate()+path.extname(part.filename);
-            deleteFileByRegexp(path.dirname(uploadFile.path),new RegExp(config.name));
             // Check restrictions
             if(uploadFile.size > config.maxSize) {
-                errors.push('File size is ' + uploadFile.size + '. Limit is' + (config.maxSize / 1024 / 1024) + 'MB.');
+                errors.push('File size is ' + uploadFile.size + '. Limit is ' + (config.maxSize / 1024 / 1024) + 'MB.');
             }
             if(-1 === config.supportMimeTypes.indexOf(uploadFile.type)) {
                 errors.push('Unsupported mimetype ' + uploadFile.type);
             }
             // If errors is empty write file
             if(errors.length === 0) {
+                deleteFileByRegexp(path.dirname(uploadFile.path),new RegExp(config.name));
                 part.pipe(fs.createWriteStream(uploadFile.path));
             }
             else {

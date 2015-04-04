@@ -4,6 +4,7 @@ function cb(opts) {
     this.on('mount',()=>{
         this.User = this.tags['user'];
     });
+    this.inProcess = false;
     // Set cropper when image was loaded.
     this.on('loadImage',()=>{
         this.update();
@@ -26,12 +27,23 @@ function cb(opts) {
     })
     // Crop image on server
     this.cropOnServer = (e)=>{
+        this.inProcess = true;
+        this.update();
         this.User.xRest.custom('POST', {crop:this.cropData,pth:this.pth},'crop-avatar').then((data)=>{
             this.parent.src = data.src;
+            this.parent.showBackdrop = false;
+            this.parent.file.value = '';
+            this.parent.errors= [];
             this.parent.update();
             this.parent.overGround.opened = false;
             this.parent.overGround.trigger('openedChanged');
-        },(err)=>console.log(err));
+            this.inProcess = false;
+            this.update();
+        },(err)=>{
+            console.log(err);
+            this.inProcess = false;
+            this.update();
+        });
     }
 }
 

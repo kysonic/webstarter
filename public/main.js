@@ -14,7 +14,7 @@
      * Routes
      */
     routes = {
-        'user' :['tags/avatar/avatar']
+        'user' :['tags/avatar/avatar','tags/web-input/web-input']
     }
     /**
      * require.js paths

@@ -2,7 +2,9 @@ cropper
     user
     #wrapper
         #cropper
-            img(src="{{pth}}")#image
-        #button(onclick="{{cropOnServer}}") CROP
+            img(src="{{pth}}",show="{{!inProcess}}")#image
+        #button(onclick="{{cropOnServer}}",show="{{!inProcess}}") CROP
+        #backdrop(show="{{inProcess}}")
+            #loading
 
 

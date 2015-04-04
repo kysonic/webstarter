@@ -1,15 +1,15 @@
 avatar
     over-ground(center,layred,autoClose,bodyScale="false")
         cropper
-    #wrapper
-        img(if="{{src}}",src="{{src}}")
-        #imageSubstitue(if="{{!src}}")
-        #errors
-            #msg(each="{{err,i in errors}}")
-                {{err}}
-        #backdrop
-            form(enctype="multipart/form-data",action="/user/avatar-upload",method="POST",onsubmit="{{uploadFile}}")
-                #fileName {{basename(file.value)}}
+    #wrapper(onmouseover="{{showBack}}",onmouseout="{{hideBack}}")
+        img(if="{{src}}",src="{{src}}",class='{{(file.value || showBackdrop) ? "opacity" : ""}}')
+        #imageSubstitute(if="{{!src}}",class='{{(file.value || showBackdrop) ? "opacity" : ""}}')
+        #stroke
+        #backdrop(show="{{showBackdrop}}")
+            #loading(show="{{inProcess}}")
+            form(show="{{!inProcess}}",enctype="multipart/form-data",action="/user/avatar-upload",method="POST",onsubmit="{{uploadFile}}")
+                x-tooltip(msg='{{errors}}')
+                #fileName(title="{{basename(file.value)}}") {{cropString(basename(file.value),25)}}
                 #fakeFile(show="{{!file.value}}")
                     | Add
                     input(onchange="{{changeFile}}",type="file",name="file")#file
