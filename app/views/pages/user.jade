@@ -1,4 +1,5 @@
 extends ../layouts/index
+include ../../../public/mixins/icons
 block menu
     avatar(email="#{email}",full="#{fullAvatar}",cropped="#{croppedAvatar}")
 block content
@@ -6,6 +7,10 @@ block content
         .col-lg-2
         .col-lg-3
             web-input(placeholder="First Name",required="true")
+                #icon
+                    +location
+            web-textarea(placeholder="About Me",required="true")
+
 
 
 

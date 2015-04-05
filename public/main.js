@@ -14,7 +14,7 @@
      * Routes
      */
     routes = {
-        'user' :['tags/avatar/avatar','tags/web-input/web-input']
+        'user' :['tags/avatar/avatar','tags/web-input/web-input','tags/web-textarea/web-textarea']
     }
     /**
      * require.js paths
@@ -34,7 +34,8 @@
             mocha: '/vendor/mocha/mocha',
             chai: '/vendor/chai/chai',
             text: '/vendor/text/text',
-            uploader: '/vendor/jquery-form/jquery.form'
+            uploader: '/vendor/jquery-form/jquery.form',
+            scroller: '/vendor/jquery.scrollbar/jquery.scrollbar.min'
         }
     });
     /**
