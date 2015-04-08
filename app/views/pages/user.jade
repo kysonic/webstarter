@@ -1,15 +1,17 @@
 extends ../layouts/index
 include ../../../public/mixins/icons
+include ../../../public/mixins/filters
 block menu
     avatar(email="#{email}",full="#{fullAvatar}",cropped="#{croppedAvatar}")
 block content
     .row
         .col-lg-2
         .col-lg-3
-            web-input(placeholder="First Name",required="true")
-                #icon
-                    +location
-            web-textarea(placeholder="About Me",required="true")
+            web-input(placeholder="First Name",name="firstName",required="true")
+            web-input(placeholder="Last Name",name="lastName",required="true")
+            web-input(placeholder="Date of Birth",name="birthDate",required="true")
+            web-input(placeholder="website.com",name="birthDate",required="true")
+            //web-textarea(placeholder="About Me",required="true")
 
 
 

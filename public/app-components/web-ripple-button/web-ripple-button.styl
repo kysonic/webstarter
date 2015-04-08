@@ -1,0 +1,32 @@
+@import "./public/stylesheets/vars";
+web-ripple-button
+  display block;
+  position relative;
+  width 100%;
+  height 100%;
+  #button
+    overflow hidden;
+    position relative;
+    outline none;
+    display block;
+    margin 0 auto;
+    font-family lightFamily;
+    font-size 16px;
+    width 100px;
+    height 30px;
+    line-height 30px;
+    cursor pointer;
+    padding 0px 20px;
+    background secondaryColor;
+    border-radius 20px;
+    color: #fff;
+    text-align center;
+    transition background .2s ease-out;
+    border: none;
+    &:hover
+      background darken(secondaryColor,3) !important;
+      transition background .2s ease-out;
+    &:active
+      background  darken(secondaryColor,5);
+
+

@@ -1,5 +1,6 @@
 function cb(opts) {
     this.placeholder = opts.placeholder;
+    this.name = opts.name;
     this.placeholder = opts.required == 'true' ? this.placeholder + '*' : this.placeholder;
     this.focus = false;
     // Icon

@@ -3,10 +3,13 @@ var path = require('path');
 
 var app = express();
 var mRbac = require('./app/models/rbac').Rbac;
+
 /**
  * App global configuration
  */
 require('./app/bootstrap')(app);
+// Terminator
+require('./app/station/terminator')(app);
 /**
  * Stations (Is a grouped middleware)
  */

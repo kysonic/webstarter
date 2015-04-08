@@ -1,0 +1,139 @@
+@import 'nib';
+@import "./public/stylesheets/vars";
+@import "./public/stylesheets/mixins";
+@import "./public/app-components/web-goo-button/ripple";
+web-goo-button
+  display inline-block;
+  width 100%;
+  height 30px;
+  position relative;
+  &.finish
+    #button
+      width 100px;
+      border-radius 30px;
+      -webkit-animation button-end cubic-bezier(1, 1, 0.175, 0.2) .2s 1;
+    filter none;
+    -webkit-filter: none;
+  &.start
+    -webkit-filter: url("#goo");
+    filter: url("#goo");
+    #button
+      -webkit-animation button-in cubic-bezier(0.77, 0, 0.175, 1) 1.3s 1;
+    &[left-escort]
+      .goo
+        &:nth-child(2)
+          -webkit-animation goo-in cubic-bezier(0.6, 0.2, 0.175, 1) 1.3s 1;
+        &:nth-child(3)
+          -webkit-animation goo2-in cubic-bezier(0.8, 0.2, 0.175, 0.2) 1.1s 1;
+  &.out
+    -webkit-filter: url("#goo");
+    filter: url("#goo");
+    #button
+      transform translateX(110px);
+      border-radius 50%;
+      width 30px;
+      opacity 0;
+      -webkit-animation button-out cubic-bezier(0.77, 0, 0.175, 1) 1.3s 1;
+    &[left-escort]
+      .goo
+          opacity 0;
+          &:nth-child(2)
+            transform translateX(110px);
+            -webkit-animation goo-out cubic-bezier(1, 1, 0.175, 1) 1.1s 1; //0.6, 0.2, 0.175, 1
+          &:nth-child(3)
+            transform translateX(110px);
+            -webkit-animation goo2-out cubic-bezier(1, 1, 0.175, 1) 1.4s 1;
+  #button
+    basicRoundButton(secondaryColor,110px);
+    overflow hidden
+    position absolute;
+    left 50%;
+    margin-left -50px;
+    z-index 5;
+  &[left-escort]
+    .goo
+      position absolute;
+      z-index 2;
+      top 0;
+      left 50%;
+      margin-left -15px;
+      background secondaryColor;
+      width 30px;
+      height 30px;
+      border-radius 50%;
+  @-webkit-keyframes button-in {
+    from {
+      opacity 0;
+      border-radius 50%;
+      width 30px;
+      transform translateX(-100px);
+    }
+  }
+  @-webkit-keyframes button-out {
+    0% {
+      opacity 1;
+      border-radius 30px;
+      width 100px;
+      transform translateX(0px);
+    }
+    50% {
+      opacity 1
+    }
+  }
+  @-webkit-keyframes button-end {
+    0% {
+      transform translateX(1px);
+    }
+    100% {
+      transform translateX(0px);
+    }
+  }
+  @-webkit-keyframes goo-in {
+    0% {
+      transform translateX(-110px) scale(0.1,0.1)
+    }
+    50% {
+      transform translateX(-100px) scale(1.2,1)
+    }
+  }
+  @-webkit-keyframes goo-out {
+    0% {
+      opacity 1;
+      transform translateX(35px) scale(1,1)
+    }
+    50% {
+      transform translateX(85px) scale(0.9,1)
+    }
+    60% {
+      opacity 1;
+    }
+  }
+  @-webkit-keyframes goo2-in {
+    0% {
+      transform translateX(-110px) scale(0.1,0.1)
+    }
+    50% {
+      transform translateX(-60px) scale(1.2,1)
+    }
+  }
+  @-webkit-keyframes goo2-out {
+    0% {
+      opacity 1
+      transform translateX(15px) scale(1,1)
+    }
+    50% {
+      transform translateX(70px) scale(1,1)
+    }
+    60% {
+      opacity 1;
+    }
+  }
+
+
+
+
+
+
+
+
+

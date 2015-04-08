@@ -3,7 +3,7 @@ cropper
     #wrapper
         #cropper
             img(src="{{pth}}",show="{{!inProcess}}")#image
-        #button(onclick="{{cropOnServer}}",show="{{!inProcess}}") CROP
+        web-ripple-button(color="#fff",title="Crop",onclick="{{cropOnServer}}",show="{{!inProcess}}")#button
         #backdrop(show="{{inProcess}}")
             #loading
 

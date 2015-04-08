@@ -14,7 +14,12 @@
      * Routes
      */
     routes = {
-        'user' :['tags/avatar/avatar','tags/web-input/web-input','tags/web-textarea/web-textarea']
+        'user' :
+            ['tags/avatar/avatar',
+              'tags/web-input/web-input',
+              'tags/web-textarea/web-textarea',
+              'tags/web-ripple-button/web-ripple-button'
+            ]
     }
     /**
      * require.js paths
@@ -35,13 +40,14 @@
             chai: '/vendor/chai/chai',
             text: '/vendor/text/text',
             uploader: '/vendor/jquery-form/jquery.form',
-            scroller: '/vendor/jquery.scrollbar/jquery.scrollbar.min'
+            scroller: '/vendor/jquery.scrollbar/jquery.scrollbar.min',
+            TweenMax : '/vendor/gsap/src/minified/TweenMax.min'
         }
     });
     /**
      * App startup!
      */
-    var basics = ['domReady','riot','jquery','webstarter'];
+    var basics = ['jquery','domReady','riot','webstarter'];
     // Show tests
     var showTests = document.querySelector('#mocha');
     if(showTests) basics = basics.concat(['chai','mocha']);
@@ -60,7 +66,7 @@
     var route = location.href.replace(/(http|https)\:\/\/(.*?)\//i,'').replace(/\#.*/,'').replace(/\?.*/,'').replace(/\/$/,'');
     if(routes[route] && routes[route].length) tags = tags.concat(routes[route]);
     require(basics.concat(tags),
-        function(domReady,riot,$,Webstarter){
+        function($,domReady,riot,Webstarter){
             //Riot basic settings
             riot.settings.brackets = '{{ }}';
             // Setup test parameters;

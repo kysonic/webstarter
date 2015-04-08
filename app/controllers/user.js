@@ -89,7 +89,6 @@ module.exports = {
         if (req.session.user) {
             User.findOne({email: req.session.user.email},function(err,user){
                 res.locals.menuTitle = (user.firstName + user.lastName) ? (user.firstName + user.lastName) : '';
-                console.log(user.getAllowedProperties())
                 res.render('pages/user',user.getAllowedProperties());
             });
         } else {

@@ -1,0 +1,87 @@
+[data-ripple] {
+  overflow: hidden;
+  position: relative;
+
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.ripple-effect {
+  height: 20px;
+  position: absolute;
+  width: 20px;
+
+  animation: ripple 4s cubic-bezier(0.86, 0.2, 0.2, 0.1);
+
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+
+  -webkit-transition: background-color .25s ease .1s;
+  -moz-transition: background-color .25s ease .1s;
+  -ms-transition: background-color .25s ease .1s;
+  -o-transition: background-color .25s ease .1s;
+  transition: background-color .25s ease .1s;
+}
+
+@-webkit-keyframes ripple {
+  0% {
+    -webkit-transform: scale(0.5)
+    opacity: 0.4;
+  }
+  50% {
+    -webkit-transform: scale(50);
+    opacity: 0.2;
+  }
+  100% {
+    -webkit-transform: scale(50);
+    opacity: 0.4;
+  }
+}
+
+@-moz-keyframes ripple {
+  from {
+    -moz-transform: scale(0.5)
+    opacity: 0.4;
+  }
+  to {
+    -moz-transform: scale(100);
+    opacity: 0.25;
+  }
+}
+
+@-ms-keyframes ripple {
+  from {
+    -ms-transform: scale(0.5)
+    opacity: 0.4;
+  }
+  to {
+    -ms-transform: scale(100);
+    opacity: 0.25;
+  }
+}
+
+@-o-keyframes ripple {
+  from {
+    -o-transform: scale(0.5)
+    opacity: 0.4;
+  }
+  to {
+    -o-transform: scale(100);
+    opacity: 0.25;
+  }
+}
+
+@keyframes ripple {
+  from {
+    transform: scale(0.5)
+    opacity: 0.4;
+  }
+  to {
+    transform: scale(100);
+    opacity: 0.25;
+  }
+}

@@ -1,4 +1,4 @@
-define(['scroller'],scroller);
+define(['jquery','scroller'],$,scroller);
 function cb(opts) {
     this.placeholder = opts.placeholder;
     this.placeholder = opts.required == 'true' ? this.placeholder + '*' : this.placeholder;

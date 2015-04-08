@@ -92,8 +92,9 @@ function cb(opts) {
     }
     this.showBack = (e) => {this.showBackdrop = true;}
     this.hideBack = (e) => {
-        if(!(file.value || this.inProcess || this.overGround.opened))
+        if(!(file.value || this.inProcess || this.overGround.opened)) {
             this.showBackdrop = false;
+        }
     }
 }
 

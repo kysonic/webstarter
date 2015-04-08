@@ -1,4 +1,4 @@
-define(['cropper'],cropper);
+define(['cropper','tags/web-ripple-button/web-ripple-button'],cropper,ripple);
 function cb(opts) {
     // Ready
     this.on('mount',()=>{

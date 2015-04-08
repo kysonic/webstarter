@@ -19,7 +19,9 @@ avatar
       //border-radius 50%;
       background url(./images/photo-head-man.svg) no-repeat 10px 32px;
       background-size 90%;
+      transition opacity .2s ease-in;
       &.opacity
+        transition opacity .2s ease-in;
         opacity 0.2;
     /** Images**/
     img
@@ -27,9 +29,16 @@ avatar
       //margin 35px auto;
       width 320px;
       height 320px;
+      transition -webkit-filter .2s ease-in,opacity .2s;
       //border-radius 50%;
       &.opacity
-        opacity 0.2;
+        transition -webkit-filter .2s ease-in,opacity .2s;
+        opacity 0.8;
+        -webkit-filter: blur(2px);
+        -moz-filter: blur(2px);
+        -ms-filter: blur(2px);
+        -o-filter: blur(2px);
+        filter: blur(2px);
     #stroke
       display none;
       margin 35px 30px;
@@ -91,9 +100,11 @@ avatar
             & /deep/ input
               cursor pointer;
           /**Submit**/
-        #ok, #reset, #crop
+        #ok
           border none;
           basicRoundButton(secondaryColor,100px);
+          margin 7px auto;
+        #crop,#reset
           margin 7px auto;
 
 
