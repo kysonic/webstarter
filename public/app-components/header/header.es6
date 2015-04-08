@@ -10,9 +10,10 @@ function cb(opts) {
         {link:'#',title:'Teams'}
     ];
     // Set active item
-    if(opts && opts.submenu!='undefined') this.basicMenu[opts.active].active = true;
+    if(opts && opts.submenu!='undefined' && this.basicMenu[opts.active]) this.basicMenu[opts.active].active = true;
     // Set sub menu
-    if(opts && opts.submenu!='undefined') this.subMenu = typeof opts.submenu.toLowerCase() === 'string' ? JSON.parse(opts.submenu) : opts.submenu;
+    if(opts && opts.submenu!='undefined' && opts.submenu!=undefined) this.subMenu = typeof opts.submenu.toLowerCase() === 'string' ? JSON.parse(opts.submenu) : opts.submenu;
+    if(!this.subMenu) this.subMenu = {length:0};
     /**
      * Ready
      */

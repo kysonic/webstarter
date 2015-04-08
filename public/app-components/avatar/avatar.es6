@@ -4,6 +4,7 @@ function cb(opts) {
     this.currentFile = '';
     this.full = opts.full;
     this.src = opts.cropped!='undefined' ? opts.cropped : null;
+    this.isUpdate = opts.isupdate;
     this.inProcess = false;
     this.showBackdrop = false;
     // Ready'
@@ -16,6 +17,10 @@ function cb(opts) {
             this.cropper.pth = this.full;
             this.cropper.trigger('loadImage');
             this.update();
+            if(this.isUpdate!='undefined') {
+                this.overGround.opened = true;
+                this.overGround.trigger('openedChanged');
+            }
         }
     });
     /**
@@ -28,6 +33,7 @@ function cb(opts) {
         $(e.target).ajaxSubmit({
             error: (xhr)=>{
                 console.log(xhr);
+                if(/MSIE (8|9)/.test(navigator.userAgent)) window.location.href = '/user';
                 this.inProcess = false;
                 this.update();
             },
@@ -52,7 +58,8 @@ function cb(opts) {
                 this.file.value = '';
                 this.inProcess = false;
                 this.update();
-            }
+            },
+            timeout: 5000
         });
     }
     /**
@@ -78,8 +85,11 @@ function cb(opts) {
      * @returns {string} - basename
      */
     this.basename = (value)=>{
-        var delimiter = value.match(/(\/|\\)/)[0];
-        return value.split(delimiter)[value.split(delimiter).length-1];
+        if(value.match(/(\/|\\)/)){
+            var delimiter = value.match(/(\/|\\)/)[0];
+            return value.split(delimiter)[value.split(delimiter).length-1];
+        }
+        return value;
     }
     /**
      * Crop string
@@ -92,7 +102,7 @@ function cb(opts) {
     }
     this.showBack = (e) => {this.showBackdrop = true;}
     this.hideBack = (e) => {
-        if(!(file.value || this.inProcess || this.overGround.opened)) {
+        if(!(this.file.value || this.inProcess || this.overGround.opened)) {
             this.showBackdrop = false;
         }
     }

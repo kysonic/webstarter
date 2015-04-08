@@ -1,6 +1,7 @@
 define(['cropper','tags/web-ripple-button/web-ripple-button'],cropper,ripple);
 function cb(opts) {
     // Ready
+    this.pth = '';
     this.on('mount',()=>{
         this.User = this.tags['user'];
     });

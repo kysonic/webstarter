@@ -89,6 +89,10 @@ module.exports = {
         if (req.session.user) {
             User.findOne({email: req.session.user.email},function(err,user){
                 res.locals.menuTitle = (user.firstName + user.lastName) ? (user.firstName + user.lastName) : '';
+                if(req.session.imageUpdate) {
+                    res.locals.imageUpdate = req.session.imageUpdate;
+                    delete req.session.imageUpdate;
+                }
                 res.render('pages/user',user.getAllowedProperties());
             });
         } else {
@@ -99,12 +103,14 @@ module.exports = {
      * Upload avatar
      */
     avatarUpload: function(req,res,next) {
-        if(!req.xhr) next();
         //Img lib help us
         img.upload(req).then(function(data){
-            User.update({email:req.session.user.email}, { $set: { fullAvatar: data.file.path }}, function(err,user){
+            User.update({email:req.session.user.email}, { $set: { fullAvatar: data.file.path }}, function(err,isUpdate){
                 if(err) res.json({success:false,errors:err});
-                else res.json({success:true,file:data.file});
+                else {
+                    req.session.imageUpdate = true;
+                    res.json({success:true,file:data.file});
+                }
             });
         },function(err){
             res.json({success:false,errors:err});

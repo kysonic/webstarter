@@ -9,7 +9,7 @@ avatar
             #loading(show="{{inProcess}}")
             form(show="{{!inProcess}}",enctype="multipart/form-data",action="/user/avatar-upload",method="POST",onsubmit="{{uploadFile}}")
                 x-tooltip(msg='{{errors}}')
-                #fileName(title="{{basename(file.value)}}") {{cropString(basename(file.value),25)}}
+                #fileName {{basename(file.value)}}
                 #fakeFile(show="{{!file.value}}")
                     | Add
                     input(onchange="{{changeFile}}",type="file",name="file")#file

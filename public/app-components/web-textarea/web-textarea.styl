@@ -2,6 +2,7 @@
 @import "./public/stylesheets/vars";
 @import "./public/stylesheets/mixins";
 @import "./public/app-components/web-textarea/jquery.textarea";
+
 web-textarea
   display inline-block;
   width 100%;
@@ -91,6 +92,7 @@ web-textarea
     display: block;
   }
 
+
   .scroll-element .scroll-bar,
   .scroll-element .scroll-arrow {
     cursor: default;
@@ -106,21 +108,22 @@ web-textarea
   }
   .scroll-textarea > .scroll-content {
     overflow: hidden !important;
-    height 105px !important;
-    top: 12.5px;
+    width: 100% !important;
+    height: 120px !important;
+    top: 14px;
   }
   .scroll-textarea > .scroll-content > textarea {
-    border: none !important;
+    border: medium none !important;
     box-sizing: border-box;
-    height: 100% !important;
-    margin: 0;
+    height: 115% !important;
+    margin: 0px;
     max-height: none !important;
     max-width: none !important;
-    overflow: scroll !important;
-    outline: none;
+    overflow: hidden !important;
+    outline: medium none;
     padding: 2px;
     position: relative !important;
-    top: 0;
+    top: 0px;
     width: 100% !important;
   }
   .scroll-textarea > .scroll-content > textarea::-webkit-scrollbar {

@@ -52,7 +52,11 @@
     var showTests = document.querySelector('#mocha');
     if(showTests) basics = basics.concat(['chai','mocha']);
     // Require polyfils for ie
-    if(/MSIE (8|9)/i.test(window.navigator.userAgent)) basics.push('matchMedia');
+    if(/MSIE (8|9)/i.test(window.navigator.userAgent)) {
+        basics.push('matchMedia');
+        basics.push('es5');
+        basics.push('html5');
+    }
     var tags = [
         'tags/content/content',
         'tags/header/header',

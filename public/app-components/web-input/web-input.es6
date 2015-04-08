@@ -5,7 +5,7 @@ function cb(opts) {
     this.focus = false;
     // Icon
     this.icon = this.root.querySelector('#icon');
-    if(this.icon) this.icons.appendChild(icon);
+    if(this.icon && this.icon!=null) this.icons.appendChild(icon);
     this.focusIn = (e)=>{
         this.trigger('changeFocus',(this.input.value == '' && !this.focus) || (this.input.value != '' && this.focus));
     }
