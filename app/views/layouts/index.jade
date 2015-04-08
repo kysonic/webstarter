@@ -12,6 +12,8 @@ html
        x-l18n
        x-media-queries
        .container-fluid
+           include ../../../public/mixins/filters
+           +goo
            #wrapper.row
                table
                     tr
@@ -26,8 +28,6 @@ html
        if showTests
            #mocha(data-page-tests="#{pageTests}")
        block requires
-       include ../../../public/mixins/filters
-       +goo
 
 
 

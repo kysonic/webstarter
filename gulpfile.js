@@ -4,7 +4,7 @@ var watch = require('gulp-watch');
 var stylus = require('gulp-stylus');
 var concat = require('gulp-concat');
 
-gulp.task('dev', ['riot','stylus'], function() { });
+gulp.task('dev', ['riot'], function() { });
 
 // Build Riot Tags
 gulp.task('riot', function () {
@@ -31,7 +31,6 @@ gulp.task('watch', function() {
     ]);
 });
 
-
-
+gulp.task('styl',['stylus','watch']);
 
 gulp.task('default', ['dev']);
