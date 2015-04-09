@@ -21,8 +21,9 @@ function cb(opts) {
         ripple.node.style.transform = `scale(20)`;
         ripple.node.style.opacity = 0.2;
         ripple.node.style.webkitAnimation = `ripple-in cubic-bezier(1, 0.6, 0.175, 0.3) 0.2s`;
+        ripple.node.style.animation = `ripple-in cubic-bezier(1, 0.6, 0.175, 0.3) 0.2s`;
         // Add ripple in wrapper
-        this.rippleWrapper.appendChild(ripple.node);
+        this.root.appendChild(ripple.node);
         // isEnd?
         setTimeout(()=>{
             ripple.isEnd = true;
@@ -51,11 +52,11 @@ function cb(opts) {
         ripple.style.transform = `scale(110)`;
         ripple.style.opacity = 0;
         ripple.style.webkitAnimation = `ripple-out cubic-bezier(0.5, 0.5, 0.5, 0.5) 0.5s`;
+        ripple.style.animation = `ripple-out cubic-bezier(0.5, 0.5, 0.5, 0.5) 0.5s`;
         setTimeout(()=>{
-            if(ripple.parentNode) this.rippleWrapper.removeChild(ripple);
+            if(ripple.parentNode) this.root.removeChild(ripple);
         },500);
     }
-
     /**
      * Convert time out from milisseconds to css-time
      * @param time

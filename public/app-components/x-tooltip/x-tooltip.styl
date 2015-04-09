@@ -21,4 +21,36 @@ x-tooltip
       border-color: #CC4C62 transparent transparent transparent;
     &.error
       background #CC4C62;
+@-webkit-keyframes tooltip-in {
+  0% {
+    transform translateY(-6px);
+  }
+  50%{
+    transform translateY(0px);
+  }
+  70%{
+    transform translateY(-2px);
+  }
+}
+@-webkit-keyframes tooltip-out {
+  0%{
+    opacity(1);
+  }
+}
+@keyframes tooltip-in {
+  0% {
+    transform translateY(-6px);
+  }
+  50%{
+    transform translateY(0px);
+  }
+  70%{
+    transform translateY(-2px);
+  }
+}
+@keyframes tooltip-out {
+  0%{
+    opacity(1);
+  }
+}
 

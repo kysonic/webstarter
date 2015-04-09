@@ -15,10 +15,13 @@
      */
     routes = {
         'user' :
-            ['tags/avatar/avatar',
+            [
+              'tags/avatar/avatar',
               'tags/web-input/web-input',
               'tags/web-textarea/web-textarea',
-              'tags/web-ripple-button/web-ripple-button'
+              'tags/web-ripple-button/web-ripple-button',
+              'tags/web-goo-button/web-goo-button',
+              'tags/web-chooser/web-chooser'
             ]
     }
     /**
@@ -41,7 +44,8 @@
             text: '/vendor/text/text',
             uploader: '/vendor/jquery-form/jquery.form',
             scroller: '/vendor/jquery.scrollbar/jquery.scrollbar.min',
-            TweenMax : '/vendor/gsap/src/minified/TweenMax.min'
+            TweenMax : '/vendor/gsap/src/minified/TweenMax.min',
+            dataset: '/vendor/polyfill/dataset'
         }
     });
     /**
@@ -51,11 +55,14 @@
     // Show tests
     var showTests = document.querySelector('#mocha');
     if(showTests) basics = basics.concat(['chai','mocha']);
-    // Require polyfils for ie
+    // Require polyfils for ie9
     if(/MSIE (8|9)/i.test(window.navigator.userAgent)) {
         basics.push('matchMedia');
         basics.push('es5');
         basics.push('html5');
+    }
+    if(/MSIE (9|10)/i.test(window.navigator.userAgent)){
+        basics.push('dataset');
     }
     var tags = [
         'tags/content/content',
@@ -88,6 +95,7 @@
              */
             domReady(function(){
                Webstarter.tags = riot.mount('*');
+
             });
     });
 })();

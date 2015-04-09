@@ -1,13 +1,14 @@
-define(['jquery','scroller'],$,scroller);
+define(['jquery'],$);
 function cb(opts) {
     this.placeholder = opts.placeholder;
+    this.named = opts.named || 'textarea';
     this.placeholder = opts.required == 'true' ? this.placeholder + '*' : this.placeholder;
     this.focus = false;
     this.hardcoreFocus = false;
     this.on('mount',(e)=>{
-        setTimeout(function(){
+        require(['scroller'],function(){
             $(this.textarea).scrollbar();
-        },0)
+        });
     });
     // Icon
     this.icon = this.root.querySelector('#icon');

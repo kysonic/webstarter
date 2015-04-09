@@ -3,6 +3,7 @@ function cb(opts) {
     this.msg = opts.msg;
     this.opened = false;
     this.fadeOutDelay = 15000;
+    this.timer = null;
     // Ready
     this.on('mount',()=>{
         this.related = this.root.nextSibling;
@@ -20,9 +21,8 @@ function cb(opts) {
             this.root.style.top = bcr.top - (wrapperBcr.height) - 5+ 'px';
             this.root.style.left = bcr.left + (bcr.width/2) - (wrapperBcr.width/2)  + 'px';
         });
-        this.opened = true;
-        this.update();
-        setTimeout(()=>{
+        this.trigger('open');
+        this.timer = setTimeout(()=>{
             this.trigger('close');
         },this.fadeOutDelay)
     });
@@ -30,7 +30,14 @@ function cb(opts) {
      * On Close
      */
     this.on('close',()=>{
+        clearInterval(this.timer);
         this.opened = false;
+        this.update();
+    });
+    this.on('open',()=>{
+        this.root.style.webkitAnimation = `tooltip-in cubic-bezier(1, 0.6, 0.175, 0.3) 0.4s 1`;
+        this.root.style.animation = `tooltip-in cubic-bezier(1, 0.6, 0.175, 0.3) 0.4s 1`;
+        this.opened = true;
         this.update();
     });
     /**
@@ -38,6 +45,8 @@ function cb(opts) {
      * @param e
      */
     this.bodyClick = (e)=>{
+        this.root.style.webkitAnimation = `none`;
+        this.root.style.animation = `none`;
         if(!$(e.target).parents('x-tooltip')[0]) {
             this.trigger('close');
         }

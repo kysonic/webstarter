@@ -32,7 +32,13 @@ web-ripple
       transform: scale(0);
     }
   }
-  @-webkit-keyframes ripple-out {
+  @keyframes ripple-in {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+  }
+  @keyframes ripple-out {
     0% {
        opacity: 0.2;
        transform: scale(20);

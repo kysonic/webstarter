@@ -14,7 +14,7 @@ avatar
                     | Add
                     input(onchange="{{changeFile}}",type="file",name="file")#file
                 input(show="{{file.value}}",type="submit",value="Ok")#ok
-                web-ripple-button(color="#fff",title="Reset",show="{{file.value}}",onclick="{{resetFile}}")#reset
-                web-ripple-button(color="#fff",title="Crop",show="{{cropper.pth}}",onclick="{{openCropDialog}}")#crop
+                web-ripple-button.yellow-round(color="#fff",title="Reset",show="{{file.value}}",onclick="{{resetFile}}")#reset
+                web-ripple-button.yellow-round(color="#fff",title="Crop",show="{{cropper.pth}}",onclick="{{openCropDialog}}")#crop
                 //#crop(show="{{cropper.pth}}",onclick="{{openCropDialog}}") Crop
 

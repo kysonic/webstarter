@@ -1,0 +1,4 @@
+web-chooser
+    #wrapper
+        web-ripple-button(each='{{ button,key in buttons }}',title="{{button.title}}",data-value="{{button.value}}",event="choose#click",class="{{checked:button.value==parent.value}}").purple-rect
+    input(type="hidden",name="{{named}}",value="{{value}}")

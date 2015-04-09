@@ -3,7 +3,7 @@ web-ripple-button
   display block;
   position relative;
   width 100%;
-  #button
+  &.yellow-round #button
     overflow hidden;
     position relative;
     outline none;
@@ -27,5 +27,40 @@ web-ripple-button
       transition background .2s ease-out;
     &:active
       background  darken(secondaryColor,5);
+  &.purple-rect.__checked #button
+    transition background .2s cubic-bezier(1, 0.7, 0.2, 1);
+    background secondaryButtonColor;
+    border 1px solid secondaryButtonColor !important;
+    color whiteTextColor;
+    &:hover
+      background darken(secondaryButtonColor,5);
+  &.purple-rect #button
+    display inline-block;
+    height 100%;
+    width 100%;
+    cursor pointer;
+    position relative;
+    border 1px solid borderColor;
+    border-left none;
+    background transparent;
+    transition background .2s cubic-bezier(1, 0.7, 0.2, 1);
+    &:first-child {
+      border 1px solid borderColor;
+    }
+    &:hover
+      transition background .2s cubic-bezier(1, 0.7, 0.2, 1);
+      background secondaryButtonColor;
+      border 1px solid secondaryButtonColor;
+      color whiteTextColor;
+    cursor pointer;
+    height 100%;
+    line-height 48px;
+    font-size: 20px;
+    font-family lightFamily;
+    font-stretch ultra-condensed;
+    text-align center;
+    color: grayTextColor;
+
+
 
 

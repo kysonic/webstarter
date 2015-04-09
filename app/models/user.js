@@ -12,6 +12,7 @@ var schema = new mongoose.Schema({
     motto: String,
     country: String,
     location: String,
+    website: String,
     gender : { type: String, match: /(male|female)/ },
     fullAvatar: String,
     croppedAvatar: String,

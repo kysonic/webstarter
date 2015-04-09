@@ -1,7 +1,9 @@
 web-input
-    #placeholder(class="{{focus:focus}}") {{placeholder}}
-    input(value="{{value}}",onfocus="{{focusIn}}",name="{{name}}",onblur="{{blur}}")#input
-    #clone-border
-    #icons(if="{{icon}}")
+    #wrapper(class="{{error:!isValid}}")
+        #placeholder(class="{{focus:focus}}",onclick="{{clickOnPlaceholder}}") {{placeholder}}
+        x-tooltip
+        input(value="{{value}}",onfocus="{{focusIn}}",name="{{named}}",onblur="{{blur}}",onkeyup='{{ edit }}',autocomplete="off")#input
+        #clone-border
+        #icons(if="{{icon}}")
     //hr#underline
     //hr#rightline

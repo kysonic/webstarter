@@ -1,116 +1,114 @@
 @import 'nib';
 @import "./public/stylesheets/vars";
 @import "./public/stylesheets/mixins";
+
 web-input
   display inline-block;
   width 100%;
   height 50px;
   position relative;
-  & > #input
-    position absolute;
-    z-index 3;
-    width 100%;
-    outline none;
-    height 50px;
-    background transparent;
-    border 1px solid grayTextColor;
-    border-top none;
-    border-left none;
-    font-family baseFanily;
-    font-size 18px;
-    color swampTextColor;
-    padding-left: 12px;
-    padding-right: 50px;
-    &:focus + #clone-border
-      top 0px;
-      height 49px;
-      left -1px;
-      transform scaleX(1);
-      border-bottom  2px solid darken(grayTextColor,10);
-      transition transform .1s ease-in,height .1s ease-in .1s,top .1s ease-in .1s;
-    &:focus ~ #icons
+  #wrapper
+    & > #input
+      position absolute;
+      z-index 3;
+      width 100%;
+      outline none;
+      height 50px;
+      background transparent;
+      border 1px solid grayTextColor;
+      border-top none;
+      border-left none;
+      font-family baseFanily;
+      font-size 18px;
+      color swampTextColor;
+      padding-left: 12px;
+      padding-right: 50px;
+      &:focus + #clone-border
+        top 0px;
+        height 49px;
+        left -1px;
+        transform scaleX(1);
+        border-bottom  2px solid darken(grayTextColor,10);
+        transition transform .1s ease-in,height .1s ease-in .1s,top .1s ease-in .1s,border .2s;
+      &:focus ~ #icons
+        #icon
+          svg
+            stroke-width 2px;
+            transition stroke-width .2s ease-in;
+    #clone-border
+      z-index: 2;
+      display block;
+      width 100%;
+      position absolute;
+      top 46px;
+      left 0;
+      border 2px solid darken(grayTextColor,10);
+      border-top none;
+      border-left none;
+      height 3px;
+      transform scaleX(0);
+      transition transform .1s ease-in .1s, height .1s, top .1s,border .2s;
+    #placeholder
+      position absolute;
+      z-index: 2;
+      font-family baseFanily;
+      font-size 18px;
+      color grayTextColor;
+      padding-left: 12px;
+      line-height 50px;
+      height 50px;
+      transition color .2s ease-in, font-size .2s ease-in,line-height .2s ease-in;
+      &.focus
+        line-height 14px;
+        font-size 12px;
+        color lighten(swampTextColor,25);
+        transition color .2s ease-in, font-size .2s ease-in,line-height .2s ease-in;
+    #icons
+      display inline-block;
+      width 50px;
+      height 50px;
+      position absolute;
+      z-index 4;
+      left: 100%;
+      cursor pointer;
+      margin-left -50px;
       #icon
         svg
-          stroke-width 2px;
+          width 50px;
+          height 50px;
+          stroke-width 1px;
           transition stroke-width .2s ease-in;
-  #clone-border
-    z-index: 2;
-    display block;
-    width 100%;
-    position absolute;
-    top 46px;
-    left 0;
-    border 2px solid darken(grayTextColor,10);
-    border-top none;
-    border-left none;
-    height 3px;
-    transform scaleX(0);
-    transition transform .1s ease-in .1s, height .1s, top .1s;
-  #placeholder
-    position absolute;
-    z-index: 2;
-    font-family baseFanily;
-    font-size 18px;
-    color grayTextColor;
-    padding-left: 12px;
-    line-height 50px;
-    height 50px;
-    transition color .2s ease-in, font-size .2s ease-in,line-height .2s ease-in;
-    &.focus
-      line-height 14px;
-      font-size 12px;
-      color lighten(swampTextColor,25);
-      transition color .2s ease-in, font-size .2s ease-in,line-height .2s ease-in;
-  #icons
-    display inline-block;
-    width 50px;
-    height 50px;
-    position absolute;
-    z-index 4;
-    left: 100%;
-    cursor pointer;
-    margin-left -50px;
-    #icon
-      svg
-        width 50px;
-        height 50px;
-        stroke-width 1px;
-        transition stroke-width .2s ease-in;
-      path,circle,polyline
-        stroke-dasharray: 0;
-        stroke-dashoffset: 0;
-        transition: stroke-dashoffset .2s;
-    &.dash #icon svg
-      path,circle,polyline
-        stroke-dasharray: 100;
-        stroke-dashoffset: 100;
-        transition: stroke-dashoffset .2s;
-
-
-
-/*& > #underline
-  margin 0;
-  padding 0;
-  background  darken(grayTextColor,10);
-  border-bottom-width: 2px;
-  height 2px;
-  position relative;
-  bottom 1px;
-  transform scaleX(0);
-  transition: transform .2s ease-in;
-& > #rightline
-  margin 0;
-  padding 0;
-  background  darken(grayTextColor,10);
-  transform rotate(90deg);
-  height 2px;
-  width 50px;
-  float right;
-& > #input:focus + #underline
-  border-bottom-width: 2px;
-  height 2px;
-  transform scaleX(1);
-  transition: transform .2s ease-in;*/
-
-
-
+        path,circle,polyline
+          stroke-dasharray: 0;
+          stroke-dashoffset: 0;
+          transition: stroke-dashoffset .2s;
+      &.dash #icon svg
+        path,circle,polyline
+          stroke-dasharray: 100;
+          stroke-dashoffset: 100;
+          transition: stroke-dashoffset .2s;
+    /**Errors**/
+    &.error
+      & > #input
+        border 1px solid errorColor;
+        border-top none;
+        border-left none;
+        &:focus + #clone-border
+          top 0px;
+          height 49px;
+          left -1px;
+          transform scaleX(1);
+          border-bottom  2px solid darken(errorColor,10);
+          transition transform .1s ease-in,height .1s ease-in .1s,top .1s ease-in .1s,border .2s;
+        &:focus ~ #icons
+          #icon
+            svg
+              stroke-color errorColor;
+              transition stroke-color .2s ease-in;
+      #placeholder
+        color swampErrorTextColor;
+      #clone-border
+          border 2px solid darken(errorColor,10);
+          border-top none;
+          border-left none;
+          transition transform .1s ease-in .1s, height .1s, top .1s,border .2s;
