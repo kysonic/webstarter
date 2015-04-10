@@ -1,3 +1,4 @@
+include ../../mixins/icons
 web-calendar
     #wrapper
         #header
@@ -14,19 +15,25 @@ web-calendar
                     #line
         #body
             #content
-                .tab-content(show="{{selected==1}}",data-id="1")
-                    #months-wrapper
-                        .month(each="{{month,key in months}}",onclick="{{parent.setMonth}}",data-month="{{month}}",data-month-number="{{key}}")
-                            .text(class="{{selected:month==parent.month}}",data-month="{{month}}",data-month-number="{{key}}"){{month}}
-                .tab-content(show="{{selected==2}}",data-id="2")
-                    #days-wrapper
-                        .day(each="{{day in days}}",onclick="{{parent.setDay}}",data-day="{{day}}")
-                            .text(class="{{selected:day==parent.day}}",data-day="{{day}}"){{parent.addNull(day)}}
-                .tab-content(show="{{selected==3}}",data-id="3")
-                    #years-wrapper
-                        #arrow-left
-                            .icon(onclick="{{prevYears}}")
-                        #arrow-right
-                            .icon(onclick="{{nextYears}}")
-                        .year(each="{{year in years}}",onclick="{{parent.setYear}}",data-year="{{year}}")
-                            .text(class="{{selected:year==parent.year}}",data-year="{{year}}") {{year}}
+                #tabConveyor
+                    .tab-content(class="{{showed:selected==1}}",data-id="1")
+                        #months-wrapper
+                            .month(each="{{month,key in months}}",onclick="{{parent.setMonth}}",data-month="{{month}}",data-month-number="{{key}}")
+                                .text(class="{{selected:month==parent.month}}",data-month="{{month}}",data-month-number="{{key}}"){{month}}
+                    .tab-content(class="{{showed:selected==2}}",data-id="2")
+                        #days-wrapper
+                            .day(each="{{day in days}}",onclick="{{parent.setDay}}",data-day="{{day}}")
+                                .text(class="{{selected:day==parent.day}}",data-day="{{day}}"){{parent.addNull(day)}}
+                    .tab-content(class="{{showed:selected==3}}",data-id="3")
+                        #years-wrapper
+                            #arrow-left
+                                .icon(onclick="{{prevYears}}")
+                                    +leftArrow
+                            #arrow-right
+                                .icon(onclick="{{nextYears}}")
+                                    +rightArrow
+                            .year(each="{{year in years}}",onclick="{{parent.setYear}}",data-year="{{year}}")
+                                .text(class="{{selected:year==parent.year}}",data-year="{{year}}") {{year}}
+            #buttons
+                web-ripple-button(color="#000",title="Cancel",event="cancel").outline
+                web-ripple-button(color="#000",title="Ok",event="ok").outline

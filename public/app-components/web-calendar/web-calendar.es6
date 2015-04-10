@@ -1,4 +1,8 @@
+define(['tags/web-ripple-button/web-ripple-button'],webRippleButton);
 function cb(opts) {
+    //Attributes
+    this.minYear = opts.minyear || 1900;
+    this.maxYear = opts.maxyear || 2500;
     // Basic vars
     this.selected = 1;
     // Months
@@ -15,6 +19,7 @@ function cb(opts) {
      */
     this.on('mount',(e)=>{
         this.line.style.left = 0+'px';
+        this.tabConveyor.style.left = 0 + 'px';
     });
     /**
      * Change Tab. Set lines. Select Tab content.
@@ -24,6 +29,7 @@ function cb(opts) {
         var id = e.target.dataset.id;
         this.selected = id;
         this.line.style.left = this.line.getBoundingClientRect().width * (id-1) + 'px';
+        this.tabConveyor.style.left = -300*(this.selected-1) + 'px';
     }
     /**
      * Additional substr function.
@@ -36,6 +42,12 @@ function cb(opts) {
      * @param str
      */
     this.addNull = (str)=> parseInt(str) && parseInt(str)<10 ? '0'+str : str;
+    /**
+     * Additional function to be return style, beacuse riot parse ':'
+     * @param style
+     * @param value
+     */
+    this.getStyle = (style,value) => style+':'+value;
     /**
      * Set month into date
      * @param e
@@ -102,13 +114,44 @@ function cb(opts) {
             node.style.transition = 'background .2s,color .2s,transform .3s';
         },0);
     }
+    /**
+     * Previous years set
+     * @param e
+     */
     this.prevYears = (e)=>{
-        this.year = parseInt(this.year) - 15;
+        if(parseInt(this.year) - 15>this.minYear) {
+            this.year = parseInt(this.year) - 15;
+        }else {
+            this.year = parseInt(this.minYear) + 15;
+        }
         this.setYears();
     }
+    /**
+     * Next years set
+     * @param e
+     */
     this.nextYears = (e)=>{
-        this.year =  parseInt(this.year) + 15;
+        if(parseInt(this.year) +15<this.maxYear) {
+            this.year =  parseInt(this.year) + 15;
+        }
+        else {
+            this.year = this.maxYear;
+        }
         this.setYears();
+    }
+    /**
+     * Cancel calendar
+     * @param e
+     */
+    this.cancel = (e)=>{
+        this.parent.overGround.close();
+    }
+    /**
+     * Special datepicker function.
+     * @param e
+     */
+    this.ok = (e) => {
+        this.parent.ok();
     }
     /**
      * Get Child node by tagName or className

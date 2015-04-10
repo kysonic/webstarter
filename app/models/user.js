@@ -4,7 +4,7 @@ var rbacPlugin = require('mongoose-hrbac');
 //var autoIncPlugin = require("mongodb-autoincrement");
 var schema = new mongoose.Schema({
     created:{type: Date,default: Date.now},
-    email: {type: String,unique:true},
+    email: {type: String,unique:true,index:true},
     password: String,
     firstName: String,
     lastName: String,

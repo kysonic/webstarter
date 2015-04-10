@@ -5,6 +5,7 @@ function cb(opts) {
     this.blur = opts.blur || null;
     this.bodyScale = opts.bodyscale || true;
     this.noPadding = opts.nopadding || null;
+    this.noShadow = opts.noshadow || null;
     // Basic vars
     this.opened = false;
     this.go = true;
@@ -16,6 +17,7 @@ function cb(opts) {
         if(opts.layred) document.documentElement.appendChild(this.root);
         if(/MSIE (9)/.test(navigator.userAgent)) this.backdrop.style.background = 'rgba(0,0,0,0.2);';
         if(this.noPadding) this.wrapper.style.padding = 0;
+        if(this.noShadow) this.wrapper.style.boxShadow = 'none';
         //console.log(this.tags['inner-html'].update())
         // How to bind tag inner html?
         /*riot.tag('temp-tag',this.tags['inner-html'].root.innerHTML,function(){});

@@ -5,6 +5,7 @@ function cb(opts) {
         // Nested Tags
         this.input = this.tags['web-input'];
         this.overGround = this.tags['over-ground'];
+        this.calendar = this.tags['web-calendar'];
         // Set options to nested tags
         this.input.setOptions(opts);
         // Icons to web-input
@@ -19,6 +20,12 @@ function cb(opts) {
         this.input.input.blur();
         this.overGround.open();
     }
+    this.ok = (e)=>{
+        this.input.value = this.calendar.year +'-'+this.addNull(parseInt(this.calendar.monthKey)+1)+'-'+this.calendar.day;
+        this.input.input.focus();
+        this.overGround.close();
+    }
+    this.addNull = (str)=> parseInt(str) && parseInt(str)<10 ? '0'+str : str;
 }
 
 
