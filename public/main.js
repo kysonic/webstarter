@@ -18,6 +18,7 @@
             [
               'tags/avatar/avatar',
               'tags/web-input/web-input',
+              'tags/web-datepicker/web-datepicker',
               'tags/web-textarea/web-textarea',
               'tags/web-ripple-button/web-ripple-button',
               'tags/web-goo-button/web-goo-button',
@@ -45,13 +46,14 @@
             uploader: '/vendor/jquery-form/jquery.form',
             scroller: '/vendor/jquery.scrollbar/jquery.scrollbar.min',
             TweenMax : '/vendor/gsap/src/minified/TweenMax.min',
-            dataset: '/vendor/polyfill/dataset'
+            dataset: '/vendor/polyfill/dataset',
+            arrayFrom: '/vendor/polyfill/Array.from'
         }
     });
     /**
      * App startup!
      */
-    var basics = ['jquery','domReady','riot','webstarter'];
+    var basics = ['jquery','domReady','riot','webstarter','arrayFrom'];
     // Show tests
     var showTests = document.querySelector('#mocha');
     if(showTests) basics = basics.concat(['chai','mocha']);

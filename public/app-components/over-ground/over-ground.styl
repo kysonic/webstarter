@@ -4,8 +4,8 @@ over-ground
     display block;
     position absolute;
     z-index 12;
-    min-width 400px;
-    min-height 220px;
+    min-width 150px;
+    min-height 150px;
     max-width 960px;
     max-height 720px;
     background #fff;
@@ -28,7 +28,7 @@ over-ground
     top 0;
     bottom 0;
     z-index 11;
-    background rgba(0,0,0,.2);
+    background rgba(0,0,0,0);
 
 html
   background url(http://subtlepatterns.com/patterns/dark_dotted.png) repeat #222;
@@ -38,11 +38,18 @@ body
   &.over-ground
     transform: scale(.9,.9);
     transition: transform .3s;
-    -webkit-filter: blur(1px);
-    -moz-filter: blur(1px);
-    -ms-filter: blur(1px);
-    -o-filter: blur(1px);
-    filter: blur(1px);
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -ms-filter: blur(2px);
+    -o-filter: blur(2px);
+    filter: blur(2px);
+  &.over-blur
+    transition: filter .3s;
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -ms-filter: blur(2px);
+    -o-filter: blur(2px);
+    filter: blur(2px);
 
 
 

@@ -1,0 +1,32 @@
+web-calendar
+    #wrapper
+        #header
+            #date
+                #month {{sub(month,3)}}
+                #day {{addNull(day)}}
+                #year {{year}}
+            #tabs-wrapper
+                #tabs
+                    .tab(class="{{selected:selected==1}}",data-id="1",onclick="{{changeTab}}") Month
+                    .tab(class="{{selected:selected==2}}",data-id="2",onclick="{{changeTab}}") Day
+                    .tab(class="{{selected:selected==3}}",data-id="3",onclick="{{changeTab}}") Year
+                #line-wrapper
+                    #line
+        #body
+            #content
+                .tab-content(show="{{selected==1}}",data-id="1")
+                    #months-wrapper
+                        .month(each="{{month,key in months}}",onclick="{{parent.setMonth}}",data-month="{{month}}",data-month-number="{{key}}")
+                            .text(class="{{selected:month==parent.month}}",data-month="{{month}}",data-month-number="{{key}}"){{month}}
+                .tab-content(show="{{selected==2}}",data-id="2")
+                    #days-wrapper
+                        .day(each="{{day in days}}",onclick="{{parent.setDay}}",data-day="{{day}}")
+                            .text(class="{{selected:day==parent.day}}",data-day="{{day}}"){{parent.addNull(day)}}
+                .tab-content(show="{{selected==3}}",data-id="3")
+                    #years-wrapper
+                        #arrow-left
+                            .icon(onclick="{{prevYears}}")
+                        #arrow-right
+                            .icon(onclick="{{nextYears}}")
+                        .year(each="{{year in years}}",onclick="{{parent.setYear}}",data-year="{{year}}")
+                            .text(class="{{selected:year==parent.year}}",data-year="{{year}}") {{year}}

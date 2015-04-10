@@ -1,0 +1,176 @@
+@import 'nib';
+@import "./public/stylesheets/vars";
+@import "./public/stylesheets/mixins";
+web-calendar
+ & > #wrapper
+   width 300px;
+   margin 0 auto;
+   border 1px solid borderColor;
+   #header
+     width 100%;
+     height 150px;
+     background basicMenuColor;
+     display inline-block;
+     #date
+        width 80px;
+        height 90px;
+        margin 0 auto;
+        margin-top 17px;
+        color borderColor;
+        font-family 'Open Sans';
+        font-weight bold;
+        text-align center;
+        text-transform uppercase;
+        #month
+            height 20px;
+            width 100%;
+            font-size: 12px;
+            position relative;
+            right 3px;
+        #day
+            height 45px;
+            width 100%;
+            font-size: 48px;
+            line-height: 42px;
+            position relative;
+            right 3px;
+        #year
+           height 25px;
+           width 100%;
+           font-size: 20px;
+           position relative;
+           right 2px;
+     #tabs-wrapper
+        width 100%;
+        height 28px;
+        margin-top 15px;
+        #tabs
+          width 100%;
+          height 23px;
+          .tab
+            display inline-block;
+            width 33%;
+            font-size 17px;
+            text-align center;
+            color borderColor;
+            transition color .2s;
+            cursor pointer;
+            &.selected,&:hover
+              transition color .2s;
+              color secondaryColor;
+        #line-wrapper
+          width 100%;
+          height 5px;
+          background darken(basicBackgroundColor,10);
+          position relative;
+          #line
+            width 33.3%;
+            height 5px;
+            background secondaryColor;
+            position absolute;
+            transition left .2s;
+   #body
+     width 100%;
+     height 345px;
+     background basicBodyColor;
+     #content
+       width 100%;
+       height 280px;
+       #months-wrapper
+         .month
+           cursor pointer;
+           display inline-block;
+           width 33.3%;
+           height 70px;
+           .text
+             text-align center;
+             line-height 10px;
+             color: borderColor;
+             transition color .2s;
+             font-size 13px;
+             border-radius 30px;
+             padding 10px 2px;
+             margin 20px auto;
+             max-width 90%;
+             transition background .2s,color .2s;
+             &.selected
+               background secondaryColor;
+               color whiteTextColor;
+               transition background .2s,color .2s;
+           &:hover
+             .text:not(.selected)
+               transition color .2s;
+               color secondaryColor;
+       #days-wrapper
+         .day
+           cursor pointer;
+           display inline-block;
+           width 14.28%;
+           height 50px;
+           .text
+             text-align center;
+             line-height 11px;
+             text-indent: -2px;
+             color: borderColor;
+             transition color .2s;
+             font-size 13px;
+             border-radius 50%;
+             padding: 14px 0px 13px 0px;
+             margin 6px auto;
+             max-width 90%;
+             transition background .2s,color .2s;
+             &.selected
+               background secondaryColor;
+               color whiteTextColor;
+           &:hover
+             .text:not(.selected)
+               transition color .2s;
+               color secondaryColor;
+       #years-wrapper
+         padding 20px;
+         position relative;
+         #arrow-left,#arrow-right
+           height 100%;
+           width 20px;
+           position absolute;
+           left:0;
+           top:0;
+           &#arrow-right
+              left: 100%;
+              margin-left -20px;
+           .icon
+              width 20px;
+              height 20px;
+              position absolute;
+              top: 50%;
+              margin-top -10px;
+              background red;
+         .year
+           cursor pointer;
+           display inline-block;
+           width 33.3%;
+           height 50px;
+           .text
+             text-align center;
+             line-height 11px;
+             text-indent: -2px;
+             color: borderColor;
+             transition color .2s;
+             font-size 13px;
+             border-radius 30px;
+             padding 10px 2px;
+             margin 20px auto;
+             max-width 90%;
+             transition background .2s,color .2s;
+             &.selected
+               background secondaryColor;
+               color whiteTextColor;
+           &:hover
+             .text:not(.selected)
+               transition color .2s;
+               color secondaryColor;
+
+
+
+
+
