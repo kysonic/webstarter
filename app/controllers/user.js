@@ -3,10 +3,12 @@ var router = express.Router();
 var User = require('../models/user').User;
 var check = require('../libs/rbac');
 var img = require('../libs/img');
+var countries  = require('country-data').countries;
 module.exports = {
     routes: function() {
         // Direction routes
-        router.get('/',check.can('read','user'),this.profileUser)
+        router.get('/',check.can('read','user'),this.profileUser);
+        router.post('/',check.can('update','user'),this.updateProfile);
         router.post('/register',check.can('create','user'),this.registerUser);
         router.post('/auth',check.can('auth','user'),this.authUser);
         router.get('/logout',this.logOutUser);
@@ -88,16 +90,41 @@ module.exports = {
         // If user is not auth
         if (req.session.user) {
             User.findOne({email: req.session.user.email},function(err,user){
-                res.locals.menuTitle = (user.firstName + user.lastName) ? (user.firstName + user.lastName) : '';
+                if(err) next();
+                // locals
+               // Get countries names
+                var cntrs = [];
+                countries.all.forEach(function(country){cntrs.push(country.name);});
+                res.locals.countries = JSON.stringify(cntrs);
+                // Menu
+                res.locals.menuTitle = (user.firstName && user.lastName) ? (user.firstName.replace(/^\s+|\s+$/i,'') +' '+user.lastName.replace(/^\s+|\s+$/i,'')) : '';
                 if(req.session.imageUpdate) {
                     res.locals.imageUpdate = req.session.imageUpdate;
                     delete req.session.imageUpdate;
                 }
+                //render
                 res.render('pages/user',user.getAllowedProperties());
             });
         } else {
             return res.redirect(303,'/');
         }
+    },
+    /**
+     * Update user data
+     */
+    updateProfile: function(req,res,next) {
+        var data = req.body;
+        if(!req.session.user || !req.xhr || !data) req.json({success:false,errors:['You are not authorized.']});
+        User.findOne({email: req.session.user.email},function(err,user){
+            if(err) return res.json({success:false,errors:err});
+            else {
+                user.mixin(data);
+                user.save(function(err){
+                    if(err) return res.json({success:false,errors: err.errors});
+                    res.json({success:true});
+                });
+            }
+        });
     },
     /**
      * Upload avatar

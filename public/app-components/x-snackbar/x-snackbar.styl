@@ -1,0 +1,29 @@
+@import 'nib';
+@import "./public/stylesheets/vars";
+@import "./public/stylesheets/mixins";
+x-snackbar
+  display block;
+  position absolute;
+  &[right]
+    left: 100%;
+  &[bottom]
+    top: 100%;
+    margin-top -80px;
+  #wrapper
+    background snackBarColor;
+    height 60px;
+    font-size 25px;
+    font-family lightFamily;
+    font-stretch ultra-condensed;
+    text-align center;
+    padding 0 40px;
+    line-height 60px;
+    min-width 200px;
+    white-space nowrap;
+    color: whiteTextColor;
+    &.error
+      background errorColor;
+
+
+
+

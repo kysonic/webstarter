@@ -9,9 +9,10 @@ html
         if showTests
             link(type="text/css" rel="stylesheet" href="/vendor/mocha/mocha.css")
         script(data-main="/main" data-show-test="#{showTests}" src="/vendor/requirejs/require.js")
-    body
+    body.unresolved
        x-l18n
        x-media-queries
+       x-snackbar(right,bottom,time="5000")
        .container-fluid
            include ../../../public/mixins/filters
            +goo
@@ -19,7 +20,7 @@ html
                table
                     tr
                         td#menu
-                            menu-header(title="#{firstName+' '+ lastName}")
+                            menu-header(title="#{menuTitle}")
                             if isAuth
                                 block menu
                         td#content

@@ -1,0 +1,36 @@
+@import 'nib';
+@import "./public/stylesheets/vars";
+@import "./public/stylesheets/mixins";
+web-dropdown
+  width: 100%;
+  height auto;
+  position: absolute;
+  left 0%;
+  top: 50px;
+  #items
+    width: 100%;
+    height auto;
+    position: absolute;
+    z-index: 50;
+    -webkit-perspective: 200;
+    perspective: 200;
+    max-height 200px;
+    .item
+      z-index: 10;
+      width 100%;
+      height 50px;
+      background whiteTextColor;
+      color: borderColor;
+      border 1px solid borderColor;
+      text-align center;
+      line-height 50px;
+      font-size 18px;
+      cursor pointer;
+      border-top none;
+      &:first-child
+        border-top none
+      &:hover,&.selected
+        background basicMenuColor;
+        color whiteTextColor;
+
+

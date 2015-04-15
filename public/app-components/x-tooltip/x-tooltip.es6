@@ -16,12 +16,12 @@ function cb(opts) {
     this.on('onSetMsg',()=>{
         // Get position of related element in next tick.
         setTimeout(()=>{
+            this.trigger('open');
             var bcr = this.related.getBoundingClientRect();
             var wrapperBcr = this.wrapper.getBoundingClientRect();
             this.root.style.top = bcr.top - (wrapperBcr.height) - 5+ 'px';
             this.root.style.left = bcr.left + (bcr.width/2) - (wrapperBcr.width/2)  + 'px';
         });
-        this.trigger('open');
         this.timer = setTimeout(()=>{
             this.trigger('close');
         },this.fadeOutDelay)
@@ -35,8 +35,10 @@ function cb(opts) {
         this.update();
     });
     this.on('open',()=>{
-        this.root.style.webkitAnimation = `tooltip-in cubic-bezier(1, 0.6, 0.175, 0.3) 0.4s 1`;
-        this.root.style.animation = `tooltip-in cubic-bezier(1, 0.6, 0.175, 0.3) 0.4s 1`;
+        setTimeout(()=>{
+            this.root.style.webkitAnimation = `tooltip-in cubic-bezier(1, 0.6, 0.175, 0.3) 0.4s 1`;
+            this.root.style.animation = `tooltip-in cubic-bezier(1, 0.6, 0.175, 0.3) 0.4s 1`;
+        })
         this.opened = true;
         this.update();
     });

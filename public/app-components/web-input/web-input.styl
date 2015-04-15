@@ -8,6 +8,16 @@ web-input
   height 50px;
   position relative;
   #wrapper
+    &.view
+      & > #text
+        height 50px;
+        line-height 50px;
+        font-size 18px;
+        color swampTextColor;
+        margin-left 50px;
+      & #icons
+        margin-left 0;
+        left 0;
     & > #input
       position absolute;
       z-index 3;
@@ -72,6 +82,7 @@ web-input
       left: 100%;
       cursor pointer;
       margin-left -50px;
+      top: 0;
       #icon
         svg
           width 50px;
@@ -87,6 +98,15 @@ web-input
           stroke-dasharray: 100;
           stroke-dashoffset: 100;
           transition: stroke-dashoffset .2s;
+    #viewIcons
+      display inline-block;
+      width 50px;
+      height 50px;
+      position absolute;
+      z-index 4;
+      cursor pointer;
+      top:0;
+      left: 0;
     #max-length
       width 50px;
       height 50px;

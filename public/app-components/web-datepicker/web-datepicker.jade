@@ -1,5 +1,7 @@
 web-datepicker
-    web-input(placeholder="{{placeholder}}",named="{{named}}",validation="{{validation}}")
+    web-input(placeholder="{{placeholder}}",named="{{named}}",validation="{{validation}}",mode="{{mode}}")
         #icon
-    over-ground(center,layred,autoClose,bodyScale="false",blur="true",nopadding="true",noshadow="true")
-        web-calendar(minyear="1920",maxyear="{{new Date().getFullYear()}}")
+    over-ground(center,layred,autoClose,bodyScale="false",blur="true",nopadding="true",noshadow="true",if='{{apperance=="popup"}}')
+    web-slide(mode="absolute",closeto="#leftSlide",opened="false",apperance="left",if='{{apperance=="slide"}}')
+    web-calendar(minyear="1920",maxyear="{{new Date().getFullYear()}}")#calendar
+

@@ -2,11 +2,31 @@
 @import "./public/stylesheets/vars";
 @import "./public/stylesheets/mixins";
 @import "./public/app-components/web-textarea/jquery.textarea";
-
+textAreaHeight = 147px;
 web-textarea
+  & >#wrapper
+    position relative;
+    & > #text
+      height 50px;
+      line-height 48px;
+      font-size 18px;
+      color swampTextColor;
+      margin-left 50px;
+    #icons
+      display inline-block;
+      width 50px;
+      height 50px;
+      position absolute;
+      z-index 4;
+      cursor pointer;
+      top:0;
+      left: 0;
+    &.view
+      .scroll-wrapper
+        border none !important;
   display inline-block;
   width 100%;
-  height 139px;
+  height textAreaHeight;
   position relative;
   textarea
     padding-top 3px !important;
@@ -16,7 +36,7 @@ web-textarea
     display block;
     width 100%;
     position absolute;
-    top 135px;
+    top textAreaHeight - 4;
     left 0;
     border 2px solid darken(grayTextColor,10);
     border-top none;
@@ -26,7 +46,7 @@ web-textarea
     transition transform .1s ease-in .1s, height .1s, top .1s;
     &.focus
       top 0px;
-      height 138px;
+      height textAreaHeight - 1;
       left -1px;
       transform scaleX(1);
       border-bottom  2px solid darken(grayTextColor,10);
@@ -143,7 +163,7 @@ web-textarea
     position absolute;
     z-index 3;
     width 100%;
-    height 139px;
+    height textAreaHeight;
     outline none;
     background transparent;
     border 1px solid grayTextColor;

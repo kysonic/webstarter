@@ -3,13 +3,17 @@ function cb(opts) {
     this.named = opts.named || 'undefined';
     try{var buttons = eval(opts.buttons);}catch(e){};
     this.buttons = buttons || [];
-    this.value = '';
+    this.value = opts.value || '';
+    this.mode = opts.mode || 'edit';
     // Ready
     this.on('mount',()=>{
         this.buttonNodes = this.wrapper.querySelectorAll('web-ripple-button');
         [].forEach.call(this.buttonNodes,(node)=>{
             node.style.width = Math.round(100/this.buttonNodes.length) + '%';
-        })
+        });
+        this.icon = this.root.querySelector('#icon');
+        if(this.icon && this.mode == 'view') this.icons.appendChild(this.icon);
+        else this.root.removeChild(this.root.querySelector('#icon'));
     });
     this.choose = (e)=>{
         e.preventDefault();

@@ -1,0 +1,5 @@
+web-dropdown
+    #items(show="{{opened}}")
+        .item(each="{{option in data}}",onclick="{{parent.selectItem}}",data-value="{{option}}",class="{{selected:parent.selected==option}}")
+            {{option}}
+

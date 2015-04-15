@@ -140,20 +140,6 @@ function cb(opts) {
         this.setYears();
     }
     /**
-     * Cancel calendar
-     * @param e
-     */
-    this.cancel = (e)=>{
-        this.parent.overGround.close();
-    }
-    /**
-     * Special datepicker function.
-     * @param e
-     */
-    this.ok = (e) => {
-        this.parent.ok();
-    }
-    /**
      * Get Child node by tagName or className
      * @param element
      * @param criteria

@@ -17,7 +17,10 @@
         'user' :
             [
               'tags/avatar/avatar',
+              'tags/web-form/web-form',
+              'tags/user-form-service/user-form-service',
               'tags/web-input/web-input',
+              'tags/web-select/web-select',
               'tags/web-datepicker/web-datepicker',
               'tags/web-textarea/web-textarea',
               'tags/web-ripple-button/web-ripple-button',
@@ -73,7 +76,8 @@
         'tags/x-l18n/x-l18n',
         'tags/core-media-query/core-media-query',
         'tags/x-media-queries/x-media-queries',
-        'tags/todo/todo'
+        'tags/web-slide/web-slide',
+        'tags/x-snackbar/x-snackbar'
     ];
     // Define route
     var route = location.href.replace(/(http|https)\:\/\/(.*?)\//i,'').replace(/\#.*/,'').replace(/\?.*/,'').replace(/\/$/,'');
@@ -97,7 +101,9 @@
              */
             domReady(function(){
                Webstarter.tags = riot.mount('*');
-
+                document.body.style.opacity = 1;
+                document.body.style.webkitAnimation = 'apperance cubic-bezier(1, 1, 0.175, 0.2) .2s 1';
+                document.body.style.animation = 'apperance cubic-bezier(1, 1, 0.175, 0.2) .2s 1';
             });
     });
 })();

@@ -35,5 +35,5 @@ web-calendar
                             .year(each="{{year in years}}",onclick="{{parent.setYear}}",data-year="{{year}}")
                                 .text(class="{{selected:year==parent.year}}",data-year="{{year}}") {{year}}
             #buttons
-                web-ripple-button(color="#000",title="Cancel",event="cancel").outline
-                web-ripple-button(color="#000",title="Ok",event="ok").outline
+                web-ripple-button(color="#000",title="Cancel",onclick="{{cancel}}").outline
+                web-ripple-button(color="#000",title="Ok",onclick="{{ok}}").outline

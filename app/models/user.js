@@ -30,7 +30,7 @@ schema.plugin(rbacPlugin);
  * Allowed properties which can return on front-end
  * @type {string[]}
  */
-schema.statics.allowedProperties = ['email','role','firstName','lastName','birthDate','motto','country','location','gender','about','fullAvatar','croppedAvatar'];
+schema.statics.allowedProperties = ['email','role','firstName','lastName','birthDate','motto','country','location','gender','about','fullAvatar','croppedAvatar','website'];
 /**
  * Map user method
  * @param user
@@ -66,10 +66,19 @@ schema.methods.verify = function (str) {
 schema.methods.getAllowedProperties = function(){
     var allowedUser = {};
     User.allowedProperties.forEach(function(property){
-        allowedUser[property] = this[property];
+        allowedUser[property] = this[property] ? this[property] : '';
     }.bind(this));
     return allowedUser;
 };
+
+schema.methods.mixin = function(data){
+    for(var key in data) {
+        var value = data[key];
+        if(-1!==User.allowedProperties.indexOf(key)) {
+             this[key] = value;
+        }
+    }
+}
 
 var User = mongoose.model('User',schema);
 
@@ -78,15 +87,30 @@ var User = mongoose.model('User',schema);
 //Email
 User.schema.path('email').validate(function (value) {
     return /[a-zA-Z0-9]+(?:(\.|_)[A-Za-z0-9!#$%&'*+/=?^`{|}~-]+)*@(?!([a-zA-Z0-9]*\.[a-zA-Z0-9]*\.[a-zA-Z0-9]*\.))(?:[A-Za-z0-9](?:[a-zA-Z0-9-]*[A-Za-z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?/i.test(value);
-}, 'Email Error');
+}, 'Email Error.');
 //Avatars
 User.schema.path('fullAvatar').validate(function(value){
     return /(.*)\.(jpg|gif|png|svg|ttf)/i.test(value);
-},'Avatar Error');
-
+},'Avatar Error.');
 User.schema.path('croppedAvatar').validate(function(value){
     return /(.*)\.(jpg|gif|png|svg|ttf)/i.test(value);
-},'Avatar Error');
+},'Avatar Error.');
+// Profile
+User.schema.path('firstName').validate(function(value){
+    return /^[a-zA-Z0-9а-яА-Я- ]+$/i.test(value);
+},'First name Error.');
+User.schema.path('lastName').validate(function(value){
+    return /^[a-zA-Z0-9а-яА-Я- ]+$/i.test(value);
+},'Last name Error.');
+User.schema.path('website').validate(function(value){
+    return /^(http(s?)\:\/\/([\w]+\.){1}([\w]+\.?)|)$/i.test(value);
+},'Website Error.');
+User.schema.path('location').validate(function(value){
+    return /^([a-zA-Z0-9а-яА-Я- ]+|)$/i.test(value);
+},'Location Error.');
+User.schema.path('country').validate(function(value){
+    return /^([a-zA-Z0-9а-яА-Я- ]+|)$/i.test(value);
+},'Country Error.');
 
 exports.User = User;
 

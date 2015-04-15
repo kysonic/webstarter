@@ -1,10 +1,16 @@
 @import "../vars";
 /** Basics **/
+html
+  background-color #ECEFE4;
 body
   height 100vh;
   margin  0;
   background-color #ECEFE4;
   font-family 'Open Sans';
+  apperance ease-in .2s 1;
+  opacity 1;
+  &.unresolved
+    opacity 0;
 /** Basics **/
 /** Markup **/
 .padding0
@@ -30,5 +36,16 @@ body
           max-width 1540px;
           display block;
           margin 0 auto;
+          position relative;
 
 /** Markup **/
+@-webkit-keyframes apperance {
+  0% {
+    opacity: 0;
+  }
+}
+@keyframes apperance {
+  0% {
+    opacity: 0;
+  }
+}

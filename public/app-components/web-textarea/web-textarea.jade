@@ -1,4 +1,7 @@
 web-textarea
-    #placeholder(class="{{focus:focus}}") {{placeholder}}
-    textarea(value="{{value}}",onfocus="{{focusIn}}",onblur="{{blur}}",named="{{named}}")#textarea.textarea-scrollbar.scrollbar-outer
-    #clone-border(class="{{focus:hardcoreFocus}}")
+    #wrapper(class='{{error:!isValid,view:mode=="view"}}')
+        #placeholder(class="{{focus:focus}}",if='{{mode=="edit"}}') {{placeholder}}
+        textarea(value="{{value}}",onfocus="{{focusIn}}",onblur="{{blur}}",name="{{named}}",show='{{mode=="edit"}}')#textarea.textarea-scrollbar.scrollbar-outer
+        #clone-border(class="{{focus:hardcoreFocus}}",if='{{mode=="edit"}}')
+        #text(if='{{mode=="view"}}') {{value || placeholder}}
+        #icons(show='{{mode=="view"}}')
