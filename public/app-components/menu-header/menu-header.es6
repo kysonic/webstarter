@@ -1,9 +1,14 @@
+define(['webstarter','tags/user/user'],Webstarter)
 function cb(opts) {
-    if(opts.title!='NaN') this.title = opts.title.length > 30 ? opts.title.substring(0,20)+'...' : opts.title;
+    this.title = opts.title || '';
+    this.isAuth = opts.isauth!='undefined' || false;
+    this.letterCount = 20;
+    this.on('mount',()=>{
+        // Get Global Tags
+        setTimeout(()=>{this.snackbar = Webstarter.tags.findTagByName('x-snackbar');});
+    });
     // XXX: There will be additional menu-header functions.
-    this.substr = (value)=> {
-        return  value.length > 20 ? value.substring(0,20)+'...' : value;
-    }
+    this.substr = (value)=> value.length >  this.letterCount ? value.substring(0, this.letterCount)+'...' : value;
 }
 
 

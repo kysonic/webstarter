@@ -4,7 +4,7 @@ html
         title= title
         meta(http-equiv='X-UA-Compatible', content='IE=edge')
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
-        link(href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800&subset=latin,cyrillic-ext',rel='stylesheet',type='text/css')
+        //link(href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800&subset=latin,cyrillic-ext',rel='stylesheet',type='text/css')
         link(type="text/css" rel="stylesheet" href="/stylesheets/styles.css")
         if showTests
             link(type="text/css" rel="stylesheet" href="/vendor/mocha/mocha.css")
@@ -12,7 +12,9 @@ html
     body.unresolved
        x-l18n
        x-media-queries
+       x-hash
        x-snackbar(right,bottom,time="5000")
+       resizer
        .container-fluid
            include ../../../public/mixins/filters
            +goo
@@ -20,12 +22,12 @@ html
                table
                     tr
                         td#menu
-                            menu-header(title="#{menuTitle}")
-                            if isAuth
+                            menu-header(isauth="#{isAuth}",name="menu-header",title="#{user ? user.firstName+' '+user.lastName : ''}")
+                            content(isauth="#{isAuth}",name="menu-content")
                                 block menu
                         td#content
-                            header(isauth="#{isAuth}",submenu="#{headerSubMenu}",active="#{activeHeaderMenuItem}")
-                            content(isauth="#{isAuth}")
+                            header(isauth="#{isAuth}",submenu="#{headerSubMenu}",active="#{activeHeaderMenuItem}",name="header")
+                            content(isauth="#{isAuth}",name="content")
                                 block content
        if showTests
            #mocha(data-page-tests="#{pageTests}")

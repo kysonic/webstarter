@@ -1,22 +1,20 @@
 define(['tags/web-ripple/web-ripple'],ripple);
 function cb(opts) {
+    //Attributes
     this.title = opts.title;
     this.ripple = this.tags['web-ripple'];
-    this.ripple.opts = opts;
-    this.event = opts.event;
+    this.on('mount',()=>this.ripple.setOptions(opts));
     /**
-     * Ready
+     * When ripple is come
+     * @param e
      */
-    this.on('mount',()=>{
-        if(this.event!=undefined) {
-           var evnt = this.event.split('#');
-           var func = this.parent[evnt[0]] || this.parent.parent[evnt[0]];
-           this.root.addEventListener(evnt[1] || 'click',func.bind(this.parent));
-        }
-    });
     this.rippleIn = (e)=>{
         this.ripple.trigger('ripple-in',e);
     }
+    /**
+     * When ripple is out
+     * @param e
+     */
     this.rippleOut = (e)=>{
         this.ripple.trigger('ripple-out',e);
     }

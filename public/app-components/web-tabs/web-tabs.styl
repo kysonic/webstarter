@@ -1,0 +1,39 @@
+@import 'nib';
+@import "./public/stylesheets/vars";
+@import "./public/stylesheets/mixins";
+web-tabs
+  display block;
+  height 100%;
+  #wrapper
+    width 100%;
+    height 100%;
+    #tabs
+      width 100%;
+      height 100%;
+      .tab
+        display inline-block;
+        font-size 17px;
+        text-align center;
+        transition color .2s;
+        cursor pointer;
+        height 100%;
+        &.selected,&:hover
+          transition color .2s;
+          color secondaryColor;
+        a
+          display block;
+          margin 0 auto;
+          color borderColor;
+          text-decoration none;
+    #line-wrapper
+      width 100%;
+      height 5px;
+      background darken(basicBackgroundColor,10);
+      position relative;
+      #line
+        height 5px;
+        background secondaryColor;
+        position absolute;
+        transition left .4s;
+
+

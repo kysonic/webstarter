@@ -1,0 +1,28 @@
+include ../../mixins/icons
+web-employment
+    input(type="hidden",name="{{named}}",value="{{JSON.stringify(employments)}}")
+    #wrapper
+        #employments-wrapper
+            .employments.queue(each="{{employment in employments}}",onclick="{{parent.editEmployment}}")
+                .companyName(title="{{employment.companyName}}") {{parent.sub(employment.companyName)}} &nbsp;
+                .date {{parent.dateFormat(employment.dateFrom,employment.dateTo)}} &nbsp;
+                .companyLocation {{employment.companyLocation}} {{employment.position ? ", &nbsp;" : ""}}
+                .position {{employment.position}}
+        web-ripple-button.purple-round(title="Add employment",name="add")#add
+        web-slide(mode="absolute",closeto="#fsRight",opened="false",ease="Power0",timein="400",timeout="400",staggertime="0.04",apperance="left-queue")#employmentSlide
+                #fieldset.queue Employment
+                web-input.queue(placeholder="Company name",required="true",name="companyName",validation='[{regexp:/^([a-zA-Z0-9а-яА-Я- ]+|)$/i,msg:"companyNameError"}]')#companyName
+                    #icon
+                        +diamond
+                web-input.queue(placeholder="Company location",name="companyLocation",validation='[{regexp:/^([a-zA-Z0-9а-яА-Я- ]+|)$/i,msg:"companyLocationError"}]')#comapnyLocation
+                    #icon
+                        +location
+                web-input.queue(placeholder="Position",name="position",validation='[{regexp:/^([a-zA-Z0-9а-яА-Я- ]+|)$/i,msg:"DegreeError"}]')#position
+                    #icon
+                        +diamond
+                web-datepicker.queue(type="fromto",placeholder="University name",container="slide",closeto="#fsRight",validation='[{regexp:/^((19[0-9]{2}|2[0-9]{3})-(0[1-9]|1[012])-([123]0|[012][1-9]|31)|)$/i,msg:"DateError"}]')#employmentDate
+
+                web-ripple-button.queue.purple-round(title='Add employment',name="push")#push
+                web-ripple-button.queue.purple-round(title="Back",name="back")#back
+
+

@@ -1,0 +1,11 @@
+web-slide(opened="false",mode="absolute",timein="1000",timeout="1000",ishashed="true",ease="Power2")#portfolioScreen
+    .row(style="height:100%")
+        web-form(action="/user",method="POST")
+            .col-lg-1
+            .col-lg-8(style="height:100%")
+                web-slide(opened="true",vww="120%",timein="400",timeout="400",name="psCenter",ease="Power0",canscroll="true",outdistance="200",apperance="left-queue")#psCenter
+                    web-portfolio(named="works",value="#{JSON.stringify(user.works)}")
+            .col-lg-1
+            .col-lg-2
+                web-ripple-button#submit.purple-round(title="Save",style="margin-top: 0")
+

@@ -1,0 +1,114 @@
+@import 'nib';
+@import "./public/stylesheets/vars";
+@import "./public/stylesheets/mixins";
+web-image
+  display block;
+  height 100%;
+  & > #wrapper
+    display inline-block;
+    position relative;
+    width 100%;
+    height 100%;
+    overflow hidden;
+    /** Substitute of the image **/
+    #imageSubstitute
+      padding 10px;
+      display block;
+      border 2px solid borderColor;
+      width 100%;
+      height 100%;
+      transition opacity .2s ease-in;
+      svg
+        width 100%;
+        height 100%;
+      &.opacity
+        transition opacity .2s ease-in;
+        opacity 0.2;
+    /** Images**/
+    img
+      display block;
+      //margin 35px auto;
+      width 100%;
+      height 100%;
+      transition -webkit-filter .2s ease-in,opacity .2s;
+      //border-radius 50%;
+      &.opacity
+        transition -webkit-filter .2s ease-in,opacity .2s;
+        opacity 0.8;
+        -webkit-filter: blur(2px);
+        -moz-filter: blur(2px);
+        -ms-filter: blur(2px);
+        -o-filter: blur(2px);
+        filter: blur(2px);
+    #stroke
+      display none;
+      margin 35px 30px;
+      width 260px;
+      height 260px;
+      border-radius 50%;
+      border 3px solid secondaryColor;
+      position absolute;
+      left 0;
+      top: 0;
+    /** Errors **/
+    #errors
+      color: errorColor;
+      text-align center
+    #backdrop
+      display block
+      width 100%;
+      height 100%;
+      position absolute;
+      top 0;
+      left 0;
+      /** Preloader **/
+      #loading
+        display block;
+        width 260px;
+        height 260px;
+        margin 35px auto;
+        background url('images/reload.svg') no-repeat center;
+      /** Form **/
+      form
+        display inline-block;
+        width 100%;
+        height 100%;
+        position relative;
+        /**File name **/
+        #fileName
+          color: #fff;
+          font-size 16px;
+          font-family lightFamily;
+          font-weight 300;
+          text-align center;
+          margin-top 129px;
+          height 25px;
+          overflow hidden;
+          position relative;
+        /**Fake File Button**/
+        #fakeFile
+          position relative;
+          overflow hidden;
+          margin-top 5px;
+          cursor pointer;
+          basicRoundButton(secondaryColor,100px);
+          input[type="file"]#file
+            cursor pointer;
+            display block;
+            position absolute;
+            top: 0;
+            left: 0;
+            opacity 0;
+            width 100%;
+  /**Submit**/
+  #ok
+    border none;
+    basicRoundButton(secondaryColor,100px);
+    margin 7px auto;
+  #crop,#reset
+    margin 7px auto;
+
+input[type="file"]::-webkit-file-upload-button
+  cursor pointer;
+
+

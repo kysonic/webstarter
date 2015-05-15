@@ -1,0 +1,44 @@
+@import 'nib';
+@import "./public/stylesheets/vars";
+@import "./public/stylesheets/mixins";
+web-employment
+  display block;
+  #wrapper
+    display block;
+    position relative;
+    #add
+      margin-top 15px;
+    /** employment **/
+    #employments-wrapper
+      .employments
+          margin-top 5px;
+          color borderColor;
+          border-bottom 1px solid borderColor;
+          padding 10px;
+          cursor pointer;
+          &:last-child
+            border-bottom none;
+          &:hover
+              color darken(borderColor,8);
+          .companyName
+              display inline-block;
+              font-size 18px;
+              font-weight bold;
+              min-width 30%;
+            .date
+              display inline-block;
+            .companyLocation
+              display inline-block;
+              font-size 14px;
+              font-weight bold;
+            .position
+              display inline-block;
+
+#employmentSlide
+  #wrapper
+    max-width 380px !important;
+    #push
+       margin-top 15px;
+
+
+

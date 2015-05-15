@@ -4,6 +4,7 @@
 @import "./public/app-components/web-textarea/jquery.textarea";
 textAreaHeight = 147px;
 web-textarea
+  /** Wrapper **/
   & >#wrapper
     position relative;
     & > #text
@@ -31,6 +32,7 @@ web-textarea
   textarea
     padding-top 3px !important;
     padding-left 12px !important;
+  /** Clone border **/
   #clone-border
     z-index: 2;
     display block;
@@ -51,6 +53,7 @@ web-textarea
       transform scaleX(1);
       border-bottom  2px solid darken(grayTextColor,10);
       transition transform .1s ease-in,height .1s ease-in .1s,top .1s ease-in .1s;
+  /** Placeholder **/
   #placeholder
     position absolute;
     z-index: 2;
@@ -66,6 +69,8 @@ web-textarea
       font-size 12px;
       color lighten(swampTextColor,25);
       transition color .2s ease-in, font-size .2s ease-in,line-height .2s ease-in;
+
+
   /*************** SCROLLBAR BASE CSS ***************/
 
   .scroll-wrapper {

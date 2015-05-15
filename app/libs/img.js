@@ -3,46 +3,52 @@ var fs = require('fs');
 var path = require('path');
 var Promise = require('promise');
 var gm = require('gm');
+// Config example
 var config = {
     name: 'full',
     croppedName: 'cropped',
     maxSize: 2 * 1024 * 1024,
-    supportMimeTypes: ['image/jpg', 'image/jpeg', 'image/png']
+    supportMimeTypes: ['image/jpg', 'image/jpeg', 'image/png'],
+    path: './public/uploads/users/'
 }
 /**
- * Upload image
- * @param req - express request object
- * @returns {Promise} - A+
- * @constructor
+ * Upload image on the server
+ * @param req - Express request
+ * @param data - options object. {path,maxSize,supportedMemTypes} - see config example
+ * @returns {Promise} - A+ Promise.
  */
-exports.upload = function Upload(req) {
+exports.upload = function (req,data) {
     return new Promise(function(resolve,reject){
         var form = new multiparty.Form();
-        var uploadFile = {path: '', type: '', size: 0};
+        var uploadFile = {path: '', type: '', size: 0,fileName:''};
         var errors = [];
+
         // On entry
         form.on('part', function(part) {
             // Basic data
+            var name = data.name ? data.name + path.extname(part.filename) : part.filename;
+            if(data.setTime) name = name.split('.')[0] + this.getCurrDate()+'.'+ name.split('.')[1];
             uploadFile.size = part.byteCount;
             uploadFile.type = part.headers['content-type'];
-            uploadFile.path = './public/uploads/users/'+req.session.user.email+'/avatars/'+config.name+getCurrentDate()+path.extname(part.filename);
+            //console.log(name)
+            uploadFile.path = data.path + name ;
             // Check restrictions
-            if(uploadFile.size > config.maxSize) {
-                errors.push('File size is ' + uploadFile.size + '. Limit is ' + (config.maxSize / 1024 / 1024) + 'MB.');
+            if(data.maxSize && uploadFile.size > data.maxSize) {
+                errors.push('File size is ' + uploadFile.size + '. Limit is ' + (data.maxSize / 1024 / 1024) + 'MB.');
             }
-            if(-1 === config.supportMimeTypes.indexOf(uploadFile.type)) {
+            if(data.supportMimeTypes && -1 === data.supportMimeTypes.indexOf(uploadFile.type)) {
                 errors.push('Unsupported mimetype ' + uploadFile.type);
             }
             // If errors is empty write file
             if(errors.length === 0) {
-                deleteFileByRegexp(path.dirname(uploadFile.path),new RegExp(config.name));
+                var regName = data.setTime ? name.replace(new RegExp(this.getCurrDate().substr(0,10)+'.*'),'') : name.replace(/\..*/,'');
+                if(data.delete) deleteFileByRegexp(path.dirname(uploadFile.path),new RegExp(regName));
                 part.pipe(fs.createWriteStream(uploadFile.path));
             }
             else {
                 part.resume();
             }
-        });
-
+        }.bind(this));
         // If file already exists we must unlink it.
         form.on('error', function(err){
             if(fs.existsSync(uploadFile.path)) {
@@ -56,8 +62,17 @@ exports.upload = function Upload(req) {
             uploadFile.path = uploadFile.path.replace('./public','');
             resolve({file:uploadFile});
         }.bind(this));
+        // Check destination folder exist
+        fs.exists(data.path,function(exist) {
+            if(!exist) {
+                fs.mkdir(data.path,function(err,create){
+                    form.parse(req);
+                });
+            }else {
+                form.parse(req);
+            }
+        })
 
-        form.parse(req);
     }.bind(this));
 }
 /**
@@ -67,15 +82,18 @@ exports.upload = function Upload(req) {
  * @param resize - crop object (width,height)
  * @returns {Promise} - A+
  */
-exports.crop = function (pth,crop,resize){
-    var pth = './public'+pth;
-    var resizeFile = path.dirname(pth) + '/'+config.croppedName+getCurrentDate()+path.extname(pth);
+exports.crop = function (data){
+    var pth = './public'+data.pth;
+    var name = data.name ? data.name + path.extname(pth) : 'cropped'+path.basename(pth);
+    if(data.setTime) name = name.split('.')[0] + this.getCurrDate()+'.'+ name.split('.')[1];
+    var resizeFile = path.dirname(pth) + '/'+name;
     // Delete previous cropped avatars
-    deleteFileByRegexp(path.dirname(pth),new RegExp(config.croppedName));
+    var regName = data.setTime ? name.replace(new RegExp(this.getCurrDate().substr(0,10)+'.*'),'') : name.replace(/\..*/,'');
+    deleteFileByRegexp(path.dirname(pth),new RegExp(regName));
     return new Promise(function(resolve,reject){
         gm(pth)
-            .crop(crop.width, crop.height, crop.x, crop.y)
-            .resize(resize.w,resize.h)
+            .crop(data.crop.width, data.crop.height, data.crop.x, data.crop.y)
+            .resize(data.resize.w,data.resize.h)
             .options({imageMagick: true})
             .write(resizeFile, function (err) {
                 if(err) reject(err);
@@ -87,9 +105,22 @@ exports.crop = function (pth,crop,resize){
  * Get Current Date String
  * @returns {string}
  */
-function getCurrentDate(){
+exports.getCurrDate= function (){
     var date = new Date();
     return date.toJSON().slice(0,10).replace(/\-/g,'') + date.toJSON().slice(11,19).replace(/\:/g,'') + date.getMilliseconds();
+}
+/**
+ * If in folder exist unused files then remove them.
+ * @param worksFolder
+ * @param works
+ */
+exports.removeUnusedWorkImage = function(worksFolder,works) {
+    fs.readdir(worksFolder,function(err,files){
+        if(err) throw err;
+        files.forEach(function(file){
+            if(works.indexOf(file)==-1) fs.unlink(path.normalize(worksFolder+file));
+        });
+    });
 }
 
 function deleteFileByRegexp(folder,regexp) {

@@ -1,5 +1,5 @@
 menu-header
     .row#header
         #title-wrapper
-            .col-lg-12.col-md-12.col-sm-12.col-xs-12(title="{{title}}")#title {{substr(title)}}
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12(title="{{title}}",if="{{isAuth}}")#title {{substr(title)}}
 

@@ -1,0 +1,9 @@
+extends ../../layouts/index
+include ../../../../public/mixins/icons
+block menu
+    avatar(email="#{user.email}",full="#{user.fullAvatar}",cropped="#{user.croppedAvatar}")
+block content
+    project-service
+    include ideaScreen
+
+

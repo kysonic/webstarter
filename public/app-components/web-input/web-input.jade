@@ -1,9 +1,9 @@
 web-input
     #wrapper(class='{{error:!isValid,view:mode=="view"}}')
-        #placeholder(class="{{focus:focus}}",onclick="{{clickOnPlaceholder}}",if='{{mode=="edit"}}') {{placeholder}}
+        #placeholder(class="{{focus:focus}}",onclick="{{placeholderClick}}",if='{{mode=="edit"}}') {{placeholder}}
         #text(if='{{mode=="view"}}') {{value || placeholder}}
         x-tooltip
-        input(value="{{trim(value)}}",onfocus="{{focusIn}}",name="{{named}}",onblur="{{blur}}",onkeyup='{{ edit }}',autocomplete="off",if='{{mode=="edit"}}')#input
+        input(value="{{trim(value)}}",onfocus="{{focusIn}}",name="{{named}}",onblur="{{blur}}",onkeyup='{{ edit }}',autocomplete="off",if='{{mode=="edit"}}',onclick="{{inputClick}}")#input
         #clone-border(if='{{mode=="edit"}}')
-        #icons(if="{{icon}}")
-        #max-length(show="{{maxLength}}",if='{{mode=="edit"}}') {{cahrtersLeft}}
+        #icons(if="{{icon}}",onclick="{{iconClick}}")
+        #max-length(show="{{maxLength && input.focused}}",if='{{mode=="edit"}}') {{cahrtersLeft}}

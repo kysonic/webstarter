@@ -26,6 +26,7 @@
     "jquery-form": "malsup/form#~3.46.0",
     "cropper": "~0.9.1",
     "jquery.scrollbar": "gromo/jquery.scrollbar#~0.2.7",
-    "gsap": "greensock/GreenSock-JS#~1.16.1"
+    "gsap": "greensock/GreenSock-JS#~1.16.1",
+    "perfect-scrollbar": "~0.6.2"
   }
 }

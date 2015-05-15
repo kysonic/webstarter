@@ -1,24 +1,30 @@
 define(['jquery'],$);
 function cb(opts) {
-    // Attributes
-    this.placeholder = opts.placeholder;
-    this.named = opts.named || 'textarea';
-    this.placeholder = opts.required == 'true' ? this.placeholder + '*' : this.placeholder;
-    this.value = opts.value || '';
-    this.mode = opts.mode || 'edit';
-    // Basic vars
-    this.focus = !!opts.value;
-    this.hardcoreFocus = false;
+    /**
+     * Initialize
+     * @param opts
+     */
+    this.init = (opts)=>{
+        // Attributes
+        this.placeholder = opts.placeholder;
+        this.named = opts.named || '';
+        this.placeholder = opts.required == 'true' ? this.placeholder + '*' : this.placeholder;
+        this.value = opts.value || '';
+        this.mode = opts.mode || 'edit';
+        // Basic vars
+        this.focus = !!opts.value;
+        this.hardcoreFocus = false;
+    }
+    this.init(opts);
     /**
      * Ready
      */
     this.on('mount',(e)=>{
-        require(['scroller'],function(){
-            $(this.textarea).scrollbar();
-        });
+        // Require jquery scroller
+        require(['scroller'],function(){$(this.textarea).scrollbar();});
         this.icon = this.root.querySelector('#icon');
         if(this.icon && this.mode == 'view') this.icons.appendChild(this.icon);
-        else this.root.removeChild(this.root.querySelector('#icon'));
+        else if(this.root.querySelector('#icon')) this.root.removeChild(this.root.querySelector('#icon'));
     });
     /**
      * Focus in

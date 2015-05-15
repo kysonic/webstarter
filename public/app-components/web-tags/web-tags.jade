@@ -1,0 +1,9 @@
+include ../../mixins/icons
+web-tags
+    web-select
+    input(type="hidden",value="{{JSON.stringify(tagNames)}}",name="{{named}}")
+    #tagWrapper(show='{{showTags}}')
+        .tag(each="{{t,key in tagNames}}")
+            .title {{t}}
+            .remove(onclick="{{parent.remove}}")
+                +bucket

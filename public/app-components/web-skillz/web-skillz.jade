@@ -1,0 +1,13 @@
+include ../../mixins/icons
+web-skillz
+    web-select.queue(placeholder="New skill",validation='[{regexp:/^([a-zA-Z0-9а-яА-Я- ]+|)$/i,msg:"SkillError"}]',value="{{value}}",data='["Php","MySQL"]')
+        #icon
+    #rateWrapper(show="{{showRate}}")
+        #fieldset Select skill level
+        web-chooser.no-border(buttons='[{title:"Basic",value:"basic",cls:"skillz"},{title:"Advanced",value:"advanced",cls:"skillz adv"},{title:"High",value:"high",cls:"skillz high"}]')#skillsRate
+    #skillsWrapper.queue
+        .skill.nth(each="{{skill,key in skills}}",class="{{skill.rate}}")
+            .title(title="{{skill.title}}",onclick="{{parent.showFullSkills}}") {{skill.title}}
+            .remove(onclick="{{parent.remove}}")
+                +bucket
+    input(type="hidden",name="{{named}}",value="{{JSON.stringify(skills)}}")

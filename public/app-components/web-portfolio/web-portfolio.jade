@@ -1,0 +1,36 @@
+include ../../mixins/icons
+web-portfolio
+    input(type="hidden",name="{{named}}",value="{{JSON.stringify(works)}}")
+    #wrapper
+        #works-wrapper
+            .work.queue(each="{{work in works}}",onclick="{{parent.editWork}}")
+                .work-image
+                    img(riot-src="{{work.imgSrc}}",alt="{{work.name}}")
+                .work-additionals
+                    .views
+                        .icon
+                            +diamond
+                        .text 100
+                    .date
+                        .icon
+                            +date
+                        .text {{parent.dateFormat(work.date)}}
+                .work-info
+                    .work-name {{work.name}}
+                    .work-description {{parent.sub(work.desc)}}
+        web-ripple-button.queue.purple-round(title="Add Work",onclick="{{openAddWorkSlide}}")#openAddWorkSlide
+        web-slide(mode="absolute",closeto="#psCenter",opened="false",apperance="left",ease="Power3")#workForm
+            web-image(action="/user/add-work-image/",cropperWidth="920",cropperHeight="640",aspectRatio="760/300",cropAction="crop-work-image")
+            #form-wrapper
+                web-input(placeholder="Work name",required="true",validation='[{regexp:/^[a-zA-Z0-9а-яА-Я- ]+$/i,msg:"WorkNameError"}]',name="workName")#workName
+                    #icon
+                        +diamond
+                web-datepicker(name="date",placeholder="Date (YYYY-MM-DD)",closeto="#psCenter",container="slide",validation='[{regexp:/^((19[0-9]{2}|2[0-9]{3})-(0[1-9]|1[012])-([123]0|[012][1-9]|31)|)$/i,msg:"DateError"}]')#date
+                    #icon
+                        +date
+                web-tags(placeholder="Tags (3 max)",limit="3",data='["Medicine","IT","Food","Fraud"]')
+                    #icon
+                        +diamond
+                web-textarea(placeholder="Description",name="description")#description
+            web-ripple-button.purple-round(title="Add Work",name="addWork")#addWork
+            web-ripple-button.purple-round(title="Back",name="back")#back

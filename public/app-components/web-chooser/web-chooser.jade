@@ -1,7 +1,7 @@
 web-chooser
     #wrapper(class='{{error:!isValid,view:mode=="view"}}')
         #buttons(show='{{mode=="edit"}}')
-            web-ripple-button(each='{{ button,key in buttons }}',title="{{button.title}}",data-value="{{button.value}}",event="choose#click",class="{{checked:button.value==parent.value}}").purple-rect
+            web-ripple-button(each='{{ button,key in buttons }}',class='{{button.cls || "purple-rect"}}',title="{{button.title}}",data-value="{{button.value}}",onclick="{{parent.choose}}",class="{{checked:button.value==parent.value}}")
         input(type="hidden",name="{{named}}",value="{{value}}")
         #text(if='{{mode=="view"}}') {{value || placeholder}}
         #icons(if="{{icon}}",show='{{mode=="view"}}')

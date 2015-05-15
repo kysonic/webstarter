@@ -16,17 +16,26 @@
     routes = {
         'user' :
             [
-              'tags/avatar/avatar',
-              'tags/web-form/web-form',
               'tags/user-form-service/user-form-service',
+              'tags/web-form/web-form',
               'tags/web-input/web-input',
               'tags/web-select/web-select',
               'tags/web-datepicker/web-datepicker',
               'tags/web-textarea/web-textarea',
               'tags/web-ripple-button/web-ripple-button',
-              'tags/web-goo-button/web-goo-button',
-              'tags/web-chooser/web-chooser'
-            ]
+              'tags/web-chooser/web-chooser',
+              'tags/web-skillz/web-skillz',
+              'tags/web-education/web-education',
+              'tags/web-employment/web-employment',
+              'tags/web-portfolio/web-portfolio',
+              'tags/web-image/web-image',
+              'tags/web-tags/web-tags'
+            ],
+        'project': [
+            'tags/project-service/project-service',
+            'tags/web-form/web-form',
+            'tags/web-project/web-project'
+        ]
     }
     /**
      * require.js paths
@@ -48,15 +57,18 @@
             text: '/vendor/text/text',
             uploader: '/vendor/jquery-form/jquery.form',
             scroller: '/vendor/jquery.scrollbar/jquery.scrollbar.min',
+            perfectScrollbar: '/vendor/perfect-scrollbar/js/min/perfect-scrollbar.jquery.min',
             TweenMax : '/vendor/gsap/src/minified/TweenMax.min',
             dataset: '/vendor/polyfill/dataset',
-            arrayFrom: '/vendor/polyfill/Array.from'
+            arrayFrom: '/vendor/polyfill/Array.from',
+            promise: '/vendor/polyfill/promise',
+            quill: '/vendor/quill/dist/quill.min'
         }
     });
     /**
      * App startup!
      */
-    var basics = ['jquery','domReady','riot','webstarter','arrayFrom'];
+    var basics = ['jquery','domReady','riot','webstarter','arrayFrom','perfectScrollbar'];
     // Show tests
     var showTests = document.querySelector('#mocha');
     if(showTests) basics = basics.concat(['chai','mocha']);
@@ -69,15 +81,20 @@
     if(/MSIE (9|10)/i.test(window.navigator.userAgent)){
         basics.push('dataset');
     }
+    if(/(MSIE|Trident)/i.test(window.navigator.userAgent)){
+        basics.push('promise');
+    }
     var tags = [
         'tags/content/content',
+        'tags/avatar/avatar',
         'tags/header/header',
         'tags/menu-header/menu-header',
         'tags/x-l18n/x-l18n',
         'tags/core-media-query/core-media-query',
         'tags/x-media-queries/x-media-queries',
         'tags/web-slide/web-slide',
-        'tags/x-snackbar/x-snackbar'
+        'tags/x-snackbar/x-snackbar',
+        'tags/x-hash/x-hash'
     ];
     // Define route
     var route = location.href.replace(/(http|https)\:\/\/(.*?)\//i,'').replace(/\#.*/,'').replace(/\?.*/,'').replace(/\/$/,'');
@@ -101,9 +118,10 @@
              */
             domReady(function(){
                Webstarter.tags = riot.mount('*');
+                // Apperance
                 document.body.style.opacity = 1;
-                document.body.style.webkitAnimation = 'apperance cubic-bezier(1, 1, 0.175, 0.2) .2s 1';
-                document.body.style.animation = 'apperance cubic-bezier(1, 1, 0.175, 0.2) .2s 1';
+                document.body.style.webkitAnimation = 'apperance cubic-bezier(1, 0.4, 0.175, 0.2) .2s 1';
+                document.body.style.animation = 'apperance cubic-bezier(1, 0.4, 0.175, 0.2) .2s 1';
             });
     });
 })();

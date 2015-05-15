@@ -1,0 +1,42 @@
+include ../../mixins/icons
+web-editor
+    input(type="hidden",value="{{text}}",name="{{named}}")
+    over-ground(name="dialog",center,layred,autoClose,bodyScale="false")#webEditorPopup
+        web-image(action="/project/add/image",cropperWidth="640",cropperHeight="640",aspectRatio="NaN",cropAction="/user/crop-work-image",named="Image")#image
+        web-input(placeholder="http(s)://link",validation='[{regexp:"/^(http(s?)u005C:u005C/u005C/([u005Cw]+u005C.){1}([u005Cw]+u005C.?)|)$/i",msg:"WebsiteError"}]',name="link")#link
+        web-ripple-button#insert.purple-round.w150(title="Insert",name="insert")
+    #webEditor
+        #editorWrapper(onclick="{{focusIn}}")
+        #placeholder(class="{{focus:focus}}",if='{{mode=="edit"}}',onclick="{{focusIn}}") {{placeholder}}
+        #cloneBorder(class="{{focus:realFocus}}",if='{{mode=="edit"}}')
+    #toolbar
+        .buttonSet#size
+                .button.ql-size(data-type="size",data-value="32px",onclick="{{setFormat}}",class='{{ql-active:activity.size["32px"]}}')
+                    +bigLetter
+                .button.ql-size(data-type="size",data-value="16px",onclick="{{setFormat}}",class='{{ql-active:activity.size["16px"]}}')
+                    +smallLetter
+        .buttonSet#inscription
+            .button(data-type="bold",data-value="true",onclick="{{setFormat}}",class='{{ql-active:activity.bold["true"]}}')
+                +boldText
+            .button(data-type="italic",data-value="true",onclick="{{setFormat}}",class='{{ql-active:activity.italic["true"]}}')
+                +italicText
+            .button(data-type="underline",data-value="true",onclick="{{setFormat}}",class='{{ql-active:activity.underline["true"]}}')
+                +underlineText
+        .buttonSet#align
+            .button.ql-align(data-type="align",data-value="center",onclick="{{setFormat}}",class='{{ql-active:activity.align["center"]}}')
+                +alignCenter
+            .button.ql-align(data-type="align",data-value="right",onclick="{{setFormat}}",class='{{ql-active:activity.align["right"]}}')
+                +alignRight
+            .button.ql-align(data-type="align",data-value="left",onclick="{{setFormat}}",class='{{ql-active:activity.align["left"]}}')
+                +alignLeft
+            .button.ql-align(data-type="align",data-value="justify",onclick="{{setFormat}}",class='{{ql-active:activity.align["justify"]}}')
+                +alignJustify
+        .buttonSet#lists
+            .button.ql-bullet(data-type="bullet",data-value="true",onclick="{{setFormat}}",class='{{ql-active:activity.bullet["true"]}}')
+                +textBullet
+        .buttonSet#links
+            .button.ql-image(data-type="image",data-value="true",onclick="{{openImageDialog}}")
+                +image
+            .button.ql-link(data-type="link",data-value="true",onclick="{{openLinkDialog}}")
+                +link
+

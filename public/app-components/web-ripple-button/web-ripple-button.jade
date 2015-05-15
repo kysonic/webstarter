@@ -1,4 +1,4 @@
 web-ripple-button
-    #button(onmousedown="{{rippleIn}}",onmouseup="{{rippleOut}}",onmouseleave="{{rippleOut}}")
+    #button(onmousedown="{{rippleIn}}",onmouseup="{{rippleOut}}",onmouseleave="{{rippleOut}}",onclick="{{onClickHandler}}")
         {{title}}
-        web-ripple(color="{{opts.color}}",onclick="{{onClickHandler}}")
+        web-ripple(color="{{opts.color}}")

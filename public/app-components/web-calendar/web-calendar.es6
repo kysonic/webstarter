@@ -3,17 +3,32 @@ function cb(opts) {
     //Attributes
     this.minYear = opts.minyear || 1900;
     this.maxYear = opts.maxyear || 2500;
+    this.type = opts.type || "simple";
     // Basic vars
     this.selected = 1;
+    this.fts = "from";
+    this.error = '';
     // Months
-    this.monthKey = 3;
+    var date = new Date();
+    this.monthKey = date.getMonth();
     this.months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     this.month = this.months[this.monthKey];
     // Years
-    this.year = 2015;
+    this.year = date.getFullYear();
     // Days
-    this.day = 10;
+    this.day = date.getDate();
     this.daysName = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+    // From - To
+    //From
+    this.fromMonthKey = date.getMonth();
+    this.fromMonth = this.months[this.monthKey];
+    this.fromYear = date.getFullYear();
+    this.fromDay = date.getDate();
+    // To
+    this.toMonthKey = date.getMonth();
+    this.toMonth = this.months[this.monthKey];
+    this.toYear = date.getFullYear();
+    this.toDay = date.getDate() + 1;
     /**
      * Ready
      */
@@ -30,6 +45,25 @@ function cb(opts) {
         this.selected = id;
         this.line.style.left = this.line.getBoundingClientRect().width * (id-1) + 'px';
         this.tabConveyor.style.left = -300*(this.selected-1) + 'px';
+    }
+    /**
+     * Change direction of date select. From or to.
+     * @param e
+     */
+    this.changeFromTo = (e)=>{
+        var id = e.target.dataset.id;
+        var num = e.target.dataset.num;
+        this.fts = id;
+        // Line
+        this.fromtoLine.style.left = this.fromtoLine.getBoundingClientRect().width * (num-1) + 'px';
+        // Set Direction date
+        this.monthKey = this[this.fts+'MonthKey'];
+        this.month = this[this.fts+'Month'];
+        this.day = this[this.fts+'Day'];
+        this.year = this[this.fts+'Year'];
+        // Set Days
+        this.setDays();
+        this.setYears();
     }
     /**
      * Additional substr function.
@@ -63,6 +97,11 @@ function cb(opts) {
             node.style.transform = 'scale(1)';
             node.style.transition = 'background .2s,color .2s,transform .3s';
         },0);
+        // Fromto
+        if(this.type=='fromto') {
+            this[this.fts+'Month'] =  this.month;
+            this[this.fts+'MonthKey'] =  this.monthKey;
+        }
     }
     /**
      * Days
@@ -88,6 +127,10 @@ function cb(opts) {
             node.style.transform = 'scale(1)';
             node.style.transition = 'background .2s,color .2s,transform .3s';
         },0);
+        // Fromto
+        if(this.type=='fromto') {
+            this[this.fts+'Day'] =  this.day;
+        }
     }
     /**
      * Set Years.
@@ -113,6 +156,10 @@ function cb(opts) {
             node.style.transform = 'scale(1)';
             node.style.transition = 'background .2s,color .2s,transform .3s';
         },0);
+        // Fromto
+        if(this.type=='fromto') {
+            this[this.fts+'Year'] =  this.year;
+        }
     }
     /**
      * Previous years set

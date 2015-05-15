@@ -1,0 +1,77 @@
+@import 'nib';
+@import "./public/stylesheets/vars";
+web-skillz
+  display block;
+  background transparent;
+  web-chooser
+    margin-top 10px;
+  #skillsWrapper
+    width 100%;
+    margin-top 10px;
+    position relative;
+    right: 5px;
+    .skill
+      display inline-block;
+      min-width 50px;
+      height 30px;
+      color whiteTextColor;
+      font-size 13px;
+      margin-left 5px;
+      padding-left 5px;
+      background #D6C46E;
+      transition background .2s;
+      .title
+        display inline-block;
+        float left;
+        line-height: 30px;
+        white-space nowrap;
+        width: 40%;
+      /** NTH **/
+      &.nth
+        /*&:first-child
+          margin-left 0px;
+        &:nth-child(2n+1)
+          margin-left 0px;*/
+      /** Colors **/
+      &.overview
+        background #96962e !important;
+        transition background .2s;
+        &:hover
+          transition background .2s;
+          background darken(#96962e,5) !important;
+      &.basic
+        background #D6C46E;
+        &:hover
+          background darken(#D6C46E,5);
+      &.advanced
+        background #C6BC60;
+      &:hover
+        background darken(#C6BC60,5);
+      &.high
+        background #A5A530;
+        &:hover
+          background darken(#A5A530,5);
+      /** Buttons **/
+      .button,.remove,.change
+        cursor pointer;
+        float right;
+        display inline-block;
+        width 15px;
+        height 15px;
+        background whiteTextColor;
+        border-radius 50%;
+        margin-right: 5px;
+        margin-left: 5px;
+        margin-top: 8px;
+        .remove
+            &:hover
+              background basicMenuColor;
+            svg
+              stroke #C6BC60;
+
+
+
+
+
+
+

@@ -1,13 +1,14 @@
 avatar
+    web-xhr(ajax="true")
     over-ground(center,layred,autoClose,bodyScale="false")
-        cropper
+        cropper(cropAction="/user/crop-avatar")
     #wrapper(onmouseover="{{showBack}}",onmouseout="{{hideBack}}")
         img(if="{{src}}",src="{{src}}",class='{{(file.value || showBackdrop) ? "opacity" : ""}}')
         #imageSubstitute(if="{{!src}}",class='{{(file.value || showBackdrop) ? "opacity" : ""}}')
         #stroke
         #backdrop(show="{{showBackdrop}}")
             #loading(show="{{inProcess}}")
-            form(show="{{!inProcess}}",enctype="multipart/form-data",action="/user/avatar-upload",method="POST",onsubmit="{{uploadFile}}")
+            form(show="{{!inProcess}}",enctype="multipart/form-data",action="/user/upload-avatar",method="POST",onsubmit="{{uploadFile}}")
                 x-tooltip(msg='{{errors}}')
                 #fileName {{basename(file.value)}}
                 #fakeFile(show="{{!file.value}}")

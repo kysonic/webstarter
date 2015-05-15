@@ -16,7 +16,11 @@ var schema = new mongoose.Schema({
     gender : { type: String, match: /(male|female)/ },
     fullAvatar: String,
     croppedAvatar: String,
-    about: String
+    about: String,
+    skills: Array,
+    educations: Array,
+    employments: Array,
+    works: Array
 });
 /**
  * Connect rbac plugin
@@ -30,7 +34,7 @@ schema.plugin(rbacPlugin);
  * Allowed properties which can return on front-end
  * @type {string[]}
  */
-schema.statics.allowedProperties = ['email','role','firstName','lastName','birthDate','motto','country','location','gender','about','fullAvatar','croppedAvatar','website'];
+schema.statics.allowedProperties = ['email','role','firstName','lastName','birthDate','motto','country','location','gender','about','fullAvatar','croppedAvatar','website','skills','educations','employments','works'];
 /**
  * Map user method
  * @param user
@@ -63,9 +67,10 @@ schema.methods.verify = function (str) {
  * Get user object allowed property.
  * @returns {*}
  */
-schema.methods.getAllowedProperties = function(){
+schema.methods.getAllowedProperties = function(properties){
     var allowedUser = {};
-    User.allowedProperties.forEach(function(property){
+    var properties = properties || User.allowedProperties;
+    properties.forEach(function(property){
         allowedUser[property] = this[property] ? this[property] : '';
     }.bind(this));
     return allowedUser;
@@ -75,6 +80,10 @@ schema.methods.mixin = function(data){
     for(var key in data) {
         var value = data[key];
         if(-1!==User.allowedProperties.indexOf(key)) {
+             if(/Array/.test(schema.path(key).options.type))  {
+                 try{value = JSON.parse(value);}catch(e){}
+             }
+
              this[key] = value;
         }
     }

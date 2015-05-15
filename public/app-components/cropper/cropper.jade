@@ -1,6 +1,7 @@
 cropper
-    user
+    web-xhr(json="true")
     #wrapper
+        input(type="hidden",value="{{pth}}")
         #cropper
             img(src="{{pth}}",show="{{!inProcess}}")#image
         web-ripple-button.yellow-round(color="#fff",title="Crop",onclick="{{cropOnServer}}",show="{{!inProcess}}")#button

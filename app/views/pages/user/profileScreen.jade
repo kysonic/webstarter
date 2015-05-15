@@ -1,0 +1,41 @@
+web-slide(opened="true",timein="800",timeout="800",ishashed="true",ease="Power2")#profileScreen
+    .row
+        web-form(action="/user",method="POST",fields="['firstName','lastName','birthDate','website','motto','location','country','gender','about']")
+            .col-lg-1
+            .col-lg-4
+                web-slide(timein="400",timeout="400",staggertime="0.05",opened="true",vww="120%",style="max-width: 380px",ease="Power0",name="psLeft",apperance="left-queue")#psLeft
+                    #fieldset.queue Basic information
+                    web-input.queue(placeholder="First Name",named="firstName",validation='[{regexp:/^[a-zA-Z0-9а-яА-Я- ]+$/i,msg:"FirstnameError"}]',required="true",value="#{user.firstName}")#firstName
+                        #icon
+                            +diamond
+                    web-input.queue(placeholder="Last Name",named="lastName",validation='[{regexp:/^[a-zA-Z0-9а-яА-Я- ]+$/i,msg:"LastnameError"}]',required="true",value="#{user.lastName}")#lastName
+                        #icon
+                            +diamond
+                    web-datepicker.queue(placeholder="Date of Birth (YYYY-MM-DD)",closeto="#psLeft",container="slide",validation='[{regexp:/^((19[0-9]{2}|2[0-9]{3})-(0[1-9]|1[012])-([123]0|[012][1-9]|31)|)$/i,msg:"DateError"}]',named="birthDate",value="#{user.birthDate}")#birthDate
+                        #icon
+                            +date
+                    web-input.queue(placeholder="http(s)://website.com",named="website",validation='[{regexp:"/^(http(s?)u005C:u005C/u005C/([u005Cw]+u005C.){1}([u005Cw]+u005C.?)|)$/i",msg:"WebsiteError"}]',value='#{user.website}')#website
+                        #icon
+                            +diamond
+                    web-input.queue(placeholder="Motto",named="motto",maxlength="30",value="#{user.motto}")#motto
+                        #icon
+                            +motto
+            .col-lg-4
+                web-slide(opened="true",vww="120%",style="max-width: 380px",ease="Power3",name="psRight")#psRight
+                    #fieldset Other information
+                    web-input(placeholder="Location",named="location",validation='[{regexp:/^([a-zA-Z0-9а-яА-Я- ]+|)$/i,msg:"LocationError"}]',value="#{user.location}")#location
+                        #icon
+                            +location
+                    web-select(placeholder="Country",named="country",validation='[{regexp:/^([a-zA-Z0-9а-яА-Я- ]+|)+$/i,msg:"CountryError"}]',data='#{countries.toString()}',limit="4",value="#{user.country}")#country
+                        #icon
+                            +diamond
+                    web-chooser(named="gender",buttons='[{title:"Man",value:"male"},{title:"Woman",value:"female"}]',value="#{user.gender}")#gender
+                        #icon
+                            +diamond
+                    web-textarea(placeholder="About Me",named="about",value="#{user.about}")#about
+                        #icon
+                            +diamond
+            .col-lg-1
+            .col-lg-2
+                web-ripple-button#submit.purple-round.w150(title="Save")
+                web-ripple-button#freelancerButton.purple-round.w150(title="I wanna be freelancer",style="margin-top: 65px")

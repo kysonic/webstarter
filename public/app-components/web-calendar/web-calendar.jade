@@ -2,7 +2,23 @@ include ../../mixins/icons
 web-calendar
     #wrapper
         #header
-            #date
+            #fromto(show='{{type=="fromto"}}')
+                #tabs
+                    .tab(class='{{selected:fts=="from"}}',data-id="from",data-num="1",onclick="{{changeFromTo}}") From
+                    .tab(class='{{selected:fts=="to"}}',data-id="to",data-num="2",onclick="{{changeFromTo}}") To
+                #line-wrapper
+                    #fromtoLine
+            #fromto-date(show='{{type=="fromto"}}')
+                #from
+                    #month {{sub(fromMonth,3)}} &nbsp;
+                    #day {{addNull(fromDay)}},
+                    #year {{fromYear}}
+                #to
+                    #month {{sub(toMonth,3)}} &nbsp;
+                    #day {{addNull(toDay)}},
+                    #year {{toYear}}
+            #error {{error}}
+            #date(show='{{type=="simple"}}')
                 #month {{sub(month,3)}}
                 #day {{addNull(day)}}
                 #year {{year}}

@@ -1,10 +1,12 @@
+@import 'nib';
+@import "./public/stylesheets/vars";
 x-tooltip
   display block;
   position absolute;
   #wrapper
     text-align center;
     padding 10px;
-    background #ccc;
+    background snackBarColor;
     color: #fff;
     font-size 14px;
     max-width 200px;
@@ -18,9 +20,11 @@ x-tooltip
       height: 0;
       border-style: solid;
       border-width: 10px 8px 0 8px;
-      border-color: #CC4C62 transparent transparent transparent;
+      border-color: snackBarColor transparent transparent transparent;
     &.error
-      background #CC4C62;
+      background errorColor;
+      &:before
+        border-color: errorColor transparent transparent transparent;
 @-webkit-keyframes tooltip-in {
   0% {
     opacity 0;

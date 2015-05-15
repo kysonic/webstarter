@@ -1,55 +1,46 @@
 function cb(opts) {
     /**
-     * Set options. Use it if web-input will be nested in other tag.
+     * Initialize component.
      * @param opts
      */
-    this.setOptions = (opts)=>{
+    this.init = (opts)=>{
         // Attributes
-        this.named = opts.named || 'input';
+        this.named = opts.named || '';
         this.placeholder = opts.placeholder || '';
         this.required = opts.required == 'true';
-        this.placeholder = this.required  ? this.placeholder + '*' : this.placeholder;
         this.value = opts.value;
-        this.mode = opts.mode || 'edit';
-        // Set focus if we have value
-        if(this.value && this.focusIn) this.focusIn();
-        // Basic vars
+        this.mode = 'edit';
         this.maxLength = opts.maxlength || null;
-        this.chartersLeft = this.maxLength;
-        this.onIconClick = opts.oniconclick;
-        //Validation  features
         try{this.validation = eval(opts.validation); }catch (e){}
-        // Because riot.js escape "\" charter, i created system of "\" replacing. Just set u005C (unicode) on place "\".
-        if(this.validation) {
-            this.validation.forEach((rule,key)=>{
-                if((typeof rule.regexp).toLowerCase()=='string') try{rule.regexp = eval(rule.regexp.replace(/u005C/ig,'\\'))}catch(e){console.log(e)};
-                if((typeof rule.regexp).toLowerCase()=='string')  console.log(rule.regexp.replace(/u005C/ig,'\\'))
-            });
-        }
+        // Basics
+        this.focus = false;
+        this.isValid = true;
+        this.errors = [];
+        this.chartersLeft = this.maxLength;
+        this.placeholder = this.required  ? this.placeholder + ' *' : this.placeholder;
+        // Startup methods
+        if(this.value && this.focusIn) {this.update({focus:true})};
+        this.update();
     }
-    this.setOptions(opts);
-    // Basic vars
-    this.focus = false;
-    this.isValid = true;
-    this.errors = [];
+    this.init(opts);
     /**
      * Ready
      */
     this.on('mount',(e)=>{
-        //Tooltip
+        //Get nested tags
         this.tooltip = this.tags['x-tooltip'];
+        // Set tooltip mode like a "error"
         this.tooltip.error = true;
         // Focus on if we have value
-        if(this.value) {
-            this.focus = true;
-            this.focusIn();
-        }
+        if(this.value) {this.focus = true;}
         //Required
         this.isRequired(this.input.value);
         //Max length
         if(this.maxLength) this.input.addEventListener('blur',()=>{this.input.value = this.input.value.substr(0,this.maxLength); this.cahrtersLeft = 0; this.update();});
-        // Icon
+        // Startup methods
         this.setIcons(this.root);
+        this.fixRegExp();
+        // Update
         this.update();
     });
     /**
@@ -57,7 +48,9 @@ function cb(opts) {
      * @param e
      */
     this.focusIn = (e)=>{
-        setTimeout(()=>{this.showErrors();},200);
+        this.input.focused = true;
+        if(this.maxLength) this.checkLength(this.input.value,{target:this.input});
+        setTimeout(()=>{this.showErrors();},300);
         this.trigger('changeFocus',(this.input.value == '' && !this.focus) || (this.input.value != '' && this.focus));
     }
     /**
@@ -72,7 +65,7 @@ function cb(opts) {
      * When user click on placeholder focus is set.
      * @param e
      */
-    this.clickOnPlaceholder = (e)=>{
+    this.placeholderClick = (e)=>{
         this.input.focus();
     }
     /**
@@ -88,6 +81,7 @@ function cb(opts) {
      * @param e
      */
     this.blur=(e)=>{
+        this.input.focused = false;
         this.trigger('changeFocus',!this.input.value == '');
     }
     /**
@@ -96,13 +90,15 @@ function cb(opts) {
      */
     this.checkValidation = (value)=>{
         this.errors = [];
-        this.validation.forEach((rule)=>{
-            this.isValid = rule.regexp.test(value);
-            if(!this.isValid) this.errors.push(rule.msg || 'message');
-        });
-        this.isRequired(value);
-        this.showErrors();
-        this.update();
+        if(this.validation) {
+            this.validation.forEach((rule)=>{
+                this.isValid = rule.regexp.test(value);
+                if(!this.isValid) this.errors.push(rule.msg || 'message');
+            });
+            this.isRequired(value);
+            this.showErrors();
+            this.update();
+        }
     }
     /**
      * Check out length of word if we have maxlength attribute.
@@ -128,6 +124,7 @@ function cb(opts) {
      */
     this.showErrors = ()=>{
         if(this.errors.length!==0) {
+            this.tooltip.error = true;
             this.tooltip.msg = this.errors.join('\n');
             this.tooltip.trigger('onSetMsg');
         }else {
@@ -146,6 +143,16 @@ function cb(opts) {
      * @param value
      */
     this.trim = (value)=>value ? value.replace(/^\s+|\s+$/i,'') : '';
+    /**
+     * Fix Regular Expression. Riot.js removed all of \ symbols, that way by i replace it on u005C (it is unicode)
+     */
+    this.fixRegExp = ()=>{
+        if(this.validation) {
+            this.validation.forEach((rule,key)=>{
+                if((typeof rule.regexp).toLowerCase()=='string') try{rule.regexp = eval(rule.regexp.replace(/u005C/ig,'\\'))}catch(e){console.log(e)};
+            });
+        }
+    }
 }
 
 

@@ -3,7 +3,8 @@ function cb(opts) {
     // Attributes
     this.action = opts.action;
     this.method = opts.method;
-    try{this.fields = eval(opts.fields)}catch(e){};
+    this.fields = opts.fields || [];
+    try{this.fields = eval(this.fields)}catch(e){};
     // Ready
     this.on('mount',()=>{
         setTimeout(()=>{
@@ -12,7 +13,7 @@ function cb(opts) {
             this.snackbar =  Webstarter.tags.findTagByName('x-snackbar');
             // Bind events
             this.submit = this.root.querySelector('#submit');
-            this.submit.addEventListener('click',this.onSubmit);
+            if(this.submit) this.submit.addEventListener('click',this.onSubmit);
         },0);
     });
     this.onSubmit = (e)=>{

@@ -1,0 +1,81 @@
+@import 'nib';
+@import "./public/stylesheets/vars";
+@import "./public/stylesheets/mixins";
+web-portfolio
+  display block;
+  height 100%;
+  #wrapper
+    display block;
+    height 100%;
+    #works-wrapper
+      .work
+         display inline-block;
+         width 30%;
+         height 410px;
+         margin-left 5%;
+         cursor pointer;
+         &:hover
+           .work-additionals
+             background darken(secondaryColor,5);
+         &:nth-child(3n+1)
+            margin-left 0%;
+         .work-image
+            height 234px;
+            width: 100%;
+            overflow hidden;
+            img
+              min-width 100%;
+              height 234px;
+              position relative;
+         .work-additionals
+            height 50px;
+            width: 100%;
+            background secondaryColor;
+            color: whiteTextColor;
+            .views,.date
+              display inline-block;
+              .icon,.text
+                float left;
+              .icon
+                svg
+                  path,circle,polyline, line, rect
+                    stroke whiteTextColor;
+              .text
+                  text-transform uppercase;
+                  font-size 17px;
+                  margin-top 15px;
+         .work-info
+            border 1px solid borderColor;
+            height 126px;
+            width: 100%;
+            padding 15px;
+            overflow hidden;
+           .work-name
+              font-size 25px;
+              color borderColor;
+           .work-description
+              margin-top 5px;
+              font-size 17px;
+              color borderColor;
+#workForm
+  #wrapper
+    max-width 760px !important;
+    #form-wrapper
+       padding 20px;
+       border 1px solid borderColor;
+    web-datepicker,web-tags
+      display inline-block;
+      width 45%;
+    web-tags
+      margin-left 10%;
+    web-datepicker,web-input,web-textarea
+      margin-top 10px;
+    web-input
+      margin-top 0px;
+    web-image
+      width 100%;
+      height 300px;
+    #addWork
+      margin-top 10px;
+
+

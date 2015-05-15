@@ -8,9 +8,9 @@ gulp.task('dev', ['riot'], function() { });
 
 // Build Riot Tags
 gulp.task('riot', function () {
-    gulp.src('./public/app-components/**/*.jade')
+    gulp.src('./public/app-components/**/*.html')
         .pipe(watch('./public/app-components/**/*.{jade,es6,styl}',{verbose:true}))
-        .pipe(riotTagsCompiler({dist: './public/build/tags/',loadCss:true,amd:true,first:'jade',next:'es6,styl'}))
+        .pipe(riotTagsCompiler({dist: './public/build/tags/',loadCss:true,amd:true,first:'jade',next:'es6,styl',uglify:true}))
         .on('error', console.log)
 });
 

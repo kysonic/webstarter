@@ -1,6 +1,6 @@
 define(['tags/web-ripple/web-ripple'],ripple);
 function cb(opts) {
-    this.named = opts.named || 'undefined';
+    this.named = opts.named || '';
     try{var buttons = eval(opts.buttons);}catch(e){};
     this.buttons = buttons || [];
     this.value = opts.value || '';
@@ -9,11 +9,11 @@ function cb(opts) {
     this.on('mount',()=>{
         this.buttonNodes = this.wrapper.querySelectorAll('web-ripple-button');
         [].forEach.call(this.buttonNodes,(node)=>{
-            node.style.width = Math.round(100/this.buttonNodes.length) + '%';
+            node.style.width = (100/this.buttonNodes.length).toFixed(2) + '%';
         });
         this.icon = this.root.querySelector('#icon');
         if(this.icon && this.mode == 'view') this.icons.appendChild(this.icon);
-        else this.root.removeChild(this.root.querySelector('#icon'));
+        else if(this.root.querySelector('#icon')) this.root.removeChild(this.root.querySelector('#icon'));
     });
     this.choose = (e)=>{
         e.preventDefault();

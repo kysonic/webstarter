@@ -1,0 +1,21 @@
+web-slide(opened="false",mode="absolute",timein="1000",timeout="1000",ishashed="true",ease="Power2")#freelancerScreen
+    .row(style="height:100%")
+        web-form(action="/user",method="POST")
+            .col-lg-1
+            .col-lg-4(style="height:100%")
+                web-slide(opened="true",style="max-width: 380px",name="fsLeft",canscroll="true",ease="Power0",timein="500",timeout="500",staggertime="0.07",apperance="left-queue")#fsLeft
+                    #fieldset.queue Basic Skills
+                    web-skillz.queue(named="skills",value="#{JSON.stringify(user.skills)}")
+                        #icon
+                            +diamond
+                    #fieldset.queue Education History
+                    web-education.queue(named="educations",value="#{JSON.stringify(user.educations)}")
+            .col-lg-4.col-md-5.col-xs-12(style="height:100%")
+                web-slide(opened="true",style="max-width: 380px",ease="Power0",name="fsRight",timein="600",timeout="600",staggertime="0.07",apperance="left-queue")#fsRight
+                    #fieldset.queue Employment History
+                    web-employment.queue(named="employments",value="#{JSON.stringify(user.employments)}")
+            .col-lg-1
+            .col-lg-2
+                web-ripple-button#submit.purple-round.w150(title="Save")
+                //web-ripple-button#userbutton.purple-round(title="User preference",style="margin-top:20px")
+                //web-ripple-button#close.purple-round(title="Close")

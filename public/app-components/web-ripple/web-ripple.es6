@@ -1,6 +1,7 @@
 function cb(opts) {
     // Options
     this.color = opts.color || '#fff';
+    this.scale = opts.scale || 20;
     // Basics
     this.ripples = [];
     this.presed = false;
@@ -32,6 +33,14 @@ function cb(opts) {
             }
         },this.time);
     });
+    /**
+     * Set options
+     * @param opts
+     */
+    this.setOptions = (opts)=>{
+        this.color = opts.color || '#fff';
+        this.scale = opts.scale || 20;
+    }
     /**
      * Ripple out event
      */

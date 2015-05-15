@@ -1,0 +1,108 @@
+@import 'nib';
+@import "./public/stylesheets/vars";
+web-editor
+  display block;
+  position relative;
+  z-index: 20;
+  #webEditor
+    display block;
+    position relative;
+    /** Editor **/
+    #editorWrapper
+      border 1px solid borderColor;
+      z-index: 20;
+      font-size: 14px;
+      border-top: none;
+      border-left: none;
+      padding 15px 13px;
+      color: swampTextColor;
+      min-height 150px;
+      transition height .1s;
+      .ql-editor
+        min-height 150px;
+    /** Clone border **/
+    #cloneBorder
+      display none;
+      z-index: 2;
+      display block;
+      width 100%;
+      position absolute;
+      border 2px solid darken(grayTextColor,10);
+      border-top none;
+      border-left none;
+      transition top .1s, transform .1s ease-in .1s, height .1s;
+      &.focus
+        transition transform .1s ease-in, height .1s ease-in .1s,top .1s ease-in .1s;
+    /** Placeholder **/
+    #placeholder
+      position absolute;
+      z-index: 2;
+      top: 0;
+      font-family baseFanily;
+      font-size 18px;
+      color grayTextColor;
+      padding-left: 12px;
+      line-height 50px;
+      height 18px;
+      transition color .2s ease-in, font-size .2s ease-in,line-height .2s ease-in;
+      &.focus
+        line-height 14px;
+        font-size 12px;
+        color lighten(swampTextColor,25);
+        transition color .2s ease-in, font-size .2s ease-in,line-height .2s ease-in;
+    /** Toolbar **/
+  #toolbar
+    display block;
+    width 100%;
+    height 50px;
+    border 1px solid borderColor;
+    border-top none;
+    z-index: 21;
+    .buttonSet
+      display inline-block;
+      height 50px;
+      &#sizes
+        display block;
+      &#inscription,&#align
+        margin-left 75px;
+      &#lists
+        margin-left 70px;
+      &#links
+        margin-left 335px;
+    .button
+      display inline-block;
+      height 50px;
+      width 50px;
+      cursor pointer;
+      background transparent;
+      transition .2s background;
+      svg
+        path,circle,rect,line,polyline
+          transition .2s stroke, .2s fill;
+      &:hover
+        path,circle,rect,line,polyline
+          stroke darken(borderColor,7);
+          fill darken(borderColor,7);
+      &.ql-image:hover,&.ql-link:hover
+        svg
+          path,circle,rect,line,polyline
+            stroke darken(borderColor,10);
+            fill transparent;
+      &.ql-active
+        background borderColor;
+        transition .2s background;
+        svg
+          path,cricle,rect,line,polyline
+            transition .2s stroke, .2s fill;
+            fill whiteTextColor;
+
+#webEditorPopup
+   web-image
+     min-width 640px;
+     height 640px;
+   #link
+     width 420px;
+     margin-top 30px;
+   #insert
+     margin-top 20px;
+     margin-bottom 10px;

@@ -1,0 +1,28 @@
+include ../../mixins/icons
+web-project
+    #pjctName {{projectName}}
+    #author by {{author}}
+    #projectCardWrapper
+        #topInformation
+        #imageWrapper
+            web-image(action="/project/add/image",cropperWidth="802",cropperHeight="450",aspectRatio="535/300",cropAction="/user/crop-work-image",named="Image")
+        web-slide(opened="true",timein="800",timeout="800",ease="Power2",apperance="left-queue",name="basicSet")#basicSet
+            web-input.queue(placeholder="I need",required="true",validation='[{regexp:/^[0-9]+$/i,msg:"MoneyError"}]',name="iNeed",named="bid",style="max-width: 365px")#iNeed
+                #icon
+                    +dollar
+            web-spinner-input.queue(closeto="#basicSet",placeholder="For",validation='[{regexp:/^[0-9A-Za-zА-Яа-я]+$/i,msg:"DayCountError"}]',required="true",name="for")#for
+                #icon
+                    +date
+    web-input(placeholder="Project Name",required="true",validation='[{regexp:/^[a-zA-Z0-9а-яА-Я- ]+$/i,msg:"ProjectNameError"}]',name="projectName",named="name")#projectName
+        #icon
+            +diamond
+    web-tags(placeholder="Tags (3 max)",limit="3",data='["Medicine","IT","Food","Fraud"]',named="tags")#projectTags
+        #icon
+            +diamond
+    web-input(placeholder="About Project",validation='[{regexp:/^([a-zA-Z0-9а-яА-Я- ]|)+$/i,msg:"AboutProjectError"}]',name="aboutProject",named="about")#aboutProject
+        #icon
+            +diamond
+    web-input(placeholder="Location",validation='[{regexp:/^([a-zA-Z0-9а-яА-Я- ]|)+$/i,msg:"AboutProjectError"}]',name="projectLocation",named="location")#projectLocation
+        #icon
+            +location
+    web-editor(placeholder="Project Story",name="description",named="description")#description

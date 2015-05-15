@@ -1,0 +1,13 @@
+extends ../../layouts/index
+include ../../../../public/mixins/icons
+include ../../../../public/mixins/filters
+block menu
+    avatar(email="#{user.email}",full="#{user.fullAvatar}",cropped="#{user.croppedAvatar}",isupdate="#{user.imageUpdate}")
+block content
+    user-form-service
+    include profileScreen
+    include freelancerScreen
+    include portfolioScreen
+
+
+

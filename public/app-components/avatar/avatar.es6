@@ -2,25 +2,24 @@ define(['uploader','tags/cropper/cropper','tags/x-tooltip/x-tooltip'],uploader,c
 function cb(opts) {
     this.errors = [];
     this.currentFile = '';
-    this.full = opts.full;
+    this.full = opts.full!='undefined' ? opts.full : null;
     this.src = opts.cropped!='undefined' ? opts.cropped : null;
-    this.isUpdate = opts.isupdate;
+    this.isUpdate = opts.isupdate || false;
     this.inProcess = false;
     this.showBackdrop = false;
+    this.isAuth = opts.isauth!='undefined' || false;
     // Ready'
     this.on('mount',()=>{
+
         this.overGround = this.tags['over-ground'];
         this.cropper = this.tags['cropper'];
         this.xTooltip = this.tags['x-tooltip'];
+        this.xhr = this.tags['web-xhr'];
         // Have a image for cropping?
-        if(this.full!='undefined') {
+        if(this.full) {
             this.cropper.pth = this.full;
             this.cropper.trigger('loadImage');
             this.update();
-            if(this.isUpdate!='undefined') {
-                this.overGround.opened = true;
-                this.overGround.trigger('openedChanged');
-            }
         }
     });
     /**
@@ -32,7 +31,6 @@ function cb(opts) {
         this.update();
         $(e.target).ajaxSubmit({
             error: (xhr)=>{
-                console.log(xhr);
                 if(/MSIE (8|9)/.test(navigator.userAgent)) window.location.href = '/user';
                 this.inProcess = false;
                 this.update();

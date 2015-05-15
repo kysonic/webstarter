@@ -1,0 +1,7 @@
+web-tabs
+    #wrapper
+        input(type="hidden",value="{{JSON.stringify(tagNames)}}",name="{{named}}")
+        #tabs
+            web-ripple-button(each="{{tab,key in tabs}}",color="{{parent.rippleColor}}",scale="{{parent.rippleScale}}",checked='{{parent.selected==key}}',class='{{parent.cls}}',data-id="{{key}}",onclick="{{parent.changeTab}}",title="{{tab.title}}",data-link="{{tab.link}}")
+            #line-wrapper
+                #line

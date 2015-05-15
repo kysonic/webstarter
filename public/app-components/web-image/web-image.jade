@@ -1,0 +1,23 @@
+include ../../mixins/respond
+web-image
+    over-ground(center,layred,autoClose,bodyScale="false")
+        cropper(width="{{cropperWidth}}",height="{{cropperHeight}}",aspectRatio="{{aspectRatio}}",cropAction="{{cropAction}}",named="{{named}}")
+    #wrapper(onmouseover="{{showBack}}",onmouseout="{{hideBack}}")
+        input(type="hidden",name='{{"full"+named}}',value="{{src}}")
+        input(type="hidden",name='{{"cropped"+named}}',value="{{cropper.pth}}")
+        img(if="{{src}}",src="{{src}}",class='{{(file.value || showBackdrop) ? "opacity" : ""}}')
+        #imageSubstitute(if="{{!src}}",class='{{(file.value || showBackdrop) ? "opacity" : ""}}')
+            +image
+        #stroke
+        #backdrop(show="{{showBackdrop}}")
+            #loading(show="{{inProcess}}")
+            form(show="{{!inProcess}}",enctype="multipart/form-data",action="{{action}}",method="POST",onsubmit="{{uploadFile}}")
+                x-tooltip(msg='{{errors}}')
+                #fileName {{basename(file.value)}}
+                #fakeFile(show="{{!file.value}}")
+                    span Add
+                    input(onchange="{{changeFile}}",type="file",name="file")#file
+                input(show="{{file.value}}",type="submit",value="Ok")#ok
+                web-ripple-button.yellow-round.t(color="#fff",title="Reset",show="{{file.value}}",onclick="{{resetFile}}")#reset
+                web-ripple-button.yellow-round.t(color="#fff",title="Crop",show="{{cropper.pth}}",onclick="{{openCropDialog}}")#crop
+

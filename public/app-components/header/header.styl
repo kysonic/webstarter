@@ -2,7 +2,8 @@
 @import "./public/stylesheets/mixins";
 header
   display block;
-  height auto;
+  min-height: 131px;
+  margin-bottom: 65px;
   width 100%;
   .col
     padding 23px 0;
@@ -34,19 +35,16 @@ header
         vertical-align top;
         height 100%;
         li
-          &.active
-            position relative;
-            height 95px;
-            background basicBackgroundColor;
           menu(menuItemFontSize,whiteTextColor,darken(basicBackgroundColor, 10),75px);
+          font-family lightFamily;
   /**>>>>Additional header<<<<**/
   .row#sub-menu
-    margin-top 30px;
     width 100%;
     height 50px;
     & > #menu-section
       padding 0;
       background basicBodyColor;
+      height 50px;
       & > ul#menu
         list-style none;
         display inline;
@@ -57,6 +55,7 @@ header
             background basicBackgroundColor;
             a
               color whiteTextColor;
+              font-family lightFamily;
           menu(menuItemFontSize,grayTextColor,basicBackgroundColor,50px);
 
 

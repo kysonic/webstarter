@@ -10,6 +10,11 @@ exports.check = function(app) {
                     delete req.session.user;
                 }
                 res.locals.isAuth = !!user;
+                // User
+                res.locals.user = user.getAllowedProperties();
+                // Menu
+                // Menu
+                res.locals.menuTitle = (user.firstName && user.lastName) ? (user.firstName.replace(/^\s+|\s+$/i,'') +' '+user.lastName.replace(/^\s+|\s+$/i,'')) : '';
                 next();
             });
         }else {
