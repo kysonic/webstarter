@@ -126,7 +126,7 @@ let people = [
 ]
 let emails = [for({email, firstName} of people) if(firstName === "Melinda") email]
 
-Aray.from(document.querySelector('div')); // Don't work in 6to5
+Array.from(document.querySelector('div')); //
 Array.keys();
 Array.entries();
 Array.values();

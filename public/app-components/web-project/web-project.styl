@@ -2,8 +2,29 @@
 @import "./public/stylesheets/vars";
 web-project
   display block;
-  .row
-    display table-row;
+  /** Tabs **/
+  #tabs
+    margin-top 30px;
+  #tabWrapper
+    display block;
+    width 100%;
+    height auto;
+    background #F6F7F2;
+    padding 20px;
+    .row
+      &#nameWrapper
+        margin-top 35px;
+      &#locationWrapper
+        margin-top 35px;
+      & > div
+        &:first-child
+          padding-left 0px;
+        &:last-child
+          padding-right 0px;
+      #projectLocation
+        margin-top 41px;
+      #description
+        margin-top 30px;
   #pjctName
     display block;
     width 100%;
@@ -26,6 +47,63 @@ web-project
       width 100%;
       height 40px;
       background secondaryColor;
+      #tags
+        display inline-block;
+        width auto;
+        height 40px;
+        vertical-align top;
+        position relative;
+        top: 7px;
+        margin-left 70px;
+        .tag
+          display inline-block;
+          min-width 50px;
+          height 28px;
+          color whiteTextColor;
+          font-size 13px;
+          margin-left 5px;
+          padding-left 5px;
+          background snackBarColor;
+          transition background .2s;
+          .title
+            display inline-block;
+            float left;
+            color: whiteTextColor;
+            line-height:28px;
+            white-space nowrap;
+            width: 40%;
+          /** Buttons **/
+          .button,.remove,.change
+            cursor pointer;
+            float right;
+            display inline-block;
+            width 15px;
+            height 15px;
+            border-radius 50%;
+            background secondaryColor;
+            margin-right: 5px;
+            margin-left: 5px;
+            margin-top: 7px;
+          .remove
+            &:hover
+              background secondaryColor;
+      #icon
+        width 40px;
+        height 40px;
+        display inline-block;
+        margin-left 10px;
+        svg
+          width 100%;
+          height 100%;
+          stroke-width: 2px;
+          line, polyline, circle, path
+            stroke whiteTextColor;
+      #text
+        display: inline-block;
+        color: #fff;
+        vertical-align: top;
+        position: relative;
+        top: 11px;
     #imageWrapper
       display table-cell;
       width 533px;
@@ -34,46 +112,49 @@ web-project
       web-image
         width 535px;
         height 300px;
-    #basicSet
+    #sliderWrapper
       display table-cell;
       background basicMenuColor;
       width auto;
       vertical-align middle;
       padding 0 10px;
-      #for web-input
-        max-width 365px;
-      #iNeed, #for web-input
-        display block;
-        margin 0 auto;
-        height 75px;
-        & input
+      position relative;
+      #basicSet
+        height 260px;
+        #for web-input
+          max-width 365px;
+        #iNeed, #for web-input
+          display block;
+          margin 27px auto 20px auto;
           height 75px;
-          color secondaryColor;
-          font-size 45px;
-          font-weight bold;
-          padding-right: 75px;
-          &:focus + #clone-border
-            top 0px;
+          & input
             height 75px;
-        #clone-border
-          top 71px;
-        #placeholder
-          font-size 40px;
-          line-height 76px;
-          &.focus
-            line-height 14px;
-            font-size 12px;
-            color lighten(swampTextColor,25);
-        #icons
-          height 75px;
-          width 75px;
-          margin-left -75px;
-          #icon
-            height 55px;
-            width 55px;
-            svg
-              width 75px;
+            color secondaryColor;
+            font-size 45px;
+            font-weight bold;
+            padding-right: 75px;
+            &:focus + #clone-border
+              top 0px;
               height 75px;
+          #clone-border
+            top 71px;
+          #placeholder
+            font-size 40px;
+            line-height 76px;
+            &.focus
+              line-height 14px;
+              font-size 12px;
+              color lighten(swampTextColor,25);
+          #icons
+            height 75px;
+            width 75px;
+            margin-left -75px;
+            #icon
+              height 55px;
+              width 55px;
+              svg
+                width 75px;
+                height 75px;
 
 
 

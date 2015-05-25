@@ -21,7 +21,7 @@ function cb(opts) {
      */
     this.on('mount',(e)=>{
         // Require jquery scroller
-        require(['scroller'],function(){$(this.textarea).scrollbar();});
+        require(['scroller'],()=>{$(this.textarea).scrollbar();});
         this.icon = this.root.querySelector('#icon');
         if(this.icon && this.mode == 'view') this.icons.appendChild(this.icon);
         else if(this.root.querySelector('#icon')) this.root.removeChild(this.root.querySelector('#icon'));

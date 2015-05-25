@@ -3,6 +3,7 @@ function cb(opts) {
     // Ready
     this.on('mount',()=>{
         // Define base nested tags
+        try{var data = eval(opts.data)}catch(e){var data=[]};
         this.input = this.tags['web-input'];
         this.dropdown = this.tags['web-dropdown'];
         // Set options
@@ -23,7 +24,7 @@ function cb(opts) {
         this.input.inputClick = this.openDropdown;
         this.input.iconClick = this.openDropdown;
         // Set on start
-        this.dropdown.data = this.findInArray(opts.value,this.data).slice(0,this.dropdown.limit);
+        this.dropdown.data = opts.value ? this.findInArray(opts.value,this.data).slice(0,this.dropdown.limit) : this.dropdown.data;
         document.body.addEventListener('click',this.bodyClick);
         // Update
         this.update();

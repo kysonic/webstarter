@@ -2,6 +2,7 @@ define(['tags/web-ripple-button/web-ripple-button','webstarter'],webRipple,Webst
 function cb(opts) {
     // Attributes
     this.tabs = opts.tabs || [];
+    if((typeof this.tabs).toLowerCase()=='string') this.tabs = eval(this.tabs);
     this.cls = opts.cls || 'tabs';
     this.rippleColor = opts.ripplecolor || "#fff";
     this.rippleScale = opts.ripplescale || 20;

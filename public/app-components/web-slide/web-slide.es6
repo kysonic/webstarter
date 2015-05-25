@@ -3,7 +3,7 @@ function cb(opts) {
     // Attributes
     this.apperance = opts.apperance || 'left';
     this.mode = opts.mode || 'relative';
-    this.closeTo = opts.closeto;
+    this.closeTo = opts.closeto || false;
     this.opened = opts.opened=='true' || false;
     this.timeIn = opts.timein || 800;
     this.timeOut= opts.timeout || 800;
@@ -34,11 +34,8 @@ function cb(opts) {
         // Mode
         this.root.classList.add(this.mode);
         // CloseTo
-        var closeNode = document.querySelector(this.closeTo);
-        if(this.closeTo && closeNode) {
-            var parent = closeNode.parentNode;
-            if(parent) document.querySelector(this.closeTo).parentNode.appendChild(this.root);
-        }
+        this.setCloseTo();
+        // Tween
         Tweens[this.apperance+(this.opened ? '-in' : '-out')](0);
         // Async
         setTimeout(()=>{
@@ -108,30 +105,32 @@ function cb(opts) {
     var Tweens = {
         'left-in': (time)=>{
             this.root.style.zIndex = 60;
-            TweenMax.to(this.inner, time,{transform:`translateX(0px)`,ease: this.eases[this.ease].easeIn});
+            TweenMax.to(this.inner, time,{transform:`translateX(0px)`,ease: this.eases[this.ease].easeIn,onComplete:()=>this.trigger('inEnd')});
         },
         'left-out': (time)=>{
             this.root.style.zIndex = 0;
             var wrapperBound = this.inner.getBoundingClientRect();
-            TweenMax.to(this.inner,time,{transform:`translateX(-${wrapperBound.width+this.outDistance}px)`,ease: this.eases[this.ease].easeOut});
+            TweenMax.to(this.inner,time,{transform:`translateX(-${wrapperBound.width+this.outDistance}px)`,ease: this.eases[this.ease].easeOut,onComplete:()=>this.trigger('outEnd')});
         },
         'right-in': (time)=>{
             this.root.style.zIndex = 60;
-            TweenMax.to(this.inner, time,{transform:`translateX(0px)`,ease: this.eases[this.ease].easeIn});
+            TweenMax.to(this.inner, time,{transform:`translateX(0px)`,ease: this.eases[this.ease].easeIn,onComplete:()=>this.trigger('inEnd')});
         },
         'right-out': (time)=>{
             this.root.style.zIndex = 0;
             var wrapperBound = this.inner.getBoundingClientRect();
-            TweenMax.to(this.inner,time,{transform:`translateX(${wrapperBound.width+this.outDistance}px)`,ease: this.eases[this.ease].easeOut});
+            TweenMax.to(this.inner,time,{transform:`translateX(${wrapperBound.width+this.outDistance}px)`,ease: this.eases[this.ease].easeOut,onComplete:()=>this.trigger('outEnd')});
         },
         'left-queue-in': (time)=>{
             this.root.style.zIndex = 60;
-            TweenMax.staggerTo(this.inner.querySelectorAll('.queue'), time,{transform:`translateX(0px)`,ease: this.eases[this.ease].easeIn},this.staggerTime);
+            TweenMax.to(this.inner, 0,{transform:`translateX(0px)`,ease: this.eases[this.ease].easeIn,onComplete:()=>this.trigger('inEnd')});
+            TweenMax.staggerTo(this.inner.querySelectorAll('.queue'), time,{transform:`translateX(0px)`,ease: this.eases[this.ease].easeIn,onComplete:()=>this.trigger('inEnd')},this.staggerTime);
         },
         'left-queue-out': (time)=>{
             this.root.style.zIndex = 0;
             var wrapperBound = this.inner.getBoundingClientRect();
-            TweenMax.staggerTo(this.inner.querySelectorAll('.queue'), time,{transform:`translateX(-${wrapperBound.width+this.outDistance}px)`,ease: this.eases[this.ease].easeIn},this.staggerTime);
+            TweenMax.to(this.inner,time,{transform:`translateX(-${wrapperBound.width+this.outDistance}px)`,delay:time+time,ease: this.eases[this.ease].easeOut,onComplete:()=>this.trigger('outEnd')});
+            TweenMax.staggerTo(this.inner.querySelectorAll('.queue'), time,{transform:`translateX(-${wrapperBound.width+this.outDistance}px)`,ease: this.eases[this.ease].easeIn,onComplete:()=>this.trigger('outEnd')},this.staggerTime);
         }
     }
     /**
@@ -140,6 +139,14 @@ function cb(opts) {
     this.on('updateScroll',()=>{
         $(this.inner).perfectScrollbar('update');
     });
+
+    this.setCloseTo= ()=>{
+        var closeNode = document.querySelector(this.closeTo);
+        if(this.closeTo && closeNode) {
+            var parent = closeNode.parentNode;
+            if(parent) document.querySelector(this.closeTo).parentNode.appendChild(this.root);
+        }
+    }
 }
 
 

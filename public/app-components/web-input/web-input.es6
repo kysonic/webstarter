@@ -135,8 +135,7 @@ function cb(opts) {
      * Change focus handler. Mutual focus action fucntion.
      */
     this.on('changeFocus',(newFocus)=>{
-        this.focus = newFocus;
-        this.update();
+        this.update({focus:newFocus});
     });
     /**
      * Trim string

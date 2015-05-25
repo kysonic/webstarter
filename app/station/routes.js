@@ -1,4 +1,4 @@
-module.exports = function(app){    
+module.exports = function(app){     
     // Checkout authorization
     app.use(require('../libs/auth').check(app));
     // Router group

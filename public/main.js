@@ -118,6 +118,7 @@
              */
             domReady(function(){
                Webstarter.tags = riot.mount('*');
+
                 // Apperance
                 document.body.style.opacity = 1;
                 document.body.style.webkitAnimation = 'apperance cubic-bezier(1, 0.4, 0.175, 0.2) .2s 1';

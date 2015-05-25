@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 
 var app = express();
-var mRbac = require('./app/models/rbac').Rbac;
+
 
 /**
  * App global configuration

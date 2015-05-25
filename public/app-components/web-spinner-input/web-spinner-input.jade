@@ -1,10 +1,14 @@
+include ../../mixins/icons
 web-spinner-input
     web-input.queue(name="webInput")#webInput
-    web-slide(mode="absolute",closeto="{{closeTo}}",opened="false",apperance="left",ease="Power3",name="slide",outdistance="620")
+    web-slide(mode="absolute",closeto="{{closeTo}}",opened="false",apperance="left-queue",ease="Power2",name="slide",outdistance="650",timein="1000",timeout="800")#spinnerSlide
         #spinnerData
-            #less
+            #less.queue
+              +leftArrow
             #info
-                #amount VALUE
-                #text DAYS
-            #more
-        web-spinner(name="spinner")
+                #amount.queue 0
+                #text.queue {{text}}
+            #more.queue
+              +rightArrow
+        web-spinner(name="spinner",max="{{max}}",min="{{min}}").queue
+        web-ripple-button.yellow-round.t.queue(color="#fff",title="Set",style="margin-top:20px")#setButton

@@ -1,20 +1,30 @@
 function cb(opts) {
+    // Attributes
+    this.min = parseInt(opts.min) || 0;
+    this.max = parseInt(opts.max) || 100;
     // Basics
     this.isDrag = false;
     this.buttonWidth = 25;
-    this.value = 0;
+    this.value =  this.min;
+    this.x = 0;
     // Ready
     this.on('mount',()=>{
         document.body.addEventListener('mousemove',this.move);
         document.body.addEventListener('mouseup',this.release);
-        // Metrics
-        setTimeout(()=>{
-            this.bound = this.wrapper.getBoundingClientRect();
-            this.leftBorder = Math.round(this.buttonWidth);
-            this.rightBorder = Math.round(this.bound.width);
-            this.trigger('valueUpdate');
-        });
+        // Update on mount
+        this.init();
     });
+    /**
+     * Initialize function
+     */
+    this.init = ()=>{
+        this.bound = this.wrapper.getBoundingClientRect();
+        this.leftBorder = 0;
+        this.rightBorder = Math.round(this.bound.width-this.buttonWidth);
+        this.step = (this.rightBorder/(this.max-this.min)).toFixed(2);
+        this.button.style.left = '0px';
+        this.trigger('valueUpdate');
+    }
     /**
      * When LMB was pressed.
      * @param e
@@ -29,17 +39,25 @@ function cb(opts) {
     this.move = (e)=>{
         // Checkout drag state
         if(this.isDrag) {
-            var x = Math.round(e.pageX-this.bound.right);
-            var y = e.layerY;
+            // Calculate delta on X - axis
+            this.previousClientX = !this.previousClientX ? e.clientX : this.previousClientX;
+            var delta = e.clientX - this.previousClientX;
+            var notUpdate = false;
+            this.x += delta;
             // Checkout border collision
-            if(x>this.leftBorder && x<this.rightBorder)
-                this.button.style.left = x - this.buttonWidth  + 'px';
-            else if(x<this.leftBorder)
-                this.button.style.left = this.leftBorder - this.buttonWidth  + 'px';
-            else if(x>this.rightBorder)
-                this.button.style.left = this.rightBorder - this.buttonWidth  + 'px';
-            // Set value
-            this.value = Math.round(parseInt(this.button.style.left)/(this.bound.width - this.buttonWidth)*100);
+            if(this.x >this.leftBorder && this.x <this.rightBorder)
+                this.x = this.x;
+            else if(this.x < this.leftBorder) {
+                this.x = this.leftBorder;
+                notUpdate = true;
+            }
+            else if(this.x > this.rightBorder) {
+                this.x = this.rightBorder;
+                notUpdate = true;
+            }
+            if(!notUpdate) this.previousClientX = e.clientX;
+            this.button.style.left = this.x +'px';
+            this.value = Math.round(this.x/this.step) + this.min;
             this.trigger('valueUpdate');
         }
     }
@@ -56,7 +74,7 @@ function cb(opts) {
      */
     this.spinnerClick = (e)=>{
         if(!this.isDrag) {
-            this.setValue(e.layerX);
+            this.setValue(Math.round(e.layerX/this.step)+this.min);
         }
     }
     /**
@@ -64,10 +82,12 @@ function cb(opts) {
      * @param value
      */
     this.setValue = (value)=>{
-        this.value = Math.round(value/(this.bound.width - this.buttonWidth)*100);
-        this.value = this.value > 100 ? 100 : this.value;
-        this.value = this.value < 0 ? 0 : this.value;
-        this.button.style.left = (value> this.rightBorder - (this.buttonWidth) ? this.rightBorder - this.buttonWidth :  value - Math.round(this.buttonWidth/2)+2) + 'px';
+        value= value>this.max ? this.max : value;
+        value= value<this.min ? this.min : value;
+        this.value = value;
+        this.x = (this.value-this.min)*this.step;
+        this.button.style.left = this.x +'px';
+        this.previousClientX = this.button.getBoundingClientRect().left;
         this.trigger('valueUpdate');
     }
 }

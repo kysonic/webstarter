@@ -3,7 +3,7 @@ function cb(opts) {
     this.init = (opts)=>{
         //Attributes
         try{var data = eval(opts.data)}catch(e){var data=[]};
-        this.limit = opts.limit || 4;
+        this.limit = parseInt(opts.limit) || 4;
         // Basics
         this.opened = false;
         this.selected = '';

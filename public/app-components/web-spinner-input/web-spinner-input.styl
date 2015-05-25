@@ -1,4 +1,43 @@
+@import 'nib';
+@import "./public/stylesheets/vars";
 web-spinner-input
-  background #ccc;
+  display block;
+web-slide#spinnerSlide
+  padding 0px 50px;
+  #spinnerData
+    width 100px;
+    height 85px
+    margin 40px auto;
+    position relative;
+    #less,#more
+      width 20px;
+      height 100%;
+      position absolute;
+      cursor pointer;
+      svg
+        position: relative;
+        top: 33px;
+        stroke-width: 2px;
+        &:hover
+          polyline, line
+            stroke: darken(borderColor,10);
+    #less
+      top: 0;
+      left: 0;
+      margin-left -20px;
+    #more
+      top: 0;
+      left: 100%;
+    #info
+      color: borderColor;
+      text-align center;
+      #amount
+        font-size 42px;
+        font-weight bold;
+        height 50px;
+      #text
+        font-size 20px;
+        font-weight bold; 
+
 
 

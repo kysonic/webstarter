@@ -38,6 +38,7 @@ function cb(opts) {
         this.select.dropdown.close();
         this.select.input.input.value = '';
         this.update();
+        this.select.input.update({focus:true})
     }
     /**
      * When we type something in input, tags is hide
@@ -45,14 +46,15 @@ function cb(opts) {
      */
     this.edit = (e)=>{
         this.update({showTags:false});
+        this.select.input.update({focus:true});
     }
     /**
      * Blur logic, don't down placeholder if we have some tags
      * @param e
      */
     this.blur=(e)=>{
-        console.log('blur')
         this.select.input.input.focused = false;
+        this.select.input.update({focus:false})
         this.select.input.trigger('changeFocus',this.tagNames.length!=0 || this.select.input.input.value!='');
         this.update({showTags: this.select.input.input.value==''})
     }
@@ -61,8 +63,7 @@ function cb(opts) {
      * @param e
      */
     this.focusIn = (e)=>{
-        this.select.input.input.focused = true;
-        this.select.input.trigger('changeFocus',this.tagNames.length!=0 || this.select.input.input.value!='');
+        this.select.input.trigger('changeFocus',true);
     }
     /**
      * Remove tags from collection
