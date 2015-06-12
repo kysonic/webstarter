@@ -1,24 +1,23 @@
 doctype html
+script(src="jspm_packages/system.js",type="text/javascript")
+script(src="config.js",type="text/javascript")
 html
     head
         title= title
         meta(http-equiv='X-UA-Compatible', content='IE=edge')
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
-        //link(href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800&subset=latin,cyrillic-ext',rel='stylesheet',type='text/css')
         link(type="text/css" rel="stylesheet" href="/stylesheets/styles.css")
         if showTests
             link(type="text/css" rel="stylesheet" href="/vendor/mocha/mocha.css")
-        script(data-main="/main" data-show-test="#{showTests}" src="/vendor/requirejs/require.js")
+        //script(data-main="/main" data-show-test="#{showTests}" src="/vendor/requirejs/require.js")
     body.unresolved
-           x-l18n
-           x-media-queries
+           //x-l18n
+           //x-media-queries
            x-hash
-           x-snackbar(right,bottom,time="5000")
-           resizer
+           //x-snackbar(right,bottom,time="5000")
+           //resizer
        .container-fluid
-           include ../../../public/mixins/filters
-           +goo
-           #wrapper.row
+           //#wrapper.row
                table
                     tr
                         td#menu
@@ -31,7 +30,9 @@ html
                                 block content
        if showTests
            #mocha(data-page-tests="#{pageTests}")
-       block requires
+       script.
+           System.import('main').catch(console.error.bind(console));
+
 
 
 
