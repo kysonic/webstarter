@@ -1,0 +1,8 @@
+include ../../mixins/icons
+web-doc
+    #fileIcon(if="{{filePath}}",onclick="{{downloadFile}}")
+        +diamond
+    #fileName {{basename(filePath)}}
+    x-tooltip(msg='{{errors}}')
+    form(action="{{action}}",method="POST")#form
+        web-ripple-button.purple-round.w150(title="{{filePath ? \"Change Document\" : \"Add Document\"}}",isfile="true",name="button")

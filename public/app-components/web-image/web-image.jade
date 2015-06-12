@@ -1,4 +1,4 @@
-include ../../mixins/respond
+include ../../mixins/icons
 web-image
     over-ground(center,layred,autoClose,bodyScale="false")
         cropper(width="{{cropperWidth}}",height="{{cropperHeight}}",aspectRatio="{{aspectRatio}}",cropAction="{{cropAction}}",named="{{named}}")
@@ -13,7 +13,7 @@ web-image
             #loading(show="{{inProcess}}")
             form(show="{{!inProcess}}",enctype="multipart/form-data",action="{{action}}",method="POST",onsubmit="{{uploadFile}}")
                 x-tooltip(msg='{{errors}}')
-                #fileName {{basename(file.value)}}
+                #fileName(show="{{file.value}}") {{basename(file.value)}}
                 #fakeFile(show="{{!file.value}}")
                     span Add
                     input(onchange="{{changeFile}}",type="file",name="file")#file

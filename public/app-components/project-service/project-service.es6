@@ -2,8 +2,8 @@ define(['webstarter'],Webstarter);
 function cb(opts) {
     // Basics
     this.formElements = ['x-hash'];
-    this.possibleRoutes = ['#ideaScreen'];
-    this.defaultRoute = '#ideaScreen';
+    this.possibleRoutes = ['#infoScreen','#manegmentScreen'];
+    this.defaultRoute = '#infoScreen';
     // Ready
     this.on('mount',()=>{
         setTimeout(()=>{

@@ -1,0 +1,17 @@
+include ../../mixins/icons
+web-usersearch
+    web-xhr(json="true")
+    web-input.queue(placeholder="Type email or other user data...")#webi
+     #icon
+        +diamond
+    #results
+        .userCard.queue(each="{{user in users}}",onclick="{{parent.selectUser}}")
+            .userAvatar
+                img(riot-src="{{user.croppedAvatar}}")
+            .name
+                .firstName {{user.firstName}}
+                .lastName {{user.lastName}}
+            hr
+            .email {{user.email}}
+
+

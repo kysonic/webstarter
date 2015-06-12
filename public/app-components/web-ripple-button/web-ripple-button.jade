@@ -1,4 +1,5 @@
 web-ripple-button
     #button(onmousedown="{{rippleIn}}",onmouseup="{{rippleOut}}",onmouseleave="{{rippleOut}}",onclick="{{onClickHandler}}")
         {{title}}
+        input(onchange="{{changeFile}}",type="file",name="file",if="{{isFile}}")#file
         web-ripple(color="{{opts.color}}")

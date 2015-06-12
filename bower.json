@@ -13,6 +13,7 @@
   ],
   "dependencies": {
     "riotjs": "kysonic/riotjs",
+    "riot": "riot/riot",
     "requirejs": "jrburke/requirejs#~2.1.16",
     "jquery": "~2.1.3",
     "domReady": "requirejs/domReady#~2.0.1",

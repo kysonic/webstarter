@@ -43,11 +43,13 @@ function cb(opts) {
      */
     this.on('mount',()=>{
         // Init Quill
+        if(opts.value) this.editorWrapper.innerHTML = opts.value;
         this.editor = new Quill(this.editorWrapper,{styles:{
             '.ql-editor': {
                 'font-size': "16px"
             }
         }});
+        this.text = this.editor.getContents();
         this.editor.addModule('toolbar', { container: this.toolbar});
         // Get nested tags
         this.overGround = this.tags['dialog'];
@@ -62,6 +64,9 @@ function cb(opts) {
         setTimeout(()=>{
             this.cloneBorderBlurStyle();
         });
+        if(opts.value) {
+            this.update({focus:true})
+        }
         // Override
         var oCropOnServer = this.image.cropper.cropOnServer;
         this.image.cropper.cropOnServer = ()=>{oCropOnServer();this.cropOnServer.call(this)};

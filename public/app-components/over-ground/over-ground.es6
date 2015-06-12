@@ -1,4 +1,4 @@
-define(['tags/inner-html/inner-html','riot'],innerHTML,riot);
+define(['riot','tags/inner-html/inner-html','jquery','perfectScrollbar'],riot,innerHTML,jquery,perfectScrollbar);
 function cb(opts) {
     //Attributes
     this.autoClose = opts.autoclose;
@@ -6,6 +6,7 @@ function cb(opts) {
     this.bodyScale = opts.bodyscale || true;
     this.noPadding = opts.nopadding || null;
     this.noShadow = opts.noshadow || null;
+    this.canScroll = opts.canscroll=='true' || false;
     // Basic vars
     this.opened = false;
     this.go = true;
@@ -18,9 +19,14 @@ function cb(opts) {
         if(/MSIE (9)/.test(navigator.userAgent)) this.backdrop.style.background = 'rgba(0,0,0,0.2);';
         if(this.noPadding) this.wrapper.style.padding = 0;
         if(this.noShadow) this.wrapper.style.boxShadow = 'none';
+        // Scroll
+        if(this.canScroll) {
+            $(this.inner).perfectScrollbar({suppressScrollX:true,scrollYMarginOffset: 0});
+            this.trigger('updateScroll');
+        }
     });
     /**
-     * Watch opened
+     * Watch open
      */
     this.on('openedChanged',(opened)=>{
         this.update({opened:this.opened});
@@ -71,6 +77,12 @@ function cb(opts) {
     this.blurHandler = ()=>{
         document.body.classList.toggle('over-blur');
     }
+    /**
+     * Update scroll handler
+     */
+    this.on('updateScroll',()=>{
+        $(this.inner).perfectScrollbar('update');
+    });
 }
 
 

@@ -1,16 +1,18 @@
+include ../../mixins/icons
 avatar
     web-xhr(ajax="true")
     over-ground(center,layred,autoClose,bodyScale="false")
-        cropper(cropAction="/user/crop-avatar")
+        cropper(cropAction="/user/crop-avatar",aspectratio="1/1",name="cropper")
     #wrapper(onmouseover="{{showBack}}",onmouseout="{{hideBack}}")
         img(if="{{src}}",src="{{src}}",class='{{(file.value || showBackdrop) ? "opacity" : ""}}')
         #imageSubstitute(if="{{!src}}",class='{{(file.value || showBackdrop) ? "opacity" : ""}}')
+            +image
         #stroke
         #backdrop(show="{{showBackdrop}}")
             #loading(show="{{inProcess}}")
             form(show="{{!inProcess}}",enctype="multipart/form-data",action="/user/upload-avatar",method="POST",onsubmit="{{uploadFile}}")
                 x-tooltip(msg='{{errors}}')
-                #fileName {{basename(file.value)}}
+                #fileName(if="{{file.value}}") {{basename(file.value)}}
                 #fakeFile(show="{{!file.value}}")
                     | Add
                     input(onchange="{{changeFile}}",type="file",name="file")#file

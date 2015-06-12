@@ -14,16 +14,19 @@ web-image
     #imageSubstitute
       padding 10px;
       display block;
-      border 2px solid borderColor;
+      background lighten(borderColor,20);
       width 100%;
       height 100%;
       transition opacity .2s ease-in;
       svg
         width 100%;
         height 100%;
+        path,line,circle,polyline,rect
+          stroke whiteTextColor;
       &.opacity
         transition opacity .2s ease-in;
         opacity 0.2;
+
     /** Images**/
     img
       display block;
@@ -76,7 +79,8 @@ web-image
         position relative;
         /**File name **/
         #fileName
-          color: #fff;
+          color: whiteTextColor;
+          background rgba(0,0,0,0.3);
           font-size 16px;
           font-family lightFamily;
           font-weight 300;
@@ -85,12 +89,16 @@ web-image
           height 25px;
           overflow hidden;
           position relative;
+          top 50%;
+          margin-top -17.5px;
         /**Fake File Button**/
         #fakeFile
           position relative;
           overflow hidden;
           margin-top 5px;
           cursor pointer;
+          top: 50%;
+          margin-top -15px;
           basicRoundButton(secondaryColor,100px);
           input[type="file"]#file
             cursor pointer;
@@ -105,8 +113,15 @@ web-image
     border none;
     basicRoundButton(secondaryColor,100px);
     margin 7px auto;
+    position relative;
+    top: 50%;
+    margin-top 5px;
   #crop,#reset
-    margin 7px auto;
+    position: relative;
+    display: block;
+    top: 50%;
+    &#crop
+      margin-top 8px;
 
 input[type="file"]::-webkit-file-upload-button
   cursor pointer;

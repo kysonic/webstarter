@@ -12,7 +12,9 @@ function cb(opts) {
     this.on('mount',()=>{
 
         this.overGround = this.tags['over-ground'];
+        console.log(this.tags)
         this.cropper = this.tags['cropper'];
+        console.log(    this.cropper)
         this.xTooltip = this.tags['x-tooltip'];
         this.xhr = this.tags['web-xhr'];
         // Have a image for cropping?

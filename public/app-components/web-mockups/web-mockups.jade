@@ -1,0 +1,32 @@
+include ../../mixins/icons
+include ../../mixins/respond
+web-mockups
+    over-ground(center,layred,autoClose,bodyScale="false",name="overGround",canscroll="true")#mockupOverGround
+        img(style="width:100%;height:100%")#currentImg
+    #addNew(onclick="{{openMockUpForm}}").queue Add New Mockup
+    #first(if="{{mockups.length==0}}").queue
+        #image
+            +image
+        #titleBar
+            #text It\'s mockup
+        #desc It\'s the best job in the world \n and I proud of it!
+    .mockup.queue(each="{{mockup,key in mockups}}",style="transform:translateX(-1307px)")
+        .mockup-image(onclick="{{parent.openMockUpForm}}")
+            img(riot-src="{{mockup.imgSrc}}",alt="{{mockup.name}}",if="{{mockup.imgSrc}}")
+            #substitute(if="{{!mockup.imgSrc}}")
+                +imager
+        .mockup-additionals(onclick="{{parent.openFullImage}}")
+            .views
+                .icon
+                    +diamond
+                .text {{mockup.name || "No name"}}
+        .mockup-info(onclick="{{parent.openMockUpForm}}")
+            .mockup-description {{mockup.desc}}
+    web-slide(opened="false",mode="absolute",timein="800",closeto="#advancedInformation",timeout="800",ease="Power2",apperance="left-queue",name="mockUpForm",staggertime="0.2")#mockUpForm
+        web-image.queue(action="/project/add/mockup",cropperWidth="920",cropperHeight="640",aspectRatio="795/375",cropAction="user/crop-work-image")
+        web-input.queue(placeholder="About mockup",validation='[{regexp:/^[a-zA-Z0-9а-яА-Я- ]+$/i,msg:"mockupNameError"}]',name="aboutMockup")#aboutMockup
+            #icon
+                +diamond
+        web-ripple-button.queue.purple-round(title="Add Mockup",name="add")#add
+        web-ripple-button.queue.purple-round(title="Back",name="back")#back
+    

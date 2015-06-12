@@ -1,0 +1,113 @@
+@import "nib";
+@import "./public/stylesheets/vars";
+web-access
+  display block;
+  #cardsWrapper
+    position relative;
+    left 50px;
+    #addWorker
+      display inline-block;
+      vertical-align top;
+      margin-left 10px;
+      margin-top 5px;
+      width 190px;
+      height 270px;
+      border 2px dashed borderColor;
+      text-align center;
+      color borderColor;
+      cursor pointer;
+      line-height 270px;
+      font-size 26px;
+      font-weight 100;
+      font-stretch ultra-condensed;
+      transition color .2s,border .2s;
+      &:hover
+        color darken(borderColor,10);
+        border 2px dashed darken(borderColor,10);
+        transition color .2s,border .2s;
+    .userCard
+      position relative;
+      padding 5px;
+      display inline-block;
+      vertical-align top;
+      width 190px;
+      height 270px;
+      margin-left 10px;
+      margin-top 5px;
+      cursor pointer;
+      border 1px solid borderColor;
+      web-ripple-button
+        #button:first-child
+          display none;
+      #backdrop
+        position absolute;
+        display block;
+        width 100%;
+        height 100%;
+        background rgba(0,0,0,0.4);
+        top 0;
+        left 0;
+        #developer
+          margin-top 83px;
+        #designer,#manager
+          margin-top 10px;
+      &:hover
+        hr
+          border 1px solid darken(borderColor,10);
+          transition border .2s;
+        .name
+          color darken(borderColor,10);
+          transition color .2s;
+        .email
+          color darken(borderColor,10);
+        .userAvatar
+          opacity 1;
+          filter: blur(0px);
+          transition opacity .2s;
+      .userAvatar
+        width 100px;
+        height 100px;
+        margin 0 auto;
+        border-radius 50%;
+        overflow hidden;
+        opacity 0.8;
+        filter: blur(0.2px);
+        transition opacity .2s;
+        img
+          width 100%;
+          height 100%;
+      .team
+        text-align center;
+        color borderColor;
+        font-weight bold;
+        font-size 17px;
+        margin 5px 0;
+      .role
+        text-align center;
+        color borderColor;
+        font-weight bold;
+        font-size 15px;
+        margin 0 0 5px 0;
+        text-transform capitalize;
+      .name
+        width 100%;
+        height 45px;
+        text-align center;
+        font-size 17px;
+        font-stretch ultra-condensed;
+        color borderColor;
+        transition color .2s
+        margin-top 5px;
+      hr
+        border 1px solid borderColor;
+        transition border .2s;
+        margin 5px 0;
+      .email
+        text-align center;
+        color borderColor;
+#userSeacrh
+  web-usersearch
+    margin-top 10px !important;
+  web-ripple-button
+    margin-top 15px;
+

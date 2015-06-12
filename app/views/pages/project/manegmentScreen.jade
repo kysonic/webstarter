@@ -1,9 +1,9 @@
-web-slide(opened="true",timein="800",timeout="800",ishashed="true",ease="Power2",canscroll="true")#ideaScreen
+web-slide(opened="false",mode="absolute",timein="800",timeout="800",ishashed="true",ease="Power1",canscroll="true",smartdirection="true")#manegmentScreen
     .row
         web-form(action="/project",method="POST",fields="['projectName','aboutProject']",style="height: 100%")#newProjectForm
             .col-lg-1
             .col-lg-9(style="height: 100%")
-                web-project(author="#{user.firstName +' '+ user.lastName}")
+                web-manegment
             .col-lg-2
                 #buttonSet
                     web-ripple-button#submit.purple-round.w150(title="Save",style="margin-left: 32px")

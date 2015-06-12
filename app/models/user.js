@@ -56,6 +56,32 @@ schema.statics.encrypt = function (str) {
     return passwordHash.generate(str);
 }
 /**
+ * Get props by list
+ * @param list {Array}
+ */
+schema.statics.getPropsByList = function(userFields,list) {
+    var allowedUser = {};
+    var properties = list || User.allowedProperties;
+    properties.forEach(function(property){
+        allowedUser[property] = userFields[property] ? userFields[property] : '';
+    }.bind(this));
+    return allowedUser;
+}
+/**
+ * Get array with filtered values
+ * @param userArray {Array} - User data object array
+ * @param list {Array} - list of property
+ * @returns {{}}
+ */
+schema.statics.filterUserArray = function(userArray,list) {
+    var filteredArray = [];
+    var properties = list || User.allowedProperties;
+    userArray.forEach(function(user,key){
+        filteredArray[key] = this.getPropsByList(user,list);
+    }.bind(this));
+    return filteredArray;
+}
+/**
  * Static verify method
  * @param str
  * @returns {*}

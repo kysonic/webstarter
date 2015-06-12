@@ -9,7 +9,7 @@ web-employment
                 .companyLocation {{employment.companyLocation}} {{employment.position ? ", &nbsp;" : ""}}
                 .position {{employment.position}}
         web-ripple-button.purple-round(title="Add employment",name="add")#add
-        web-slide(mode="absolute",closeto="#fsRight",opened="false",ease="Power0",timein="400",timeout="400",staggertime="0.04",apperance="left-queue")#employmentSlide
+        web-slide(mode="absolute",closeto="#fsRight",opened="false",ease="Power0",timein="400",timeout="400",staggertime="0.04",apperance="right-queue")#employmentSlide
                 #fieldset.queue Employment
                 web-input.queue(placeholder="Company name",required="true",name="companyName",validation='[{regexp:/^([a-zA-Z0-9а-яА-Я- ]+|)$/i,msg:"companyNameError"}]')#companyName
                     #icon

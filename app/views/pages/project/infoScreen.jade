@@ -1,0 +1,12 @@
+web-slide(opened="true",timein="800",timeout="800",ishashed="true",ease="Power1",canscroll="true",smartdirection="true")#infoScreen
+    .row
+        web-form(action="/project",method="POST",fields="['projectName','aboutProject']",style="height: 100%")#newProjectForm
+            .col-lg-1
+            .col-lg-9(style="height: 100%")
+                web-project(author="#{user.firstName +' '+ user.lastName}")
+            .col-lg-2
+                #buttonSet
+                    web-ripple-button#submit.purple-round.w150(title="Save",style="margin-left: 32px")
+                    web-ripple-button#submit.purple-round.w150(title="Go to Project!",style="margin-left: 32px; margin-top: 60px")
+
+

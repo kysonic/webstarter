@@ -4,6 +4,8 @@ define(['tags/web-input/web-input',
     'tags/web-textarea/web-textarea',
     'tags/web-editor/web-editor',
     'tags/web-tags/web-tags',
+    'tags/web-doc/web-doc',
+    'tags/web-mockups/web-mockups',
     'tags/web-select/web-select',
     'tags/web-spinner-input/web-spinner-input'],WebInput,WebRipple)
 function cb(opts) {
@@ -23,17 +25,23 @@ function cb(opts) {
         this.projectCountrySelect = this.tags['projectCountry'];
         this.projectLocationInput = this.tags['projectLocation'];
         this.projectTags = this.tags['projectTags'];
-        // Extend methods
+        this.tabs = this.tags['tabs'];
+        this.basicI = this.tags['basicInformation'];
+        this.advancedI = this.tags['advancedInformation'];
+        this.mockups = this.tags['web-mockups'];
+        this.mockups.refSlide = this.advancedI;
+        this.mockups.mockUpForm.setCloseTo();
+        // Extend methods async
         var oEdit = this.projectNameInput.edit;
-        this.projectNameInput.edit = (e)=>{oEdit(e);this.projectNameEdit(e);};
+        this.projectNameInput.edit = (e)=>{oEdit(e); this.projectNameEdit(e);};
 
-        oEdit = this.projectCountrySelect.input.edit;
+        var oEdit = this.projectCountrySelect.input.edit;
         this.projectCountrySelect.input.edit = (e)=>{oEdit(e);this.projectCountryEdit(e);};
 
         var oSelect = this.projectCountrySelect.selectItem;
         this.projectCountrySelect.dropdown.selectItem = (e)=>{oSelect(e);this.projectCountryEdit(e);}
 
-        oEdit = this.projectLocationInput.edit;
+        var oEdit = this.projectLocationInput.edit;
         this.projectLocationInput.edit = (e)=>{oEdit(e);this.projectLocationEdit(e);};
 
         var oSelectItem = this.projectTags.select.dropdown.selectItem;
@@ -41,10 +49,13 @@ function cb(opts) {
 
         var remove = this.projectTags.remove;
         this.projectTags.remove = (e)=>{remove(e);this.projectTagsSelect(e);}
+
+        this.tabs.whenTabChanged = this.changeTab;
     });
 
     this.projectNameEdit = (e)=>{
-        this.update({projectName:this.projectNameInput.input.value})
+        this.update({projectName:this.projectNameInput.input.value});
+        this.projectNameInput.checkValidation(this.projectNameInput.input.value);
     }
     this.projectCountryEdit = (e)=>{
         this.update({country:this.projectCountrySelect.input.input.value});
@@ -54,6 +65,15 @@ function cb(opts) {
     }
     this.projectTagsSelect = (e)=>{
         this.update({tg:this.projectTags.tagNames});
+    }
+    this.changeTab = (dataSet)=>{
+        if(dataSet.id==1) {
+            this.basicI.close();
+            this.advancedI.open();
+        }else {
+            this.basicI.open();
+            this.advancedI.close();
+        }
     }
 }
 

@@ -9,6 +9,7 @@ function cb(opts) {
     this.isHashed = opts.ishashed || false;
     try{this.tabs = JSON.parse(this.tabs)}catch (e) {};
     this.named = opts.named || '';
+    this.whenTabChanged = ()=>{};
     //Basics
     this.selected = 0;
     /**
@@ -46,6 +47,7 @@ function cb(opts) {
         if(this.isHashed) location.hash = dataSet.link;
         this.update({selected:id});
         this.line.style.left = this.line.getBoundingClientRect().width * (id) + 'px';
+        this.whenTabChanged(dataSet);
     }
     /**
      * Hash Change.

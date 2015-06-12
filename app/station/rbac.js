@@ -7,13 +7,14 @@ var mRbac = require('../models/rbac').Rbac;
 module.exports = function(app) {
     var config = app.get('config');
     /*var rbac = new mRbac({
-        name: 'webmatter',
+        name: 'webstarter',
         permissions : {
-            user: ["create","read","update","delete","auth"]
+            user: ["create","read","update","delete","auth"],
+            project: ["create","update","read","delete"]
         },
         grants: {
             guest: ["create_user","auth_user"],
-            user: ["read_user",""]
+            user: ["read_user","update_user","create_project","update_project"]
         },
         roles: ["user","guest"]
     });

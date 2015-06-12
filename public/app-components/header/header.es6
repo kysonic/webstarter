@@ -6,8 +6,8 @@ function cb(opts) {
     this.basicMenu = [
         {link:'/user',title:'Profile'},
         {link:'#',title:'Projects'},
-        {link:'#',title:'Teams'},
-        {link:'/project',title:'Create Idea'}
+        {link:'#',title:'People'},
+        {link:'/project',title:'Create Project'}
     ];
     // Set active item
     if(opts && opts.submenu!='undefined' && this.basicMenu[opts.active]) this.basicMenu[opts.active].active = true;

@@ -4,9 +4,9 @@ function cb(opts) {
     // Ready
     this.on('mount',()=>{
         // Get all of the nested core-media-query and fire!
-        this.tags['core-media-query'].forEach(function(tag){
+        /*this.tags['core-media-query'].forEach(function(tag){
             tag.on('matchesChanged',this.matchesChangeHandler.bind(tag));
-        }.bind(this));
+        }.bind(this));*/
     });
     this.matchesChangeHandler = function(){
         self.currentMedia = this.matches ? this.root.id : self.currentMedia;

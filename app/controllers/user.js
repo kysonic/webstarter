@@ -4,11 +4,13 @@ var User = require('../models/user').User;
 var check = require('../libs/rbac');
 var img = require('../libs/img');
 var countries  = require('country-data').countries;
+var fs = require('fs');
 module.exports = {
     routes: function(app) {
         // Direction routes
         router.get('/',check.can('read','user'),this.profileUser);
         router.get('/data',check.can('read','user'),this.getData);
+        router.post('/search',check.can('read','user'),this.search);
         router.post('/',check.can('update','user'),this.updateProfile);
         router.post('/register',check.can('create','user'),this.registerUser);
         router.post('/auth',check.can('auth','user'),this.authUser);
@@ -139,6 +141,7 @@ module.exports = {
      */
     uploadAvatar: function(req,res,next) {
         //Img lib help us
+        if(!fs.existsSync('./public/uploads/users/'+req.session.user.email)) fs.mkdir('./public/uploads/users/'+req.session.user.email);
         img.upload(req,{
                         name: 'full',
                         setTime:true,
@@ -201,5 +204,18 @@ module.exports = {
         },function(err){
             res.json({success:false,errors:err});
         });
+    },
+    /**
+     *
+     * @param query
+     */
+    search: function(req,res,next){
+        var data = req.body;
+        var query = data.query.replace(/(^\s*|\s*$)/g,'');
+        var searchRegexp = query ? new RegExp('.*'+query+'.*','ig') : '';
+        User.find({$or:[{email:searchRegexp},{firstName:searchRegexp},{lastName:searchRegexp}]},function(err,users){
+            if(err) res.json({success:false,error:err});
+            res.json({success:true,users:User.filterUserArray(users,['email','croppedAvatar','firstName','lastName'])});
+        })
     }
 }

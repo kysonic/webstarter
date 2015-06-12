@@ -34,7 +34,8 @@
         'project': [
             'tags/project-service/project-service',
             'tags/web-form/web-form',
-            'tags/web-project/web-project'
+            'tags/web-project/web-project',
+            'tags/web-manegment/web-manegment'
         ]
     }
     /**
@@ -45,7 +46,7 @@
             reflux: '/vendor/reflux/dist/reflux',
             tags: '/build/tags',
             webstarter: '/webstarter',
-            riot: '/vendor/riotjs/riot.min',
+            riot: '/vendor/riot/riot.min',
             jquery: '/vendor/jquery/dist/jquery.min',
             cropper: '/vendor/cropper/dist/cropper.min',
             domReady: '/vendor/domReady/domReady',
@@ -117,8 +118,7 @@
              * When dom is ready - grab all tags and place their in globals
              */
             domReady(function(){
-               Webstarter.tags = riot.mount('*');
-
+                Webstarter.tags = riot.mount('*');
                 // Apperance
                 document.body.style.opacity = 1;
                 document.body.style.webkitAnimation = 'apperance cubic-bezier(1, 0.4, 0.175, 0.2) .2s 1';

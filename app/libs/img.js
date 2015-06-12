@@ -122,7 +122,11 @@ exports.removeUnusedWorkImage = function(worksFolder,works) {
         });
     });
 }
-
+/**
+ * Delete file by Regular Expression
+ * @param folder
+ * @param regexp
+ */
 function deleteFileByRegexp(folder,regexp) {
     fs.readdir(folder,function(err,files){
         if(err) throw err;

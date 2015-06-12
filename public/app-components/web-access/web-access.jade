@@ -1,0 +1,21 @@
+web-access
+    #cardsWrapper
+        #addWorker.queue(onclick="{{openUserSearch}}") Add Worker
+        .userCard.queue(each="{{user,key in users}}")
+            .team {{user.team || "No Team"}}
+            .userAvatar
+                img(riot-src="{{user.croppedAvatar}}",title="{{user.firstName}}")
+            .name
+                .firstName {{user.firstName}}
+                .lastName {{user.lastName}}
+            hr
+            .role {{user.role || "No Role"}}
+            web-ripple-button.purple-round.w150(title="Change Role",onclick="{{parent.changeRole}}")
+            #backdrop(show="{{user.opened}}")
+                web-ripple-button.yellow-round.w150(title="Developer",onclick="{{parent.setRole}}",data-role="developer")#developer
+                web-ripple-button.yellow-round.w150(title="Designer",onclick="{{parent.setRole}}",data-role="designer")#designer
+                web-ripple-button.yellow-round.w150(title="Manager",onclick="{{parent.setRole}}",data-role="manager")#manager
+
+    web-slide(mode="absolute",closeto="#accessSlide",casscroll="true",opened="false",ease="Power2",apperance="left-queue",name="userSeacrh",staggertime="0.2")#userSeacrh
+        web-usersearch(result="8",name="webSearch")
+        web-ripple-button.queue.purple-round.w150(title="Go Back",name="goBack")

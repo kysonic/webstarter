@@ -4,6 +4,19 @@ web-ripple-button
   position relative;
   width 100%;
   margin 0 auto;
+  /** File **/
+  input[type="file"]#file
+    cursor pointer;
+    display block;
+    position absolute;
+    top: 0;
+    left: 0;
+    opacity 0;
+    width 100%;
+    z-index: 20;
+    & /deep/ input
+      cursor pointer;
+  /**Metrics**/
   &.w300
     display block;
     max-width 300px;
@@ -105,6 +118,7 @@ web-ripple-button
     font-stretch ultra-condensed;
     text-align center;
     color: grayTextColor;
+
   /**Tabs**/
   &.tabs
     &[checked]

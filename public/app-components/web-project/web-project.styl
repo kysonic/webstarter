@@ -2,6 +2,8 @@
 @import "./public/stylesheets/vars";
 web-project
   display block;
+  #fieldset
+    text-align center;
   /** Tabs **/
   #tabs
     margin-top 30px;
@@ -11,9 +13,10 @@ web-project
     height auto;
     background #F6F7F2;
     padding 20px;
+    position relative;
     .row
       &#nameWrapper
-        margin-top 35px;
+        margin-top 10px;
       &#locationWrapper
         margin-top 35px;
       & > div
@@ -25,6 +28,9 @@ web-project
         margin-top 41px;
       #description
         margin-top 30px;
+        #webEditor
+          #editorWrapper
+            color darken(borderColor,5) !important;
   #pjctName
     display block;
     width 100%;
@@ -157,4 +163,6 @@ web-project
                 height 75px;
 
 
+  #Mockups
+    padding 20px;
 

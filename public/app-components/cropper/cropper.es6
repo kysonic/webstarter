@@ -1,4 +1,4 @@
-define(['cropper','tags/web-ripple-button/web-ripple-button'],cropper,ripple);
+define(['cropper','tags/web-ripple-button/web-ripple-button','tags/web-xhr/web-xhr'],cropper,ripple);
 function cb(opts) {
     // Attributes
     this.width =  opts.width || 640;
@@ -9,7 +9,7 @@ function cb(opts) {
     // Ready
     this.pth = '';
     this.on('mount',()=>{
-        this.xhr = this.tags['web-xhr'];
+        this.xhr = this.tags['xhr'];
         // set Width and Height
         this.wrapper.style.width = this.width + 'px';
         this.wrapper.style.height = this.height + 'px';

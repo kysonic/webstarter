@@ -15,33 +15,39 @@ web-project
             web-image(action="/project/add/image",cropperWidth="802",cropperHeight="450",aspectRatio="535/300",cropAction="/user/crop-work-image",named="Image")
         #sliderWrapper
             web-slide(opened="true",timein="800",timeout="800",ease="Power2",apperance="left-queue",name="basicSet",staggertime="0.2")#basicSet
-                web-input.queue(placeholder="I need",required="true",validation='[{regexp:/^[0-9]+$/i,msg:"MoneyError"}]',name="iNeed",named="bid",style="max-width: 365px")#iNeed
+                web-input.queue(placeholder="I need",required="true",validation='[{regexp:/^([0-9]+|)$/i,msg:"MoneyError"}]',name="iNeed",named="bid",style="max-width: 365px")#iNeed
                     #icon
                         +dollar
                 web-spinner-input.queue(min="14",text="DAYS",max="60",closeto="#basicSet",placeholder="For",validation='[{regexp:/^[0-9]+$/i,msg:"DayCountError"}]',required="true",name="for")#for
                     #icon
                         +date
-    web-tabs(tabs='[{link:"",title:"Basic"},{link:"",title:"Advanced"}]',ishashed="false",cls="tabs",ripplecolor="#B0B42B",rippleScale="60")#tabs
+    web-tabs(tabs='[{link:"",title:"Basic"},{link:"",title:"Advanced"}]',cls="tabs",ripplecolor="#B0B42B",rippleScale="60",name="tabs")#tabs
     #tabWrapper
         web-slide(opened="true",timein="800",timeout="800",ease="Power2",apperance="left-queue",name="basicInformation",staggertime="0.2")#basicInformation
             .row#nameWrapper
                 .col-lg-8
-                    web-input(placeholder="Project Name",required="true",validation='[{regexp:/^([a-zA-Z0-9а-яА-Я- ]|)+$/i,msg:"ProjectNameError"}]',name="projectName",named="name")#projectName
+                    web-input.queue(placeholder="Project Name",required="true",validation='[{regexp:/^([a-zA-Z0-9а-яА-Я- ]|)+$/i,msg:"ProjectNameError"}]',name="projectName",named="name")#projectName
                         #icon
                             +diamond
                 .col-lg-4
-                    web-tags(placeholder="Tags (3 max)",limit="3",data='["Medicine","IT","Food","Fraud"]',named="tags",name="projectTags")#projectTags
+                    web-tags.queue(placeholder="Tags (3 max)",limit="3",data='["Medicine","IT","Food","Fraud"]',named="tags",name="projectTags")#projectTags
                         #icon
                             +diamond
             .row#locationWrapper
                 .col-lg-8
-                    web-textarea(placeholder="Briefly about project",name="aboutProject",named="about")#aboutProject
+                    web-textarea.queue(placeholder="Briefly about project",name="aboutProject",named="about")#aboutProject
                 .col-lg-4
-                    web-select(placeholder="Country",name="projectCountry",named="country",validation='[{regexp:/^([a-zA-Z0-9а-яА-Я- ]+|)+$/i,msg:"CountryError"}]',data='["Argentia","Belarus","Grenlandia"]',limit="4")#projectCountry
+                    web-select.queue(placeholder="Country",name="projectCountry",named="country",validation='[{regexp:/^([a-zA-Z0-9а-яА-Я- ]+|)+$/i,msg:"CountryError"}]',data='["Argentia","Belarus","Grenlandia"]',limit="4")#projectCountry
                         #icon
                             +diamond
-                    web-input(placeholder="Location",validation='[{regexp:/^([a-zA-Z0-9а-яА-Я- ]|)+$/i,msg:"AboutProjectError"}]',name="projectLocation",named="location")#projectLocation
+                    web-input.queue(placeholder="Location",validation='[{regexp:/^([a-zA-Z0-9а-яА-Я- ]|)+$/i,msg:"AboutProjectError"}]',name="projectLocation",named="location")#projectLocation
                         #icon
                             +location
-            .row
-                web-editor(placeholder="Project Story",name="description",named="description")#description
+                .row
+                    web-editor.queue(placeholder="Project Story",name="description",named="description",value='')#description
+        web-slide(opened="false",mode="absolute",timein="800",timeout="800",ease="Power2",apperance="right-queue",name="advancedInformation",staggertime="0.2",canscroll="true")#advancedInformation
+            .row#advancedWrapper
+                #fieldset.queue Statement of Work
+                    web-doc(action="/project/add/doc").queue
+            .row#Mockups
+                web-mockups

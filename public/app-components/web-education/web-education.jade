@@ -9,7 +9,7 @@ web-education
                 .universityLocation {{education.universityLocation}} {{education.degree ? ", &nbsp;" : ""}}
                 .degree {{education.degree}}
         web-ripple-button.purple-round(title="Add Education",name="add")#add
-        web-slide(mode="absolute",vww="101%",closeto="#fsLeft",opened="false",ease="Power0",timein="400",timeout="400",staggertime="0.05",apperance="left-queue")#educationSlide
+        web-slide(mode="absolute",vww="101%",closeto="#fsLeft",opened="false",ease="Power0",timein="400",timeout="400",staggertime="0.05",apperance="right-queue")#educationSlide
                 #fieldset.queue Education
                 web-input.queue(placeholder="University name",required="true",name="universityName",validation='[{regexp:/^([a-zA-Z0-9а-яА-Я- ]+|)$/i,msg:"universityNameError"}]')#universityName
                     #icon

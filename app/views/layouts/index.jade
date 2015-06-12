@@ -10,11 +10,11 @@ html
             link(type="text/css" rel="stylesheet" href="/vendor/mocha/mocha.css")
         script(data-main="/main" data-show-test="#{showTests}" src="/vendor/requirejs/require.js")
     body.unresolved
-       x-l18n
-       x-media-queries
-       x-hash
-       x-snackbar(right,bottom,time="5000")
-       resizer
+           x-l18n
+           x-media-queries
+           x-hash
+           x-snackbar(right,bottom,time="5000")
+           resizer
        .container-fluid
            include ../../../public/mixins/filters
            +goo

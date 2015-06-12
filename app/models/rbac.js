@@ -4,8 +4,7 @@ var rbacSchema = new mongoose.Schema({
         "roles": {"type": Array},
         "permissions": {"type": Object},
         "grants": {"type": Object},
-        "created": {"type": Date, "default":Date.now
-    }
+        "created": {"type": Date, "default":Date.now}
 });
 
 exports.Rbac = mongoose.model('Rbac', rbacSchema);

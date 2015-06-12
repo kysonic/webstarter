@@ -1,0 +1,21 @@
+include ../../mixins/icons
+web-manegment
+    #projectCardWrapper
+        #topInformation
+            #icon
+                +location
+            #text {{location || "Location"}}, {{country || "Country"}}
+            #tags
+                .tag(each="{{n in tg}}")
+                    .title {{n}}
+                    .remove
+        #imageWrapper
+            web-image(action="/project/add/image",cropperWidth="802",cropperHeight="450",aspectRatio="535/300",cropAction="/user/crop-work-image",named="Image")
+        #sliderWrapper
+    web-tabs(tabs='[{link:"",title:"Access"},{link:"",title:"Notify"}]',cls="tabs",ripplecolor="#B0B42B",rippleScale="60",name="tabs")#tabs
+    #tabWrapper
+        web-slide(opened="true",timein="800",timeout="800",ease="Power2",apperance="right-queue",name="accessSlide",staggertime="0.1")#accessSlide
+            web-access(name="access")
+
+
+
