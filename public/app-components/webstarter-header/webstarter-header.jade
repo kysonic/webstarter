@@ -1,13 +1,10 @@
-include svg
+include ../../mixins/icons
 header
-    user
-    over-ground(center,layred,autoClose,bodyScale="false")
+    //over-ground(center,layred,autoClose,bodyScale="false")
         auth-form
     .row#basic
         .col-lg-10#menu-section
-            ul#menu
-                li(each="{{basicMenu}}",class="{{active:active}}")
-                    a(href="{{link}}")  {{title}}
+            web-tabs(tabs="{{basicMenu}}",ishashed="true",cls="tabs",ripplecolor="#B0B42B",rippleScale="60")
         .col-lg-2#logo-section(itemscope,itemtype="http://schema.org/Organization")
             a#logo(onclick="{{!content.isAuth ? toggleOverGround : logOut}}")
                 +logo

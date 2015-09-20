@@ -1,5 +1,5 @@
 {
-  "name": "riot",
+  "name": "webstarter",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -14,6 +14,8 @@
     "babel-runtime": "npm:babel-runtime@^4.7.16"
   },
   "dependencies": {
+    "css": "github:systemjs/plugin-css@^0.1.12",
+    "gs": "github:greensock/GreenSock-JS@^1.17.0",
     "riot": "github:riot/riot@^2.1.0"
   }
 }

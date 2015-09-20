@@ -1,8 +1,9 @@
+var riot = require('riot');
 function cb(opts) {
     // Attributes
-    this.cors = opts.cors || false;
-    this.async = opts.async || true;
-    this.json = opts.json || false;
+    this.cors = opts.cors=='true' || false;
+    this.async = opts.async=='true' || true;
+    this.json = opts.json=='true' || false;
     // Basics
     this.bodyMethods = {POST: 1,PUT: 1,PATCH: 1,DELETE: 1};
     /**

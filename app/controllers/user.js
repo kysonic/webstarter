@@ -26,6 +26,7 @@ module.exports = {
      * User authentication
      */
     authUser: function(req,res) {
+
         var data = req.body;
         // If user is not auth
         if (!req.session.user) {

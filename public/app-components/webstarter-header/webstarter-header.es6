@@ -1,14 +1,8 @@
-define(['webstarter','tags/user/user','tags/over-ground/over-ground','tags/auth-form/auth-form','tags/web-tabs/web-tabs'],Webstarter);
+var riot = require('riot');
+var WebStarter = require('webstarter').default;
 function cb(opts) {
     this.media = null;
     this.currentMedia = null;
-    // Basic menu is static now. XXX: Maybe make json config with menu items?
-    this.basicMenu = [
-        {link:'/user',title:'Profile'},
-        {link:'#',title:'Projects'},
-        {link:'#',title:'People'},
-        {link:'/project',title:'Create Project'}
-    ];
     // Set active item
     if(opts && opts.submenu!='undefined' && this.basicMenu[opts.active]) this.basicMenu[opts.active].active = true;
     // Set sub menu
@@ -18,10 +12,17 @@ function cb(opts) {
      * Ready
      */
     this.on('mount',()=>{
-        // Async
+        WebStarter.onMount().then(()=>{
+            WebStarter.tags.xMediaQueries.on('currentMediaChanged',this.onMediaChange);
+            WebStarter.tags.xSnackbar.msg = 'SOME ISOID SIODIOS ISOIDOSI iOSIDOS iOSIDO  ISODISO IOSIDO iOSIDO';
+            setInterval(()=>{
+                WebStarter.tags.xSnackbar.open();
+            },5000);
+        })
         setTimeout(()=>{
+
             // Get additional global tags
-            this.media = Webstarter.tags.findTagByName('x-media-queries');
+            /*this.media = Webstarter.tags.findTagByName('x-media-queries');
             this.l18n  = Webstarter.tags.findTagByName('x-l18n');
             this.User = this.tags.user;
             this.overGround = this.tags['over-ground'];
@@ -37,8 +38,8 @@ function cb(opts) {
             this.media.on('currentMediaChanged',()=>{
                 this.currentMedia = this.media.currentMedia;
                 this.update();
-            });
-        },0);
+            });*/
+        });
     });
     // Open over ground popup
     this.toggleOverGround = (e)=>{
@@ -58,6 +59,10 @@ function cb(opts) {
                 this.update();
             }
         },(err)=>console.log(err));
+    }
+
+    this.onMediaChange = ()=>{
+        
     }
 }
 

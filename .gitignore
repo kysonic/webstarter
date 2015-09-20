@@ -29,3 +29,4 @@ build/Release
 node_modules
 public/vendor
 public/build
+public/jspm_packages

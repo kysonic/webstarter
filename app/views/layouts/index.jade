@@ -11,22 +11,21 @@ html
             link(type="text/css" rel="stylesheet" href="/vendor/mocha/mocha.css")
         //script(data-main="/main" data-show-test="#{showTests}" src="/vendor/requirejs/require.js")
     body.unresolved
-           //x-l18n
-           //x-media-queries
+           x-i18n
+           x-media-queries
            x-hash
-           //x-snackbar(right,bottom,time="5000")
-           //resizer
+           x-snackbar(right,bottom,time="5000")
        .container-fluid
-           //#wrapper.row
+           #wrapper.row
                table
                     tr
-                        td#menu
+                        //td#menu
                             menu-header(isauth="#{isAuth}",name="menu-header",title="#{user ? user.firstName+' '+user.lastName : ''}")
                             content(isauth="#{isAuth}",name="menu-content")
                                 block menu
                         td#content
-                            header(isauth="#{isAuth}",submenu="#{headerSubMenu}",active="#{activeHeaderMenuItem}",name="header")
-                            content(isauth="#{isAuth}",name="content")
+                            webstarter-header(submenu="#{headerSubMenu}",active="#{activeHeaderMenuItem}",name="header")
+                            //content(isauth="#{isAuth}",name="content")
                                 block content
        if showTests
            #mocha(data-page-tests="#{pageTests}")

@@ -135,4 +135,8 @@ Array.values();
    //#msg(each="{{err,i in errors}}")
     //{{err}}
 
+// Iterate objects
 
+for (let [k, v] of Object.entries(sources)) {
+    console.log(k,v)
+}

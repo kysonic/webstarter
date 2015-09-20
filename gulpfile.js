@@ -10,13 +10,13 @@ gulp.task('dev', ['riot','styl'], function() { });
 gulp.task('riot', function () {
     gulp.src('./public/app-components/**/*.html')
         .pipe(watch('./public/app-components/**/*.{jade,es6,styl}',{verbose:true}))
-        .pipe(riotTagsCompiler({dist: './public/build/tags/',loadCss:true,amd:true,first:'jade',next:'es6,styl',compactJS:false}))
+        .pipe(riotTagsCompiler({dist: './public/build/tags/',systemjs:'./build/tags',amd:false,first:'jade',next:'es6,styl'}))
         .on('error', console.log)
 });
 // Build all of tags in app-component folder
 gulp.task('compile', function () {
     gulp.src('./public/app-components/**/*.jade')
-        .pipe(riotTagsCompiler({dist: './public/build/tags/',loadCss:true,amd:true,first:'jade',next:'es6,styl'}))
+        .pipe(riotTagsCompiler({dist: './public/build/tags/',systemjs:'./build/tags',amd:false,first:'jade',next:'es6,styl'}))
         .on('error', console.log)
 });
 

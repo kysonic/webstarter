@@ -1,3 +1,9 @@
+var riot = require('riot');
+/**
+ * Currently it is a one-level hash util.
+ * XXX: Later it may be turned in a big hash Router.
+ * @param opts
+ */
 function cb(opts) {
     // Basics
     this.possibleRoutes = [];
@@ -12,7 +18,7 @@ function cb(opts) {
         else location.hash = this.defaultRoute;
     });
     // Bind hash change handler
-    window.addEventListener('hashchange', this.hashChanged.bind(this),true);
+    window.addEventListener('hashchange',this.hashChanged.bind(this),true);
 }
 
 

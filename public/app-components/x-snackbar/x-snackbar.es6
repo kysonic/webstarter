@@ -1,7 +1,8 @@
-define(['TweenMax'],TweenMax);
+var riot = require('riot');
+var TweenMax = require('TweenMax');
 function cb(opts) {
     // Attributes
-    this.time = opts.time || 5000;
+    this.time = opts.time || 10000;
     // Vars
     this.opened = false;
     this.isError = false;
@@ -24,13 +25,22 @@ function cb(opts) {
         clearInterval(this.timer);
         this.timer = setTimeout(()=>{this.close();},this.time);
     }
+    /**
+     * Close
+     */
     this.close = ()=>{
         TweenMax.to(this.root,0.3,{transform:'translateY(-100px)',opacity:0,ease: Power4.EaseOut,onComplete:()=>{this.update({opened:false});}});
     }
+    /**
+     * Position
+     */
     this.setPosition = ()=>{
-        if(opts.right!=undefined) {this.root.style.marginLeft = - this.wrapper.getBoundingClientRect().width - 20 +'px'}
+        if(opts.right!=undefined) {this.root.style.marginLeft = - this.wrapper.getBoundingClientRect().width +'px'}
+        if(opts.bottom!=undefined) {this.root.style.marginTop = - this.wrapper.getBoundingClientRect().height - 20 +'px'}
     }
 }
+
+
 
 
 
